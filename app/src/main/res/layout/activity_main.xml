@@ -28,7 +28,8 @@
         android:text="O nas"
         android:id="@+id/about_button"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="about"/>
 
     <Button
         android:layout_width="wrap_content"

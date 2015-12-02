@@ -1,5 +1,6 @@
 package pl.com.inzynierka.mkufunzi.controllers;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import pl.com.inzynierka.mkufunzi.R;
+import pl.com.inzynierka.mkufunzi.controllers.users_controller.About;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -49,5 +51,12 @@ public class MainActivity extends ActionBarActivity {
         this.finish();
         System.exit(0);
         Log.d("Exit", "End");
+    }
+
+    public void about(View view)
+    {
+        Log.d("About", "Opening about page activity ");
+        Intent intent = new Intent(this, About.class);
+        this.startActivity(intent);
     }
 }
