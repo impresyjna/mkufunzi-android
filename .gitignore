@@ -1,0 +1,12 @@
+
+*.properties
+
+.idea/.name
+
+*.bin
+
+*.jar
+
+.idea/compiler.xml
+
+.gradle/2.2.1/taskArtifacts/cache.properties.lock

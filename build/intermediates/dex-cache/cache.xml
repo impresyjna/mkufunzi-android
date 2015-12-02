@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/impresyjna/Documents/Mkufunzi-android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/impresyjna/Documents/Mkufunzi-android/app/build/intermediates/pre-dexed/debug/classes-51b61fc5326a1bbd3505561d93474c5ffc9f3695.jar" />
+    </item>
+    <item
+        jar="/Users/impresyjna/Documents/Mkufunzi-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/impresyjna/Documents/Mkufunzi-android/app/build/intermediates/pre-dexed/debug/classes-2df56fcb379282ce2b7da503bd94aed4601e9181.jar" />
+    </item>
+    <item
+        jar="/Users/impresyjna/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/impresyjna/Documents/Mkufunzi-android/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-8257c154f012a3b680365933d5ee141584eafe53.jar" />
+    </item>
+    <item
+        jar="/Users/impresyjna/Documents/Mkufunzi-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/impresyjna/Documents/Mkufunzi-android/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-79b34304c6459da8c9d5f008084cb0c64e6c217b.jar" />
+    </item>
+
+</items>
