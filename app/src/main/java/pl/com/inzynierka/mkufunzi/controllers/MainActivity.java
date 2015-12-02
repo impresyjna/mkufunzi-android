@@ -2,8 +2,10 @@ package pl.com.inzynierka.mkufunzi.controllers;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import pl.com.inzynierka.mkufunzi.R;
 
@@ -37,5 +39,15 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    /* Button interaction in activity */
+    public void exit(View view)
+    {
+        Log.d("Exit", "Begin");
+        this.finish();
+        System.exit(0);
+        Log.d("Exit", "End");
     }
 }
