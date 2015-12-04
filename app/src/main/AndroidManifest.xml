@@ -18,10 +18,14 @@
         </activity>
         <activity
             android:name=".controllers.users_controller.Login"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".controllers.users_controller.About"
             android:label="@string/title_activity_about"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controllers.users_controller.Register"
+            android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

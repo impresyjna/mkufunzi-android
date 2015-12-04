@@ -10,6 +10,8 @@ import android.view.View;
 
 import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.controllers.users_controller.About;
+import pl.com.inzynierka.mkufunzi.controllers.users_controller.Login;
+import pl.com.inzynierka.mkufunzi.controllers.users_controller.Register;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -47,16 +49,30 @@ public class MainActivity extends ActionBarActivity {
     /* Button interaction in activity */
     public void exit(View view)
     {
-        Log.d("Exit", "Begin");
+        Log.i("Exit", "Begin");
         this.finish();
         System.exit(0);
-        Log.d("Exit", "End");
+        Log.i("Exit", "End");
     }
 
-    public void about(View view)
+    public void showAbout(View view)
     {
-        Log.d("About", "Opening about page activity ");
+        Log.i("About", "Opening about page activity ");
         Intent intent = new Intent(this, About.class);
+        this.startActivity(intent);
+    }
+
+    public void showLogin(View view)
+    {
+        Log.i("Login", "Opening login page activity ");
+        Intent intent = new Intent(this, Login.class);
+        this.startActivity(intent);
+    }
+
+    public void showRegister(View view)
+    {
+        Log.i("Register", "Opening register page activity");
+        Intent intent = new Intent(this, Register.class);
         this.startActivity(intent);
     }
 }

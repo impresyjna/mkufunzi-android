@@ -11,7 +11,8 @@
         android:text="Zaloguj się"
         android:id="@+id/log_in_button"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="showLogin"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -20,7 +21,8 @@
         android:id="@+id/register_button"
         android:layout_below="@+id/log_in_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+        android:layout_marginTop="51dp"
+        android:onClick="showRegister"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -29,7 +31,7 @@
         android:id="@+id/about_button"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:onClick="about"/>
+        android:onClick="showAbout"/>
 
     <Button
         android:layout_width="wrap_content"
