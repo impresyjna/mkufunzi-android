@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import pl.com.inzynierka.mkufunzi.R;
-import pl.com.inzynierka.mkufunzi.controllers.users_controller.About;
 import pl.com.inzynierka.mkufunzi.controllers.users_controller.Login;
 import pl.com.inzynierka.mkufunzi.controllers.users_controller.Register;
 
