@@ -3,6 +3,7 @@
     package="pl.com.inzynierka.mkufunzi">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <user-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -11,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".controllers.MainActivity"
+            android:name=".controllers.WelcomePage"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,15 +21,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".controllers.users_controller.Login"
+            android:name=".controllers.users_controller.LoginController"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".controllers.About"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".controllers.users_controller.Register"
+            android:name=".controllers.users_controller.RegisterController"
             android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controllers.MainPage"
+            android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
