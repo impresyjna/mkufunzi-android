@@ -72,18 +72,14 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
             pDialog.dismiss();
         }
 
-        try {
-            if (json.getString("email")!=null) {
-                User user = new User();
-                Log.i("MainPage", "Opening main page activity ");
-                Intent intent = new Intent(activity, MainPage.class);
-                activity.startActivity(intent);
-            } else {
-                Toast.makeText(activity,"Niepoprawne dane", Toast.LENGTH_SHORT).show();
-    
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (json.has("email")) {
+            User user = new User();
+            Log.i("MainPage", "Opening main page activity ");
+            Intent intent = new Intent(activity, MainPage.class);
+            activity.startActivity(intent);
+        } else {
+            Toast.makeText(activity,"Niepoprawne dane", Toast.LENGTH_SHORT).show();
+
         }
     }
 }
