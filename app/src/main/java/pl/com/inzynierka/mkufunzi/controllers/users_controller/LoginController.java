@@ -50,6 +50,9 @@ public class LoginController extends AppCompatActivity {
     public void login(View view) {
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
-        new LoginMobile().execute(email,password);
+        LoginMobile loginMobile = new LoginMobile();
+        loginMobile.setActivity(this);
+        loginMobile.execute(email,password);
+        //new LoginMobile().execute(email,password);
     }
 }
