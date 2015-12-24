@@ -9,7 +9,7 @@ import android.view.View;
 
 import pl.com.inzynierka.mkufunzi.R;
 
-public class Register extends AppCompatActivity {
+public class RegisterController extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
