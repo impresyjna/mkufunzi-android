@@ -1,19 +1,19 @@
 package pl.com.inzynierka.mkufunzi.controllers;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import pl.com.inzynierka.mkufunzi.R;
-import pl.com.inzynierka.mkufunzi.controllers.users_controller.Login;
-import pl.com.inzynierka.mkufunzi.controllers.users_controller.Register;
+import pl.com.inzynierka.mkufunzi.controllers.users_controller.LoginController;
+import pl.com.inzynierka.mkufunzi.controllers.users_controller.RegisterController;
 
 
-public class MainActivity extends ActionBarActivity {
+public class WelcomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,15 +63,15 @@ public class MainActivity extends ActionBarActivity {
 
     public void showLogin(View view)
     {
-        Log.i("Login", "Opening login page activity ");
-        Intent intent = new Intent(this, Login.class);
+        Log.i("LoginController", "Opening login page activity ");
+        Intent intent = new Intent(this, LoginController.class);
         this.startActivity(intent);
     }
 
     public void showRegister(View view)
     {
-        Log.i("Register", "Opening register page activity");
-        Intent intent = new Intent(this, Register.class);
+        Log.i("RegisterController", "Opening register page activity");
+        Intent intent = new Intent(this, RegisterController.class);
         this.startActivity(intent);
     }
 }
