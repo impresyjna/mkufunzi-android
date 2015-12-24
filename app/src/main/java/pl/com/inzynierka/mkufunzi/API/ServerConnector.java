@@ -7,7 +7,7 @@ public class ServerConnector {
 
     private static ServerConnector instance;
     private JSONParser jsonParser = new JSONParser();
-    private String HOST_IP = "http://trener-mkufunzi.herokuapp.com";
+    private String HOST_IP = "http://10.0.3.2:3000";
     private String LOGIN = HOST_IP + "/login_mobile";
 
     private ServerConnector(){
@@ -25,16 +25,9 @@ public class ServerConnector {
         return jsonParser;
     }
 
-    public void setJsonParser(JSONParser jsonParser) {
-        this.jsonParser = jsonParser;
-    }
-
     public String getLOGIN() {
         return LOGIN;
     }
 
-    public String getHOST_IP() {
-        return HOST_IP;
-    }
 
 }
