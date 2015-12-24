@@ -1,18 +1,28 @@
 package pl.com.inzynierka.mkufunzi.controllers.users_controller;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import pl.com.inzynierka.mkufunzi.API.LoginMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
-public class Login extends ActionBarActivity {
+public class LoginController extends AppCompatActivity {
+
+    private EditText emailInput;
+    private EditText passwordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        emailInput = (EditText) findViewById(R.id.email_input);
+        passwordInput = (EditText) findViewById(R.id.password_input);
+
     }
 
     @Override
@@ -35,5 +45,11 @@ public class Login extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void login(View view) {
+        String email = emailInput.getText().toString();
+        String password = passwordInput.getText().toString();
+        new LoginMobile().execute(email,password);
     }
 }
