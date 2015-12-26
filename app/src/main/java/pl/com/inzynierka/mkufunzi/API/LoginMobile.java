@@ -55,8 +55,8 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
                     serverConnector.getLOGIN(), "GET", params);
 
             if (json != null) {
-                Log.d("JSON result", json.toString());
-                return json;
+                Log.d("JSON result", json.getJSONObject("user").toString());
+                return json.getJSONObject("user");
             }
 
         } catch (Exception e) {
@@ -72,11 +72,12 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
             pDialog.dismiss();
         }
 
-        if (json.has("email")) {
+        if (json.has("email") && !json.isNull("email")) {
             User user = new User();
             Log.i("MainPage", "Opening main page activity ");
             Intent intent = new Intent(activity, MainPage.class);
             activity.startActivity(intent);
+            activity.finish();
         } else {
             Toast.makeText(activity,"Niepoprawne dane", Toast.LENGTH_SHORT).show();
 
