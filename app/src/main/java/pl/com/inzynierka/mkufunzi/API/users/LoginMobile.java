@@ -1,4 +1,4 @@
-package pl.com.inzynierka.mkufunzi.API;
+package pl.com.inzynierka.mkufunzi.API.users;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -7,13 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.List;
 
-import pl.com.inzynierka.mkufunzi.controllers.About;
+import pl.com.inzynierka.mkufunzi.API.ServerConnector;
 import pl.com.inzynierka.mkufunzi.controllers.MainPage;
 import pl.com.inzynierka.mkufunzi.models.User;
 
@@ -73,7 +71,7 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
         }
 
         if (json.has("email") && !json.isNull("email")) {
-            User user = new User();
+            User user = new User(json);
             Log.i("MainPage", "Opening main page activity ");
             Intent intent = new Intent(activity, MainPage.class);
             activity.startActivity(intent);

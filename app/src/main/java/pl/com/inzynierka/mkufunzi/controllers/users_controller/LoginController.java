@@ -6,9 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import pl.com.inzynierka.mkufunzi.API.LoginMobile;
+import pl.com.inzynierka.mkufunzi.API.users.LoginMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
 public class LoginController extends AppCompatActivity {
@@ -22,7 +21,6 @@ public class LoginController extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         emailInput = (EditText) findViewById(R.id.email_input);
         passwordInput = (EditText) findViewById(R.id.password_input);
-
     }
 
     @Override
@@ -53,6 +51,5 @@ public class LoginController extends AppCompatActivity {
         LoginMobile loginMobile = new LoginMobile();
         loginMobile.setActivity(this);
         loginMobile.execute(email,password);
-        //new LoginMobile().execute(email,password);
     }
 }
