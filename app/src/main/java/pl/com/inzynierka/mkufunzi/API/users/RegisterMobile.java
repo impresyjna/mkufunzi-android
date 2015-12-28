@@ -34,7 +34,7 @@ public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
     @Override
     protected void onPreExecute() {
         pDialog = new ProgressDialog(activity);
-        pDialog.setMessage("Trwa logowanie");
+        pDialog.setMessage("Trwa rejestracja");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(true);
         pDialog.show();
@@ -77,10 +77,11 @@ public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
 
         try {
             if (json.getString("status").equals("success")) {
-                
+
                 Log.i("MainPage", "Opening main page activity ");
                 Intent intent = new Intent(activity, MainPage.class);
                 activity.startActivity(intent);
+                Toast.makeText(activity, json.getString("message"), Toast.LENGTH_SHORT).show();
                 activity.finish();
             } else {
                 Toast.makeText(activity, json.getString("message"), Toast.LENGTH_SHORT).show();
