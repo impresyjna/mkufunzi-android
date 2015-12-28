@@ -78,7 +78,6 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
             activity.finish();
         } else {
             Toast.makeText(activity,"Niepoprawne dane", Toast.LENGTH_SHORT).show();
-
         }
     }
 }
