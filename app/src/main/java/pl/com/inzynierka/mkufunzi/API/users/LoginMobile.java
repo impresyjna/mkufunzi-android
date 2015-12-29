@@ -12,7 +12,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import pl.com.inzynierka.mkufunzi.API.ServerConnector;
-import pl.com.inzynierka.mkufunzi.controllers.MainPage;
+import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController;
+import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainPage;
 import pl.com.inzynierka.mkufunzi.models.User;
 
 /**
@@ -69,16 +70,22 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
         if (pDialog != null && pDialog.isShowing()) {
             pDialog.dismiss();
         }
-        //TODO: Make here try catch
-        if (json.has("email") && !json.isNull("email")) {
-            User user = new User(json);
-            Log.i("MainPage", "Opening main page activity ");
-            Intent intent = new Intent(activity, MainPage.class);
-            activity.startActivity(intent);
-            activity.finish();
-        } else {
-            Toast.makeText(activity,"Niepoprawne dane", Toast.LENGTH_SHORT).show();
+        try {
+            if (json.has("email") && !json.isNull("email")) {
+                User user = new User(json);
+                new UsersController().clearUsers();
+                user.save();
+                Log.i("MainPage", "Opening main page activity ");
+                Intent intent = new Intent(activity, MainPage.class);
+                activity.startActivity(intent);
+                activity.finish();
+            } else {
+                Toast.makeText(activity, "Niepoprawne dane", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 }
 
