@@ -7,10 +7,18 @@
     <user-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name="com.activeandroid.app.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="Mkufunzi.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="1" />
+
         <activity
             android:name=".controllers.WelcomePage"
             android:label="@string/app_name">
@@ -31,10 +39,13 @@
             android:name=".controllers.users_controller.RegisterController"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".controllers.MainPage"
-            android:label="@string/title_activity_main_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".controllers.MainPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
