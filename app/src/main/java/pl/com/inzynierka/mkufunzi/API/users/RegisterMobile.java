@@ -13,8 +13,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import pl.com.inzynierka.mkufunzi.API.ServerConnector;
-import pl.com.inzynierka.mkufunzi.controllers.MainPage;
-import pl.com.inzynierka.mkufunzi.models.User;
+import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainPage;
 
 /**
  * Created by impresyjna on 27.12.15.

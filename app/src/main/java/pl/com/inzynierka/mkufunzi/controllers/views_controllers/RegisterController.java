@@ -1,4 +1,4 @@
-package pl.com.inzynierka.mkufunzi.controllers.users_controller;
+package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

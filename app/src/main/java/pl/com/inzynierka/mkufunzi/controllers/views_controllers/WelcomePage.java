@@ -1,4 +1,4 @@
-package pl.com.inzynierka.mkufunzi.controllers;
+package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import pl.com.inzynierka.mkufunzi.R;
-import pl.com.inzynierka.mkufunzi.controllers.users_controller.LoginController;
-import pl.com.inzynierka.mkufunzi.controllers.users_controller.RegisterController;
 
 
 public class WelcomePage extends AppCompatActivity {

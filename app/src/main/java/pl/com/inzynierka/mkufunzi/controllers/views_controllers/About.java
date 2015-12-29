@@ -1,4 +1,4 @@
-package pl.com.inzynierka.mkufunzi.controllers;
+package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
