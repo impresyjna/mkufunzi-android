@@ -17,10 +17,10 @@
             android:value="Mkufunzi.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="1" />
+            android:value="2" />
 
         <activity
-            android:name=".controllers.WelcomePage"
+            android:name=".controllers.views_controllers.WelcomePage"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,17 +29,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".controllers.users_controller.LoginController"
+            android:name=".controllers.views_controllers.LoginController"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".controllers.About"
+            android:name=".controllers.views_controllers.About"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".controllers.users_controller.RegisterController"
+            android:name=".controllers.views_controllers.RegisterController"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controllers.MainPage">
+        <activity android:name=".controllers.views_controllers.MainPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
