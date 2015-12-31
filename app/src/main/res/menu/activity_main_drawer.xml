@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Treningi">
+        <menu>
+            <item
+                android:id="@+id/nav_start_training"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Rozpocznij trening" />
+            <item
+                android:id="@+id/nav_trainings_history"
+                android:title="Historia treningów" />
+        </menu>
+    </item>
+
+    <item android:title="Kartoteka">
+        <menu>
+
+        </menu>
+    </item>
+    
+    <item android:title="Strefa leków">
+        <menu>
+            <item
+                android:id="@+id/nav_add_medicine"
+                android:title="Dodaj lek"/>
+            <item
+                android:id="@+id/nav_my_medicines"
+                android:title="Moje leki" />
+        </menu>
+    </item>
+    <item android:title="Wiadomości">
+        <menu>
+            <item
+                android:id="@+id/nav_send_message"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Napisz wiadomość" />
+            <item
+                android:id="@+id/nav_my_messages"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Moje wiadomości" />
+        </menu>
+    </item>
+
+        <item
+            android:id="@+id/nav_log_out"
+            android:title="Wyloguj" />
+
+
+</menu>
