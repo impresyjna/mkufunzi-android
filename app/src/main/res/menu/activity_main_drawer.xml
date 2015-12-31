@@ -5,7 +5,6 @@
         <menu>
             <item
                 android:id="@+id/nav_start_training"
-                android:icon="@drawable/ic_menu_camera"
                 android:title="Rozpocznij trening" />
             <item
                 android:id="@+id/nav_trainings_history"
@@ -18,7 +17,7 @@
 
         </menu>
     </item>
-    
+
     <item android:title="Strefa leków">
         <menu>
             <item
@@ -33,11 +32,9 @@
         <menu>
             <item
                 android:id="@+id/nav_send_message"
-                android:icon="@drawable/ic_menu_share"
                 android:title="Napisz wiadomość" />
             <item
                 android:id="@+id/nav_my_messages"
-                android:icon="@drawable/ic_menu_send"
                 android:title="Moje wiadomości" />
         </menu>
     </item>
