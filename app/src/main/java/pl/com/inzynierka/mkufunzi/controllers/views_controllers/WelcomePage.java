@@ -17,7 +17,6 @@ public class WelcomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
-        getSupportActionBar().hide();
     }
 
     @Override
@@ -61,15 +60,15 @@ public class WelcomePage extends AppCompatActivity {
 
     public void showLogin(View view)
     {
-        Log.i("LoginController", "Opening login page activity ");
-        Intent intent = new Intent(this, LoginController.class);
+        Log.i("Login", "Opening login page activity ");
+        Intent intent = new Intent(this, Login.class);
         this.startActivity(intent);
     }
 
     public void showRegister(View view)
     {
-        Log.i("RegisterController", "Opening register page activity");
-        Intent intent = new Intent(this, RegisterController.class);
+        Log.i("Register", "Opening register page activity");
+        Intent intent = new Intent(this, Register.class);
         this.startActivity(intent);
     }
 }
