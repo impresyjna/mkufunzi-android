@@ -12,12 +12,6 @@
         </menu>
     </item>
 
-    <item android:title="Kartoteka">
-        <menu>
-
-        </menu>
-    </item>
-
     <item android:title="Strefa leków">
         <menu>
             <item
@@ -28,20 +22,6 @@
                 android:title="Moje leki" />
         </menu>
     </item>
-    <item android:title="Wiadomości">
-        <menu>
-            <item
-                android:id="@+id/nav_send_message"
-                android:title="Napisz wiadomość" />
-            <item
-                android:id="@+id/nav_my_messages"
-                android:title="Moje wiadomości" />
-        </menu>
-    </item>
-
-        <item
-            android:id="@+id/nav_log_out"
-            android:title="Wyloguj" />
 
 
 </menu>
