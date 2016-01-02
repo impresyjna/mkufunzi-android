@@ -11,4 +11,11 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_my_messages">MyMessages</string>
+    <string name="title_activity_send_message">SendMessage</string>
+    <string name="title_activity_add_medicine">AddMedicine</string>
+    <string name="title_activity_my_medicines">MyMedicines</string>
+    <string name="title_activity_add_measure">AddMeasure</string>
+    <string name="title_activity_measure_page">MeasurePage</string>
 </resources>
