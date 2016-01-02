@@ -19,7 +19,7 @@ import pl.com.inzynierka.mkufunzi.models.MeasureType;
 /**
  * Created by impresyjna on 01.01.16.
  */
-public class IndexMobile extends AsyncTask<String, String, JSONObject> {
+public class MeasureTypesIndexMobile extends AsyncTask<String, String, JSONObject> {
 
     private ServerConnector serverConnector = ServerConnector.getInstance();
 
