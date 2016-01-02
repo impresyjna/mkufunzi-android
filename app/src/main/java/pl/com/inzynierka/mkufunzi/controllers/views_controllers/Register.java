@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import pl.com.inzynierka.mkufunzi.API.users.RegisterMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
-public class RegisterController extends AppCompatActivity {
+public class Register extends AppCompatActivity {
 
     private EditText loginInput;
     private EditText nameInput;
