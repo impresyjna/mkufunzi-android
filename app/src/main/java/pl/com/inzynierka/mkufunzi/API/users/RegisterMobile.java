@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import pl.com.inzynierka.mkufunzi.API.ServerConnector;
-import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainPage;
+import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 
 /**
  * Created by impresyjna on 27.12.15.
@@ -78,7 +78,7 @@ public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
             if (json.getString("status").equals("success")) {
 
                 Log.i("MainPage", "Opening main page activity ");
-                Intent intent = new Intent(activity, MainPage.class);
+                Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
                 Toast.makeText(activity, json.getString("message"), Toast.LENGTH_SHORT).show();
                 activity.finish();
