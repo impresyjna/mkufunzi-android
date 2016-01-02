@@ -10,6 +10,7 @@ public class ServerConnector {
     private String HOST_IP = "http://10.0.3.2:3000";
     private String LOGIN = HOST_IP + "/login_mobile";
     private String REGISTER = HOST_IP + "/register_mobile";
+    private String MEASURE_TYPES_INDEX = HOST_IP + "/measure_types_index";
 
     private ServerConnector(){
 
@@ -32,5 +33,9 @@ public class ServerConnector {
 
     public String getREGISTER() {
         return REGISTER;
+    }
+
+    public String getMEASURE_TYPES_INDEX() {
+        return MEASURE_TYPES_INDEX;
     }
 }
