@@ -36,22 +36,21 @@ public class NavigationAndOptionsController {
         } else if (id == R.id.nav_trainings_history) {
             Toast.makeText(activity, "Historia treningów", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_add_medicine) {
-            Toast.makeText(activity, "Dodaj nowy lek", Toast.LENGTH_SHORT).show();
+            openIntent(activity, AddMedicine.class);
         } else if (id == R.id.nav_my_medicines) {
-            Toast.makeText(activity, "Moje leki", Toast.LENGTH_SHORT).show();
+            openIntent(activity,MyMedicines.class);
         } else {
-            Toast.makeText(activity, "Kartoteka", Toast.LENGTH_SHORT).show();
+            openIntent(activity,MeasurePage.class);
         }
     }
 
     public void reactOnOptionItemSelected(int id, AppCompatActivity activity){
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
+            openIntent(activity,Settings.class);
         } else if (id == R.id.action_send_message) {
-
+            openIntent(activity,SendMessage.class);
         } else if (id == R.id.action_my_messages) {
-
+            openIntent(activity, MyMessages.class);
         } else if (id == R.id.action_logout) {
             logOut(activity);
         }
@@ -64,6 +63,12 @@ public class NavigationAndOptionsController {
     public void logOut(Activity activity){
         new UsersController().clearUsers();
         Intent intent = new Intent(activity, WelcomePage.class);
+        activity.startActivity(intent);
+        activity.finish();
+    }
+
+    public void openIntent(Activity activity, Class windowClass){
+        Intent intent = new Intent(activity, windowClass);
         activity.startActivity(intent);
         activity.finish();
     }

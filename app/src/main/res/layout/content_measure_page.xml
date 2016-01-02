@@ -12,4 +12,15 @@
     tools:context="pl.com.inzynierka.mkufunzi.controllers.views_controllers.MeasurePage"
     tools:showIn="@layout/activity_measure_page">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MeasurePage"
+            android:id="@+id/textView2" />
+    </LinearLayout>
+
 </RelativeLayout>
