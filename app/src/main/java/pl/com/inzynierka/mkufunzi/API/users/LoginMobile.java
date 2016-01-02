@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 import pl.com.inzynierka.mkufunzi.API.ServerConnector;
 import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController;
-import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainPage;
+import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 import pl.com.inzynierka.mkufunzi.models.User;
 
 /**
@@ -76,7 +76,7 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
                 new UsersController().clearUsers();
                 user.save();
                 Log.i("MainPage", "Opening main page activity ");
-                Intent intent = new Intent(activity, MainPage.class);
+                Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
                 activity.finish();
             } else {
