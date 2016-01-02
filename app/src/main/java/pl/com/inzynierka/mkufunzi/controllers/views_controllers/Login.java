@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import pl.com.inzynierka.mkufunzi.API.users.LoginMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
-public class LoginController extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     private EditText emailInput;
     private EditText passwordInput;
