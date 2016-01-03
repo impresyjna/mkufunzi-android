@@ -1,7 +1,9 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,6 +65,20 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    public void showAbout(View view)
+    {
+        Log.i("About", "Opening about page activity ");
+        Intent intent = new Intent(this, About.class);
+        this.startActivity(intent);
+    }
+
+    public void showRegister(View view)
+    {
+        Log.i("Register", "Opening register page activity");
+        Intent intent = new Intent(this, Register.class);
+        this.startActivity(intent);
+    }
+
     /**
      * method is used for checking valid email id format.
      *
@@ -82,4 +98,6 @@ public class Login extends AppCompatActivity {
         }
         return isValid;
     }
+
+
 }

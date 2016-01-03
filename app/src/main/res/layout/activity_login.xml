@@ -1,60 +1,120 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212121"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".controllers.views_controllers.Login">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#212121">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Zaloguj się"
+            android:id="@+id/titleText"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:textColor="#009688"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Mkufunzi wita. Aby używać aplikacji należy się zalogować."
+            android:id="@+id/textView3"
+            android:gravity="center"
+            android:layout_below="@+id/titleText"
+            android:textColor="#727272"
+            android:textStyle="italic"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="60dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/email_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:hint="Email"
+                    android:textColorHint="#727272" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/password_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="Hasło"
+                    android:textColorHint="#727272" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button android:id="@+id/btn_signup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Zaloguj się"
+                android:background="#009688"
+                android:layout_marginTop="40dp"
+                android:textColor="@android:color/white"
+                android:onClick="login"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="lub"
+                android:id="@+id/orLabel"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textColor="#727272"/>
+
+            <Button android:id="@+id/btn_register"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Zarejestuj się"
+                android:background="#009688"
+                android:layout_marginTop="20dp"
+                android:textColor="@android:color/white"
+                android:onClick="showRegister"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="98dp"
+                android:layout_height="32dp"
+                android:text="O projekcie"
+                android:id="@+id/about_button"
+                android:layout_gravity="right"
+                android:textSize="10dp"
+                android:layout_marginTop="50dp"
+                android:background="#212121"
+                android:textColor="@android:color/white"
+                android:onClick="showAbout"/>
+
+        </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Email"
-        android:id="@+id/email_label"
-        android:layout_marginRight="122dp"
-        android:layout_marginEnd="122dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/email_input"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/email_label"/>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Hasło"
-        android:id="@+id/password_label"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/email_input"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password_input"
-        android:layout_marginTop="66dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zaloguj się"
-        android:id="@+id/login_button"
-        android:layout_below="@+id/password_input"
-        android:layout_alignLeft="@+id/email_input"
-        android:layout_alignStart="@+id/email_input"
-        android:layout_marginTop="31dp"
-        android:onClick="login"/>
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

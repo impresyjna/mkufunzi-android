@@ -20,25 +20,17 @@
             android:value="4" />
 
         <activity
-            android:name=".controllers.views_controllers.WelcomePage"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".controllers.views_controllers.Login"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:theme="@style/LoginTheme"/>
         <activity
             android:name=".controllers.views_controllers.About"
             android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".controllers.views_controllers.Register"
             android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".controllers.views_controllers.MainActivity"
             android:label="@string/title_activity_main"

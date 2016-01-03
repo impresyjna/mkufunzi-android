@@ -62,7 +62,7 @@ public class NavigationAndOptionsController {
      */
     public void logOut(Activity activity){
         new UsersController().clearUsers();
-        Intent intent = new Intent(activity, WelcomePage.class);
+        Intent intent = new Intent(activity, Login.class);
         activity.startActivity(intent);
         activity.finish();
     }

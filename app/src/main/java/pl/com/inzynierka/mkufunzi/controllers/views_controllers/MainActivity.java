@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
                 .executeSingle();
         /** Check if there is any logged user */
         if (user == null) {
-            Intent intent = new Intent(this, WelcomePage.class);
+            Intent intent = new Intent(this, Login.class);
             this.startActivity(intent);
             this.finish();
         } else {
