@@ -1,10 +1,12 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,12 +18,10 @@ import pl.com.inzynierka.mkufunzi.R;
 
 public class Register extends AppCompatActivity {
 
-    private EditText loginInput;
-    private EditText nameInput;
-    private EditText surnameInput;
-    private EditText passwordInput;
-    private EditText passwordConfirmationInput;
-    private EditText emailInput;
+    private EditText loginInput, nameInput, surnameInput, passwordInput, passwordConfirmationInput, emailInput;
+    private TextInputLayout inputLayoutLogin, inputLayoutName, inputLayoutSurname, inputLayoutPassword;
+    private TextInputLayout inputLayoutPasswordConfirmation, inputLayoutEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,13 @@ public class Register extends AppCompatActivity {
         passwordInput = (EditText) findViewById(R.id.password_input);
         passwordConfirmationInput = (EditText) findViewById(R.id.password_confirmation_input);
         emailInput = (EditText) findViewById(R.id.email_input);
+
+        inputLayoutLogin = (TextInputLayout) findViewById(R.id.input_layout_login);
+        inputLayoutName = (TextInputLayout) findViewById(R.id.input_layout_name);
+        inputLayoutSurname = (TextInputLayout) findViewById(R.id.input_layout_surname);
+        inputLayoutPassword = (TextInputLayout) findViewById(R.id.input_layout_password);
+        inputLayoutPasswordConfirmation = (TextInputLayout) findViewById(R.id.input_layout_password_confirmation);
+        inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
     }
 
     @Override
@@ -67,56 +74,137 @@ public class Register extends AppCompatActivity {
         String password = passwordInput.getText().toString();
         String passwordConfirmation = passwordConfirmationInput.getText().toString();
         String email = emailInput.getText().toString();
-        /** Check if login is empty */
-        if(login.equals(""))
-        {
-            Toast.makeText(this, "Podaj login", Toast.LENGTH_SHORT).show();
+        if(!validateLogin()){
+            return;
         }
-        /** Check if name is empty */
-        else if(name.equals(""))
+        if(!validateName())
         {
-            Toast.makeText(this, "Podaj imię", Toast.LENGTH_SHORT).show();
+            return;
         }
-        /** Check if surname is empty */
-        else if(surname.equals(""))
+        if(!validateSurname())
         {
-            Toast.makeText(this, "Podaj nazwisko", Toast.LENGTH_SHORT).show();
+            return;
         }
-        /** Check if password is empty */
-        else if(password.equals(""))
-        {
-            Toast.makeText(this, "Hasło nie może być puste", Toast.LENGTH_SHORT).show();
+        if(!validatePassword()){
+            return;
         }
-        /** Check if passwordConfirmation is empty */
-        else if(passwordConfirmation.equals(""))
-        {
-            Toast.makeText(this, "Należy potwierdzić hasło", Toast.LENGTH_SHORT).show();
+        if(!validatePasswordConfirmation()){
+            return;
         }
-        /** Check if password has good length */
-        else if(password.length()<6)
+        if(!validatePasswords())
         {
-            Toast.makeText(this, "Hasło jest za krótkie. Musi mieć co najmniej 6 znaków", Toast.LENGTH_SHORT).show();
+            return;
         }
-        /** Check if password and confirmation fit */
-        else if(!password.equals(passwordConfirmation))
+        if(!validateEmail())
         {
-            Toast.makeText(this, "Hasła się nie zgadzają", Toast.LENGTH_SHORT).show();
-        }
-        /** Check if email is empty */
-        else if(email.equals(""))
-        {
-            Toast.makeText(this, "Podaj email", Toast.LENGTH_SHORT).show();
-        }
-        /** Check if email is valid */
-        else if(!isEmailValid(email))
-        {
-            Toast.makeText(this, "Podany email nie jest poprawny", Toast.LENGTH_SHORT).show();
+            return;
         }
         /** Try to register user if data is valid */
         else {
             RegisterMobile registerMobile = new RegisterMobile();
             registerMobile.setActivity(this);
             registerMobile.execute(login, name, surname, password, passwordConfirmation, email);
+        }
+    }
+
+    public boolean validateLogin(){
+        String login = loginInput.getText().toString().trim();
+        if(login.equals(""))
+        {
+            inputLayoutLogin.setError(getString(R.string.err_msg_login_empty));
+            requestFocus(loginInput);
+            return false;
+        } else {
+            inputLayoutLogin.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    public boolean validateName(){
+        String name = nameInput.getText().toString().trim();
+        if(name.equals(""))
+        {
+            inputLayoutName.setError(getString(R.string.err_msg_name_empty));
+            requestFocus(nameInput);
+            return false;
+        } else {
+            inputLayoutName.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    public boolean validateSurname(){
+        String surname = surnameInput.getText().toString().trim();
+        if(surname.equals(""))
+        {
+            inputLayoutSurname.setError(getString(R.string.err_msg_surname_empty));
+            requestFocus(surnameInput);
+            return false;
+        } else {
+            inputLayoutSurname.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    public boolean validatePassword(){
+        String password = passwordInput.getText().toString();
+        if(password.equals(""))
+        {
+            inputLayoutPassword.setError(getString(R.string.err_msg_password_empty));
+            requestFocus(passwordInput);
+            return false;
+        } else if(password.length()<6) {
+            inputLayoutPassword.setError(getString(R.string.err_msg_password_short));
+            requestFocus(passwordInput);
+            return false;
+        } else {
+            inputLayoutPassword.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    public boolean validatePasswordConfirmation(){
+        String passwordConfirmation = passwordConfirmationInput.getText().toString();
+        if(passwordConfirmation.equals(""))
+        {
+            inputLayoutPasswordConfirmation.setError(getString(R.string.err_msg_password_confirmation_empty));
+            requestFocus(passwordConfirmationInput);
+            return false;
+        } else {
+            inputLayoutPasswordConfirmation.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    public boolean validatePasswords(){
+        String password = passwordInput.getText().toString();
+        String passwordConfirmation = passwordConfirmationInput.getText().toString();
+        if(!password.equals(passwordConfirmation))
+        {
+            inputLayoutPasswordConfirmation.setError(getString(R.string.err_msg_passwords_do_not_fit));
+            requestFocus(passwordConfirmationInput);
+            return false;
+        } else {
+            inputLayoutPasswordConfirmation.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    public boolean validateEmail(){
+        String email = emailInput.getText().toString().trim();
+        if (email.isEmpty() || !isEmailValid(email)) {
+            inputLayoutEmail.setError(getString(R.string.err_msg_email));
+            requestFocus(emailInput);
+            return false;
+        } else {
+            inputLayoutEmail.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
 

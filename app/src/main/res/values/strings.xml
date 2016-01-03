@@ -21,4 +21,10 @@
     <string name="err_msg_email">Podany email nie jest poprawny</string>
     <string name="err_msg_password_empty">Należy podać hasło</string>
     <string name="err_msg_password_short">Podane hasło jest za krótkie</string>
+    <string name="err_msg_login_empty">Należy podać login</string>
+    <string name="err_msg_name_empty">Należy podać imię</string>
+    <string name="err_msg_surname_empty">Należy podać nazwisko</string>
+    <string name="err_msg_password_confirmation_empty">Należy podać potwierdzenie hasła</string>
+    <string name="err_msg_passwords_do_not_fit">Podane hasła się nie zgadzają</string>
+
 </resources>
