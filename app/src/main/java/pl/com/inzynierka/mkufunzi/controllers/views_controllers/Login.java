@@ -2,11 +2,13 @@ package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +22,8 @@ public class Login extends AppCompatActivity {
 
     private EditText emailInput;
     private EditText passwordInput;
+    private TextInputLayout inputLayoutEmail;
+    private TextInputLayout inputLayoutPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         emailInput = (EditText) findViewById(R.id.email_input);
         passwordInput = (EditText) findViewById(R.id.password_input);
+        inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
+        inputLayoutPassword = (TextInputLayout) findViewById(R.id.input_layout_password);
     }
 
     @Override
@@ -54,9 +60,13 @@ public class Login extends AppCompatActivity {
     public void login(View view) {
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
-        if(!isEmailValid(email))
+        if(!validateEmail())
         {
-            Toast.makeText(this, "Niepoprawny format email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!validatePassword())
+        {
+            return;
         }
         else {
             LoginMobile loginMobile = new LoginMobile();
@@ -77,6 +87,40 @@ public class Login extends AppCompatActivity {
         Log.i("Register", "Opening register page activity");
         Intent intent = new Intent(this, Register.class);
         this.startActivity(intent);
+    }
+
+    public boolean validatePassword(){
+        String password = passwordInput.getText().toString().trim();
+        if (password.isEmpty()) {
+            inputLayoutPassword.setError(getString(R.string.err_msg_password_empty));
+            requestFocus(emailInput);
+            return false;
+        } else if(password.length()<6) {
+            inputLayoutPassword.setError(getString(R.string.err_msg_password_short));
+            requestFocus(emailInput);
+            return false;
+        } else {
+            inputLayoutPassword.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    public boolean validateEmail(){
+        String email = emailInput.getText().toString().trim();
+        if (email.isEmpty() || !isEmailValid(email)) {
+            inputLayoutEmail.setError(getString(R.string.err_msg_email));
+            requestFocus(emailInput);
+            return false;
+        } else {
+            inputLayoutEmail.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
     /**

@@ -18,4 +18,7 @@
     <string name="title_activity_my_medicines">MyMedicines</string>
     <string name="title_activity_add_measure">AddMeasure</string>
     <string name="title_activity_measure_page">MeasurePage</string>
+    <string name="err_msg_email">Podany email nie jest poprawny</string>
+    <string name="err_msg_password_empty">Należy podać hasło</string>
+    <string name="err_msg_password_short">Podane hasło jest za krótkie</string>
 </resources>
