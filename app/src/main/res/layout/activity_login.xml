@@ -94,7 +94,7 @@
             <Button android:id="@+id/btn_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Zarejestuj się"
+                android:text="Zarejestruj się"
                 android:background="#009688"
                 android:layout_marginTop="20dp"
                 android:textColor="@android:color/white"
