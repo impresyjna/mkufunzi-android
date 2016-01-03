@@ -87,6 +87,7 @@ public class Login extends AppCompatActivity {
         Log.i("Register", "Opening register page activity");
         Intent intent = new Intent(this, Register.class);
         this.startActivity(intent);
+        this.finish();
     }
 
     public boolean validatePassword(){
