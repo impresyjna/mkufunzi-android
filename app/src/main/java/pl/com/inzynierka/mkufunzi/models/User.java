@@ -39,11 +39,11 @@ public class User extends Model{
     public User(JSONObject json) {
         super();
         try {
-            id = json.getInt(TAG_ID);
-            login = json.getString(TAG_LOGIN);
-            email = json.getString(TAG_EMAIL);
-            name = json.getString(TAG_NAME);
-            surname = json.getString(TAG_SURNAME);
+            this.id = json.getInt(TAG_ID);
+            this.login = json.getString(TAG_LOGIN);
+            this.email = json.getString(TAG_EMAIL);
+            this.name = json.getString(TAG_NAME);
+            this.surname = json.getString(TAG_SURNAME);
         } catch (JSONException e) {
             Log.e("UserConstructor", "JSONErrror");
             e.printStackTrace();

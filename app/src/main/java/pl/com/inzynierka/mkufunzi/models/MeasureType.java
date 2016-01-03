@@ -32,9 +32,9 @@ public class MeasureType extends Model{
     public MeasureType(JSONObject json){
         super();
         try {
-            id = json.getInt(TAG_ID);
-            name = json.getString(TAG_NAME);
-            unit = json.getString(TAG_UNIT);
+            this.id = json.getInt(TAG_ID);
+            this.name = json.getString(TAG_NAME);
+            this.unit = json.getString(TAG_UNIT);
         } catch (JSONException e) {
             Log.e("MeasureTypeConstructor", "JSONError");
             e.printStackTrace();
