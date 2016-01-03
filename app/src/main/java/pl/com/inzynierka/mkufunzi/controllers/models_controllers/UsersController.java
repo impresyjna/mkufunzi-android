@@ -39,4 +39,10 @@ public class UsersController {
     public void clearUsers(){
         ActiveAndroid.execSQL("delete from users");
     }
+
+    public void rememberAndLoginUser(User user)
+    {
+        clearUsers();
+        user.save();
+    }
 }

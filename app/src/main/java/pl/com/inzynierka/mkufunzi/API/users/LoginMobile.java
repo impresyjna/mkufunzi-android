@@ -73,8 +73,7 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
         try {
             if (json.has("email") && !json.isNull("email")) {
                 User user = new User(json);
-                new UsersController().clearUsers();
-                user.save();
+                new UsersController().rememberAndLoginUser(user);
                 Log.i("MainPage", "Opening main page activity ");
                 Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
