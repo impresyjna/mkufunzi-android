@@ -9,6 +9,8 @@ import com.activeandroid.annotation.Table;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
+
 /**
  * Created by impresyjna on 03.01.16.
  */
@@ -27,6 +29,8 @@ public class Protege extends Model {
     public String gender;
     @Column(name = "eye_color")
     public String eyeColor;
+    @Column(name = "birth_date")
+    public String birthDate;
 
     private static final String TAG_ID = "id";
     private static final String TAG_USER_ID = "user_id";
@@ -34,6 +38,7 @@ public class Protege extends Model {
     private static final String TAG_BLOOD_TYPE = "blood_type";
     private static final String TAG_GENDER = "gender";
     private static final String TAG_EYE_COLOR = "eye_color";
+    private static final String TAG_BIRTH_DATE = "birth_date";
 
     public Protege() {
         super();
@@ -48,6 +53,7 @@ public class Protege extends Model {
             this.id = json.getInt(TAG_ID);
             this.trainerId = json.getInt(TAG_TRAINER_ID);
             this.userId = json.getInt(TAG_USER_ID);
+            this.birthDate = json.getString(TAG_BIRTH_DATE);
         } catch (JSONException e) {
             Log.e("ProtegeConstructor", "JsonError");
             e.printStackTrace();

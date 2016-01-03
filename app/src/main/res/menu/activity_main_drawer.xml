@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:title="Dane użytkownika">
+        <menu>
+            <item
+                android:title="Podstawowe dane"
+                android:id="@+id/nav_protege_data"/>
+        </menu>
+    </item>
+
     <item android:title="Treningi">
         <menu>
             <item
