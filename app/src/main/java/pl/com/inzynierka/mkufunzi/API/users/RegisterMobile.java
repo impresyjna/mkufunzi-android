@@ -78,8 +78,7 @@ public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
 
         try {
             if (json.getString("status").equals("success")) {
-                User user = new User(json.getJSONObject("user"));
-                new UsersController().rememberAndLoginUser(user);
+                new UsersController().rememberAndLoginUser(json);
                 Log.i("MainPage", "Opening main page activity ");
                 Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);

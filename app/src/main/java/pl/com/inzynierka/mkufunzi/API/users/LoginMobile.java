@@ -55,7 +55,7 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
 
             if (json != null) {
                 Log.d("JSON result", json.getJSONObject("user").toString());
-                return json.getJSONObject("user");
+                return json;
             }
 
         } catch (Exception e) {
@@ -71,9 +71,8 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
             pDialog.dismiss();
         }
         try {
-            if (json.has("email") && !json.isNull("email")) {
-                User user = new User(json);
-                new UsersController().rememberAndLoginUser(user);
+            if (json.getJSONObject("user").has("email") && !json.getJSONObject("user").isNull("email")) {
+                new UsersController().rememberAndLoginUser(json);
                 Log.i("MainPage", "Opening main page activity ");
                 Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);

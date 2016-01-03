@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.com.inzynierka.mkufunzi.models.Card;
+import pl.com.inzynierka.mkufunzi.models.Protege;
 import pl.com.inzynierka.mkufunzi.models.User;
 
 /**
@@ -40,9 +42,23 @@ public class UsersController {
         ActiveAndroid.execSQL("delete from users");
     }
 
-    public void rememberAndLoginUser(User user)
+    public void rememberAndLoginUser(JSONObject json)
     {
+        User user = null;
+        Protege protege = null;
+        Card card = null;
+        try {
+            user = new User(json.getJSONObject("user"));
+            protege = new Protege(json.getJSONObject("protege"));
+            card = new Card(json.getJSONObject("card"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         clearUsers();
+        new CardsController().clearCards();
+        new ProtegesController().clearProteges();
         user.save();
+        protege.save();
+        card.save(); 
     }
 }
