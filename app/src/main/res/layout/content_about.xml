@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +8,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".controllers.views_controllers.About"
-    tools:showIn="@layout/activity_about">
+    tools:context=".controllers.views_controllers.About">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W obecnych czasach spotykamy się z coraz większym spadkiem aktywności fizycznej wśród społeczeństwa. Można przy okazji zaobserwować inicjatywy polegające na budowaniu ogólnodostępnych siłowni w parkach. Po długotrwałych obserwacjach można zauważyć, ze powoduje to zwiększone zainteresowanie własnym zdrowiem czy forma fizyczna. Z tych obserwacji powstał pomysł na stworzenie zintegrowanego systemu trenera osobistego zapewniającego monitorowanie stanu zdrowia w trakcie ćwiczeń, śledzenie ciśnienia krwi czy tętna oraz nadzorowanie wykonywanych zadań zapamiętując jak najwięcej informacji do późniejszego użytku. Trener ma być de facto połączeniem funkcjonalności trzech produktów dostepnych na rynku: urządzeń/aplikacji monitorujących wykonywanie ćwiczeń (ilość przysiadów/brzuszków/krokow, przebyta trasa itp.), elektronicznej książeczki zdrowia oraz monitoringu w siłowni, pozwalającego trenerowi stwierdzić, jak jego podopieczny sobie radzi i jak w danej chwili się czuje. Nazwa wywodzi się ona z języka Suahili i oznacza trenera. Język Suahili jest językiem kontaktowym dla terenów środkowej i wschodniej Afryki (czyli takim, który nie jest oficjalnym językiem żadnego z Państw, lecz jest użytkowany jako swego rodzaju język uniwersalny w podróżach po terenach o dużej różnorodności językowej)."
+            android:id="@+id/aboutText"
+            android:textColor="#727272"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
 
 </RelativeLayout>
