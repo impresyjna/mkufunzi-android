@@ -30,9 +30,12 @@ public class Card extends Model {
         super();
         try {
             this.id = json.getInt(TAG_ID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.protegeId = json.getInt(TAG_PROTEGE_ID);
         } catch (JSONException e) {
-            Log.e("CardConstructor", "JsonError");
             e.printStackTrace();
         }
     }
