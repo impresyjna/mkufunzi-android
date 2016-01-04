@@ -41,7 +41,7 @@ public class NavigationAndOptionsController {
         } else if (id == R.id.nav_my_medicines) {
             openIntent(activity,MyMedicines.class);
         } else {
-            openIntentWithParam(activity, MeasurePage.class, name);
+            openIntentWithParam(activity, MeasurementPage.class, name);
         }
     }
 

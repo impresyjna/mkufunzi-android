@@ -9,18 +9,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="pl.com.inzynierka.mkufunzi.controllers.views_controllers.AddMeasure"
-    tools:showIn="@layout/activity_add_measure">
+    tools:context=".controllers.views_controllers.MeasurementPage"
+    tools:showIn="@layout/activity_measurement_page">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMeasures"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AddMeasure"
-            android:id="@+id/textView2" />
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

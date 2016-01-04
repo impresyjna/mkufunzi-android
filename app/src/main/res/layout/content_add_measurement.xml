@@ -9,8 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="pl.com.inzynierka.mkufunzi.controllers.views_controllers.MeasurePage"
-    tools:showIn="@layout/activity_measure_page">
+    tools:context=".controllers.views_controllers.AddMeasurement"
+    tools:showIn="@layout/activity_add_measurement">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MeasurePage"
+            android:text="AddMeasure"
             android:id="@+id/textView2" />
     </LinearLayout>
 

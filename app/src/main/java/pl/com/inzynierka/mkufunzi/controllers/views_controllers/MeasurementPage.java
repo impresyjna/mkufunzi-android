@@ -1,31 +1,39 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import pl.com.inzynierka.mkufunzi.R;
+import pl.com.inzynierka.mkufunzi.adapters.MeasurementAdapter;
+import pl.com.inzynierka.mkufunzi.controllers.models_controllers.MeasureTypesController;
+import pl.com.inzynierka.mkufunzi.models.AppUser;
+import pl.com.inzynierka.mkufunzi.models.Measurement;
+import pl.com.inzynierka.mkufunzi.models.MeasureType;
 
-public class AddMeasure extends AppCompatActivity
+public class MeasurementPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
-
+    private MeasureType measureType;
+    private AppUser appUser = AppUser.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_measure);
+        setContentView(R.layout.activity_measurement_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Dodaj pomiar");
+        toolbar.setTitle("Measurement Page");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -37,9 +45,26 @@ public class AddMeasure extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
+
+        /** Find measure type correct with param given */
+        Bundle bundle = getIntent().getExtras();
+        String name = bundle.getString("measure_name").toLowerCase();
+        measureType = new MeasureTypesController().getMeasureType(name);
+
+        List<Measurement> measurements = new ArrayList<>();
+
+
+        // Lookup the recyclerview in activity layout
+        RecyclerView rvMeasures = (RecyclerView) findViewById(R.id.rvMeasures);
+        // Create adapter passing in the sample user data
+        MeasurementAdapter adapter = new MeasurementAdapter(measurements);
+        // Attach the adapter to the recyclerview to populate items
+        rvMeasures.setAdapter(adapter);
+        // Set layout manager to position the items
+        rvMeasures.setLayoutManager(new LinearLayoutManager(this));
+        // That's all!
+
     }
-
-
 
     @Override
     public void onBackPressed() {

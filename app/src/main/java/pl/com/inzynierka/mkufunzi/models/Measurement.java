@@ -7,31 +7,38 @@ import com.activeandroid.annotation.Table;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by impresyjna on 03.01.16.
  */
 
 @Table(name="measurements")
-public class Measure extends Model {
+public class Measurement extends Model {
     @Column(name = "ref_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     public int id;
     @Column(name = "value")
-    public long value;
+    public double value;
     @Column(name = "measure_type_id")
     public int measureTypeId;
     @Column(name = "card_id")
     public int cardId;
+    @Column(name = "time")
+    public Date time;
 
     private static final String TAG_ID = "id";
     private static final String TAG_VALUE = "value";
     private static final String TAG_MEASURE_TYPE_ID = "measure_type_id";
     private static final String TAG_CARD_ID = "card_id";
+    private static final String TAG_TIME = "created_at";
 
-    public Measure() {
+    public Measurement() {
         super();
     }
 
-    public Measure(JSONObject json){
+    public Measurement(JSONObject json){
         super();
         try {
             this.id = json.getInt(TAG_ID);
@@ -39,7 +46,7 @@ public class Measure extends Model {
             e.printStackTrace();
         }
         try {
-            this.value = json.getLong(TAG_VALUE);
+            this.value = json.getDouble(TAG_VALUE);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -50,6 +57,14 @@ public class Measure extends Model {
         }
         try {
             this.cardId = json.getInt(TAG_CARD_ID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        try {
+            this.time = format.parse(json.getString(TAG_TIME));
+        } catch (ParseException e) {
+            e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -11,20 +11,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import pl.com.inzynierka.mkufunzi.R;
-import pl.com.inzynierka.mkufunzi.controllers.models_controllers.MeasureTypesController;
-import pl.com.inzynierka.mkufunzi.models.MeasureType;
 
-public class MeasurePage extends AppCompatActivity
+public class AddMeasurement extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
-    private MeasureType measureType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_measure_page);
+        setContentView(R.layout.activity_add_measurement);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Measure Page");
+        toolbar.setTitle("Dodaj pomiar");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -36,11 +34,9 @@ public class MeasurePage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
-
-        Bundle bundle = getIntent().getExtras();
-        String name = bundle.getString("measure_name").toLowerCase();
-        measureType = new MeasureTypesController().getMeasureType(name);
     }
+
+
 
     @Override
     public void onBackPressed() {
