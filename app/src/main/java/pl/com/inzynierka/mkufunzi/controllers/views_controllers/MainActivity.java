@@ -8,17 +8,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.activeandroid.query.Select;
 
 import pl.com.inzynierka.mkufunzi.R;
+import pl.com.inzynierka.mkufunzi.models.AppUser;
+import pl.com.inzynierka.mkufunzi.models.Card;
+import pl.com.inzynierka.mkufunzi.models.Protege;
 import pl.com.inzynierka.mkufunzi.models.User;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private AppUser appUser = AppUser.getInstance();
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
 
     @Override
@@ -28,15 +33,19 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Trener Mkufunzi");
         setSupportActionBar(toolbar);
-        User user = new Select()
-                .from(User.class)
-                .executeSingle();
+        User user = new Select().from(User.class).executeSingle();
         /** Check if there is any logged user */
         if (user == null) {
             Intent intent = new Intent(this, Login.class);
             this.startActivity(intent);
             this.finish();
         } else {
+            Log.e("User", user.id + "");
+            appUser.setUser(user);
+            Protege protege = new Select().from(Protege.class).where("user_id = ?", user.id).executeSingle();
+            Card card = new Select().from(Card.class).where("protege_id = ?", protege.id).executeSingle();
+            appUser.setProtege(protege);
+            appUser.setCard(card);
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
