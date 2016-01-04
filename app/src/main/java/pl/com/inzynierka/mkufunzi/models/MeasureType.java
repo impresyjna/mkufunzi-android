@@ -33,8 +33,8 @@ public class MeasureType extends Model{
         super();
         try {
             this.id = json.getInt(TAG_ID);
-            this.name = json.getString(TAG_NAME);
-            this.unit = json.getString(TAG_UNIT);
+            this.name = json.getString(TAG_NAME).toLowerCase();
+            this.unit = json.getString(TAG_UNIT).toLowerCase();
         } catch (JSONException e) {
             Log.e("MeasureTypeConstructor", "JSONError");
             e.printStackTrace();
