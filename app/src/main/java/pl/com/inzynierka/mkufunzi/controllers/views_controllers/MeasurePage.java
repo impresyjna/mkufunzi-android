@@ -1,9 +1,7 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,15 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import pl.com.inzynierka.mkufunzi.R;
+import pl.com.inzynierka.mkufunzi.controllers.models_controllers.MeasureTypesController;
+import pl.com.inzynierka.mkufunzi.models.MeasureType;
 
 public class MeasurePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
-
+    private MeasureType measureType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +36,11 @@ public class MeasurePage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
+
+        Bundle bundle = getIntent().getExtras();
+        String name = bundle.getString("measure_name").toLowerCase();
+        measureType = new MeasureTypesController().getMeasureType(name);
     }
-
-
 
     @Override
     public void onBackPressed() {

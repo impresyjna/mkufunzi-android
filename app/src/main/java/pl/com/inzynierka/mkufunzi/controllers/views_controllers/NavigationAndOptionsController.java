@@ -2,10 +2,10 @@ package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import pl.com.inzynierka.mkufunzi.API.measure_types.MeasureTypesIndexMobile;
@@ -41,15 +41,15 @@ public class NavigationAndOptionsController {
         } else if (id == R.id.nav_my_medicines) {
             openIntent(activity,MyMedicines.class);
         } else {
-            openIntent(activity, MeasurePage.class);
+            openIntentWithParam(activity, MeasurePage.class, name);
         }
     }
 
     public void reactOnOptionItemSelected(int id, AppCompatActivity activity){
         if (id == R.id.action_settings) {
-            openIntent(activity,Settings.class);
+            openIntent(activity, Settings.class);
         } else if (id == R.id.action_send_message) {
-            openIntent(activity,SendMessage.class);
+            openIntent(activity, SendMessage.class);
         } else if (id == R.id.action_my_messages) {
             openIntent(activity, MyMessages.class);
         } else if (id == R.id.action_logout) {
@@ -70,6 +70,15 @@ public class NavigationAndOptionsController {
 
     public void openIntent(Activity activity, Class windowClass){
         Intent intent = new Intent(activity, windowClass);
+        activity.startActivity(intent);
+        activity.finish();
+    }
+
+    public void openIntentWithParam(Activity activity, Class windowClass, String name){
+        Intent intent = new Intent(activity, windowClass);
+        Bundle bundle = new Bundle();
+        bundle.putString("measure_name", name);
+        intent.putExtras(bundle);
         activity.startActivity(intent);
         activity.finish();
     }

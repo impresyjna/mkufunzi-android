@@ -1,5 +1,7 @@
 package pl.com.inzynierka.mkufunzi.controllers.models_controllers;
 
+import com.activeandroid.query.Select;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,5 +34,12 @@ public class MeasureTypesController {
             e.printStackTrace();
         }
         return measure_types;
+    }
+
+    public MeasureType getMeasureType(String name) {
+        return new Select()
+                .from(MeasureType.class)
+                .where("name = ?", name)
+                .executeSingle();
     }
 }
