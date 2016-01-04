@@ -15,7 +15,7 @@ import org.json.JSONObject;
 @Table(name = "Users")
 public class User extends Model{
 
-    @Column(name = "id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
+    @Column(name = "ref_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     public int id;
     @Column(name = "login")
     public String login;
@@ -40,12 +40,27 @@ public class User extends Model{
         super();
         try {
             this.id = json.getInt(TAG_ID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.login = json.getString(TAG_LOGIN);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.email = json.getString(TAG_EMAIL);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.name = json.getString(TAG_NAME);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.surname = json.getString(TAG_SURNAME);
         } catch (JSONException e) {
-            Log.e("UserConstructor", "JSONErrror");
             e.printStackTrace();
         }
     }
