@@ -35,9 +35,21 @@ public class Measure extends Model {
         super();
         try {
             this.id = json.getInt(TAG_ID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.value = json.getLong(TAG_VALUE);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.measureTypeId = json.getInt(TAG_MEASURE_TYPE_ID);
-            this.cardId = json.getInt(TAG_CARD_ID); 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.cardId = json.getInt(TAG_CARD_ID);
         } catch (JSONException e) {
             e.printStackTrace();
         }
