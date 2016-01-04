@@ -64,11 +64,11 @@
         <activity
             android:name=".controllers.views_controllers.AddMeasure"
             android:label="@string/title_activity_add_measure"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MeasureTheme" />
         <activity
             android:name=".controllers.views_controllers.MeasurePage"
             android:label="@string/title_activity_measure_page"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/MeasureTheme"></activity>
     </application>
 
 </manifest>

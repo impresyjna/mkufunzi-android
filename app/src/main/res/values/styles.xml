@@ -13,6 +13,13 @@
         <item name="colorAccent">#009688</item>
     </style>
 
+    <!-- Base application theme. -->
+    <style name="MeasureTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#673AB7</item>
+        <item name="colorPrimaryDark">#512DA8</item>
+        <item name="colorAccent">#673AB7</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
