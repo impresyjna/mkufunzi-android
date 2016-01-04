@@ -48,14 +48,37 @@ public class Protege extends Model {
         super();
         try {
             this.bloodType = json.getString(TAG_BLOOD_TYPE);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.eyeColor = json.getString(TAG_EYE_COLOR);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.gender = json.getString(TAG_GENDER);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.id = json.getInt(TAG_ID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.trainerId = json.getInt(TAG_TRAINER_ID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.userId = json.getInt(TAG_USER_ID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             this.birthDate = json.getString(TAG_BIRTH_DATE);
         } catch (JSONException e) {
-            Log.e("ProtegeConstructor", "JsonError");
             e.printStackTrace();
         }
     }
