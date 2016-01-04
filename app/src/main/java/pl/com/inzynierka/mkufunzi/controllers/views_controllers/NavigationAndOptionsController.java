@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import pl.com.inzynierka.mkufunzi.API.measure_types.MeasureTypesIndexMobile;
@@ -29,7 +30,7 @@ public class NavigationAndOptionsController {
         measureTypesIndexMobile.execute();
     }
 
-    public void reactOnNavigationItemSelected(int id, AppCompatActivity activity)
+    public void reactOnNavigationItemSelected(int id, AppCompatActivity activity, String name)
     {
         if (id == R.id.nav_start_training) {
             Toast.makeText(activity, "Start treningu", Toast.LENGTH_SHORT).show();
@@ -40,7 +41,7 @@ public class NavigationAndOptionsController {
         } else if (id == R.id.nav_my_medicines) {
             openIntent(activity,MyMedicines.class);
         } else {
-            openIntent(activity,MeasurePage.class);
+            openIntent(activity, MeasurePage.class);
         }
     }
 

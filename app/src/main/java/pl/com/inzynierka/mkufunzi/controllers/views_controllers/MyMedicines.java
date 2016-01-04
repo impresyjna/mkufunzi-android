@@ -74,7 +74,8 @@ public class MyMedicines extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        navigationAndOptionsController.reactOnNavigationItemSelected(id, this);
+        String name = item.getTitle().toString();
+        navigationAndOptionsController.reactOnNavigationItemSelected(id, this, name);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
