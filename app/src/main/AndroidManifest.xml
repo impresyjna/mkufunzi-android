@@ -26,15 +26,15 @@
         <activity
             android:name=".controllers.views_controllers.About"
             android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/LoginTheme" />
         <activity
             android:name=".controllers.views_controllers.Register"
             android:label="@string/title_activity_register"
             android:theme="@style/LoginTheme" />
         <activity
             android:name=".controllers.views_controllers.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme">
+            android:label="Mkufunzi"
+            android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,23 +44,23 @@
         <activity
             android:name=".controllers.views_controllers.Settings"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/SettingsThemes" />
         <activity
             android:name=".controllers.views_controllers.MyMessages"
             android:label="@string/title_activity_my_messages"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MessagesThemes" />
         <activity
             android:name=".controllers.views_controllers.SendMessage"
             android:label="@string/title_activity_send_message"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MessagesThemes" />
         <activity
             android:name=".controllers.views_controllers.AddMedicine"
             android:label="@string/title_activity_add_medicine"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MedicinesTheme" />
         <activity
             android:name=".controllers.views_controllers.MyMedicines"
             android:label="@string/title_activity_my_medicines"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MedicinesTheme" />
         <activity
             android:name=".controllers.views_controllers.AddMeasurement"
             android:label="@string/title_activity_add_measure"

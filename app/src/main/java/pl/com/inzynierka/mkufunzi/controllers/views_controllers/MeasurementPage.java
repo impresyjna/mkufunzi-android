@@ -32,9 +32,15 @@ public class MeasurementPage extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /** Find measure type correct with param given */
+        Bundle bundle = getIntent().getExtras();
+        String name = bundle.getString("measure_name").toLowerCase();
+        measureType = new MeasureTypesController().getMeasureType(name);
+
         setContentView(R.layout.activity_measurement_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Measurement Page");
+        toolbar.setTitle(name.substring(0,1).toUpperCase()+name.substring(1).toLowerCase());
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -46,11 +52,6 @@ public class MeasurementPage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
-
-        /** Find measure type correct with param given */
-        Bundle bundle = getIntent().getExtras();
-        String name = bundle.getString("measure_name").toLowerCase();
-        measureType = new MeasureTypesController().getMeasureType(name);
 
         // Lookup the recyclerview in activity layout
         RecyclerView rvMeasures = (RecyclerView) findViewById(R.id.rvMeasures);
