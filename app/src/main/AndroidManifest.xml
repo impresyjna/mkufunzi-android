@@ -17,7 +17,7 @@
             android:value="Mkufunzi.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="7" />
+            android:value="8" />
 
         <activity
             android:name=".controllers.views_controllers.Login"
@@ -62,11 +62,11 @@
             android:label="@string/title_activity_my_medicines"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".controllers.views_controllers.AddMeasure"
+            android:name=".controllers.views_controllers.AddMeasurement"
             android:label="@string/title_activity_add_measure"
             android:theme="@style/MeasureTheme" />
         <activity
-            android:name=".controllers.views_controllers.MeasurePage"
+            android:name=".controllers.views_controllers.MeasurementPage"
             android:label="@string/title_activity_measure_page"
             android:theme="@style/MeasureTheme"></activity>
     </application>

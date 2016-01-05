@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.com.inzynierka.mkufunzi.API.measurements.GetMeasurementsMobile;
 import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.adapters.MeasurementAdapter;
 import pl.com.inzynierka.mkufunzi.controllers.models_controllers.MeasureTypesController;
@@ -51,18 +52,12 @@ public class MeasurementPage extends AppCompatActivity
         String name = bundle.getString("measure_name").toLowerCase();
         measureType = new MeasureTypesController().getMeasureType(name);
 
-        List<Measurement> measurements = new ArrayList<>();
-
-
         // Lookup the recyclerview in activity layout
         RecyclerView rvMeasures = (RecyclerView) findViewById(R.id.rvMeasures);
-        // Create adapter passing in the sample user data
-        MeasurementAdapter adapter = new MeasurementAdapter(measurements);
-        // Attach the adapter to the recyclerview to populate items
-        rvMeasures.setAdapter(adapter);
-        // Set layout manager to position the items
-        rvMeasures.setLayoutManager(new LinearLayoutManager(this));
-        // That's all!
+        GetMeasurementsMobile getMeasurementsMobile = new GetMeasurementsMobile();
+        getMeasurementsMobile.setActivity(this);
+        getMeasurementsMobile.setRvMeasures(rvMeasures);
+        getMeasurementsMobile.execute(Integer.toString(appUser.getCard().id), Integer.toString(measureType.id));
 
     }
 
