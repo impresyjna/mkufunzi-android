@@ -26,5 +26,6 @@
     <string name="err_msg_surname_empty">Należy podać nazwisko</string>
     <string name="err_msg_password_confirmation_empty">Należy podać potwierdzenie hasła</string>
     <string name="err_msg_passwords_do_not_fit">Podane hasła się nie zgadzają</string>
-
+    <string name="err_value_empty">Wartość nie może być pusta</string>
+    <string name="title_activity_bluetooth_connection">BluetoothConnection</string>
 </resources>

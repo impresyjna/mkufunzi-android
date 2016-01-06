@@ -6,21 +6,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
 
 import pl.com.inzynierka.mkufunzi.API.measurements.GetMeasurementsMobile;
 import pl.com.inzynierka.mkufunzi.R;
-import pl.com.inzynierka.mkufunzi.adapters.MeasurementAdapter;
 import pl.com.inzynierka.mkufunzi.controllers.models_controllers.MeasureTypesController;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
-import pl.com.inzynierka.mkufunzi.models.Measurement;
 import pl.com.inzynierka.mkufunzi.models.MeasureType;
 
 public class MeasurementPage extends AppCompatActivity
@@ -85,7 +80,7 @@ public class MeasurementPage extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        navigationAndOptionsController.reactOnOptionItemSelected(id,this);
+        navigationAndOptionsController.reactOnOptionItemSelected(id, this);
 
         return super.onOptionsItemSelected(item);
     }
@@ -101,5 +96,11 @@ public class MeasurementPage extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void showAddMeasurement(View view)
+    {
+        navigationAndOptionsController.openIntentWithParam(this, AddMeasurement.class, measureType.name);
+        this.finish();
     }
 }

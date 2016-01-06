@@ -31,7 +31,9 @@
 
         </android.support.design.widget.AppBarLayout>
 
+
         <include layout="@layout/content_measurement_page" />
+
 
     </android.support.design.widget.CoordinatorLayout>
 

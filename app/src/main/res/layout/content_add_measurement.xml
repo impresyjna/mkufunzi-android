@@ -13,14 +13,38 @@
     tools:showIn="@layout/activity_add_measurement">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/value_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|numberDecimal"
+                android:hint="Wartość"
+                android:textColorHint="#727272"
+                android:textColor="#727272"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button android:id="@+id/btn_signup"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="AddMeasure"
-            android:id="@+id/textView2" />
+            android:text="Dodaj"
+            android:background="#673AB7"
+            android:layout_marginTop="40dp"
+            android:textColor="@android:color/white"
+            android:onClick="addMeasure"/>
+
     </LinearLayout>
 
 </RelativeLayout>
