@@ -16,7 +16,7 @@
     <style name="MeasureTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#673AB7</item>
         <item name="colorPrimaryDark">#512DA8</item>
-        <item name="colorAccent">#673AB7</item>
+        <item name="colorAccent">#D1C4E9</item>
     </style>
 
     <style name="MainActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
