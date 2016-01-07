@@ -33,7 +33,7 @@ public class NavigationAndOptionsController {
     public void reactOnNavigationItemSelected(int id, AppCompatActivity activity, String name)
     {
         if (id == R.id.nav_start_training) {
-            Toast.makeText(activity, "Start treningu", Toast.LENGTH_SHORT).show();
+            openIntent(activity, BluetoothConnection.class);
         } else if (id == R.id.nav_trainings_history) {
             Toast.makeText(activity, "Historia treningów", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_add_medicine) {

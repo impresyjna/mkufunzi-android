@@ -3,8 +3,9 @@
     package="pl.com.inzynierka.mkufunzi">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <user-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name="com.activeandroid.app.Application"
@@ -22,7 +23,7 @@
         <activity
             android:name=".controllers.views_controllers.Login"
             android:label="@string/title_activity_login"
-            android:theme="@style/LoginTheme"/>
+            android:theme="@style/LoginTheme" />
         <activity
             android:name=".controllers.views_controllers.About"
             android:label="@string/title_activity_about"
@@ -68,7 +69,10 @@
         <activity
             android:name=".controllers.views_controllers.MeasurementPage"
             android:label="@string/title_activity_measure_page"
-            android:theme="@style/MeasureTheme"></activity>
+            android:theme="@style/MeasureTheme" />
+        <activity android:name=".controllers.views_controllers.BluetoothConnection"
+            android:label="@string/title_activity_bluetooth_connection"
+            android:theme="@style/TrainingThemes" />
     </application>
 
 </manifest>

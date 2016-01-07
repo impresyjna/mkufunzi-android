@@ -54,7 +54,7 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
                     serverConnector.getLOGIN(), "GET", params);
 
             if (json != null) {
-                Log.d("JSON result", json.getJSONObject("user").toString());
+                Log.d("JSON result", json.toString());
                 return json;
             }
 
