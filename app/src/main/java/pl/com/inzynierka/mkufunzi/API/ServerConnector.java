@@ -7,14 +7,14 @@ public class ServerConnector {
 
     private static ServerConnector instance;
     private JSONParser jsonParser = new JSONParser();
-    private String HOST_IP = "http://trener-mkufunzi.herokuapp.com";
+    private String HOST_IP = "https://trener-mkufunzi.herokuapp.com";
     private String LOGIN = HOST_IP + "/login_mobile";
     private String REGISTER = HOST_IP + "/register_mobile";
     private String MEASURE_TYPES_INDEX = HOST_IP + "/measure_types_index";
     private String GET_MEASUREMENTS = HOST_IP + "/get_measurements_mobile";
     private String POST_MEASUREMENT = HOST_IP + "/post_measurement_mobile";
 
-    private ServerConnector(){
+    public ServerConnector(){
 
     }
 
