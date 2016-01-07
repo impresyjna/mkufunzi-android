@@ -35,8 +35,6 @@ public class ConnectThread extends Thread{
 
         Log.d("btDeviceNameConnect", bTDevice.getName());
         try {
-            Log.d("btSocket", bTSocket.toString());
-            Log.e("btSocketDevice", bTSocket.getRemoteDevice().getName());
             bTSocket.connect();
             Log.d("CONNECTTHREAD", "Connected");
         } catch(IOException e) {

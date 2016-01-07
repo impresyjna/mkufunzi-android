@@ -23,10 +23,12 @@ public class ManageConnectThread extends Thread {
     }
 
     public String receiveData(BluetoothSocket socket) throws IOException{
-        byte[] buffer = new byte[80];
-        ByteArrayInputStream input = new ByteArrayInputStream(buffer);
+        byte[] buffer = new byte[1024];
+        int bytes;
         InputStream inputStream = socket.getInputStream();
         inputStream.read(buffer);
-        return inputStream.;
+        bytes = inputStream.read(buffer);
+        String message = new String(buffer, "UTF-8");
+        return message;
     }
 }

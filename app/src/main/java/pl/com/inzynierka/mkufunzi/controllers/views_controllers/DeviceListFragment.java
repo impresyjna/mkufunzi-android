@@ -181,7 +181,7 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
         if(conn.connect())
         {
             try {
-                Log.d("Value", new ManageConnectThread().receiveData(conn.getbTSocket())+"");
+                Log.d("Value", "Message: " + new ManageConnectThread().receiveData(conn.getbTSocket())+"");
             } catch (IOException e) {
                 e.printStackTrace();
             }
