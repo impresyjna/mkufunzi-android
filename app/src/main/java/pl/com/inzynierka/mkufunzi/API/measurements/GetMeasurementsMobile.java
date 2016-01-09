@@ -82,7 +82,32 @@ public class GetMeasurementsMobile extends AsyncTask<String, String, JSONObject>
                 // Attach the adapter to the recyclerview to populate items
                 rvMeasures.setAdapter(adapter);
                 // Set layout manager to position the items
-                rvMeasures.setLayoutManager(new LinearLayoutManager(activity));
+                final LinearLayoutManager mLayoutManager;
+                mLayoutManager = new LinearLayoutManager(activity);
+                rvMeasures.setLayoutManager(mLayoutManager);
+                rvMeasures.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    private boolean loading = true;
+                    int pastVisiblesItems, visibleItemCount, totalItemCount;
+                    @Override
+                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                        if (dy > 0) //check for scroll down
+                        {
+
+                            visibleItemCount = mLayoutManager.getChildCount();
+                            totalItemCount = mLayoutManager.getItemCount();
+                            pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
+
+                            if (loading) {
+                                if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                                    loading = false;
+                                    Log.v("...", "Last Item Wow !");
+                                    //Do pagination.. i.e. fetch new data
+                                }
+                            }
+                        }
+                    }
+                });
+
             } else {
 
             }

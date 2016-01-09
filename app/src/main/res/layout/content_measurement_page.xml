@@ -9,26 +9,38 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".controllers.views_controllers.MeasurementPage"
     tools:showIn="@layout/activity_measurement_page">
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dodaj pomiar"
-        android:id="@+id/add_measurement_button"
-        android:onClick="showAddMeasurement"/>
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodaj pomiar"
+            android:background="#673AB7"
+            android:textColor="@android:color/white"
+            android:id="@+id/add_measurement_button"
+            android:onClick="showAddMeasurement"
+            android:layout_weight="1"
+            android:layout_margin="2dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wykres"
+            android:background="#673AB7"
+            android:textColor="@android:color/white"
+            android:id="@+id/chart_button"
+            android:layout_weight="1"
+            android:layout_margin="2dp"/>
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvMeasures"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Wykres"
-        android:id="@+id/chart_button" />
 
 </LinearLayout>
