@@ -1,5 +1,6 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
@@ -88,7 +89,8 @@ public class AddMeasurement extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            Log.d("CDA", "onBackPressed Called");
+            navigationAndOptionsController.openIntentWithParam(this,MeasurementPage.class, measureType.name);
         }
     }
 
