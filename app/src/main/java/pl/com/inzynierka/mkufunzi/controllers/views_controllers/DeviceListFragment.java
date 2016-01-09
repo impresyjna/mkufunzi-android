@@ -47,9 +47,9 @@ import pl.com.inzynierka.mkufunzi.models.DeviceItem;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class DeviceListFragment extends Fragment implements AbsListView.OnItemClickListener{
+public class DeviceListFragment extends Fragment implements AbsListView.OnItemClickListener {
 
-    private ArrayList <DeviceItem>deviceItemList;
+    private ArrayList<DeviceItem> deviceItemList;
 
     private OnFragmentInteractionListener mListener;
     private static BluetoothAdapter bTAdapter;
@@ -107,13 +107,13 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
 
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
-                DeviceItem newDevice= new DeviceItem(device.getName(),device.getAddress(),"false");
+                DeviceItem newDevice = new DeviceItem(device.getName(), device.getAddress(), "false");
                 deviceItemList.add(newDevice);
             }
         }
 
         // If there are no devices, add an item that states so. It will be handled in the view.
-        if(deviceItemList.size() == 0) {
+        if (deviceItemList.size() == 0) {
             deviceItemList.add(new DeviceItem("No Devices", "", "false"));
         }
 
@@ -177,13 +177,14 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
                 " id: " + id + " name: " + deviceItemList.get(position).getDeviceName() + "\n");
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
         ParcelUuid list[] = btDevice.getUuids();
-        ConnectThread conn = new ConnectThread(btDevice,uuid);
-        if(conn.connect())
-        {
-            try {
-                Log.d("Value", "Message: " + new ManageConnectThread().receiveData(conn.getbTSocket())+"");
-            } catch (IOException e) {
-                e.printStackTrace();
+        ConnectThread conn = new ConnectThread(btDevice, uuid);
+        if (conn.connect()) {
+            while (true) {
+                try {
+                    Log.d("Value", "Message: " + new ManageConnectThread().receiveData(conn.getbTSocket()) + "");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         if (null != mListener) {
