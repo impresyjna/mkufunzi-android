@@ -2,15 +2,20 @@ package pl.com.inzynierka.mkufunzi.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import com.activeandroid.query.Select;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import pl.com.inzynierka.mkufunzi.R;
+import pl.com.inzynierka.mkufunzi.models.MeasureType;
 import pl.com.inzynierka.mkufunzi.models.Measurement;
 
 /**
@@ -36,16 +41,19 @@ public class MeasurementAdapter extends
             super(itemView);
 
             valueTextView = (TextView) itemView.findViewById(R.id.value_text);
+            dateTextView = (TextView) itemView.findViewById(R.id.time_text);
 
         }
     }
 
     // Store a member variable for the contacts
     private List<Measurement> aMeasurements;
+    private String measureUnit;
 
     // Pass in the contact array into the constructor
-    public MeasurementAdapter(List<Measurement> measurements) {
+    public MeasurementAdapter(List<Measurement> measurements, String measureUnit) {
         aMeasurements = measurements;
+        this.measureUnit = measureUnit;
     }
 
     // Usually involves inflating a layout from XML and returning the holder
@@ -70,8 +78,16 @@ public class MeasurementAdapter extends
 
         // Set item views based on the data model
         TextView valueTextView = viewHolder.valueTextView;
-        valueTextView.setText(measurement.value+ " " + measurement.measureTypeId);
-
+        if(measurement.secondValue != 0){
+            valueTextView.setText(measurement.value+ "/" + measurement.secondValue + " " + measureUnit);
+        }
+        else {
+            valueTextView.setText(measurement.value + " " + measureUnit);
+        }
+        TextView dateTextView = viewHolder.dateTextView;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String formattedDate = df.format(measurement.time);
+        dateTextView.setText(formattedDate);
     }
 
     // Return the total count of items

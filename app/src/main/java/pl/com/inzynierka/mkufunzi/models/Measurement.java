@@ -27,12 +27,15 @@ public class Measurement extends Model {
     public int cardId;
     @Column(name = "time")
     public Date time;
+    @Column(name = "second_value")
+    public double secondValue;
 
     private static final String TAG_ID = "id";
     private static final String TAG_VALUE = "value";
     private static final String TAG_MEASURE_TYPE_ID = "measure_type_id";
     private static final String TAG_CARD_ID = "card_id";
     private static final String TAG_TIME = "created_at";
+    private static final String TAG_SECOND_VALUE = "second_value";
 
     public Measurement() {
         super();
@@ -60,11 +63,16 @@ public class Measurement extends Model {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         try {
             this.time = format.parse(json.getString(TAG_TIME));
         } catch (ParseException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.secondValue = json.getDouble(TAG_SECOND_VALUE);
         } catch (JSONException e) {
             e.printStackTrace();
         }
