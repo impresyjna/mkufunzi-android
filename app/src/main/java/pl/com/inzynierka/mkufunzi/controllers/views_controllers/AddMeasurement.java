@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -29,8 +30,9 @@ public class AddMeasurement extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
-    private EditText valueInput;
-    private TextInputLayout inputLayoutValue;
+    private EditText firstValueInput, secondValueInput, unitTextInput;
+    private TextInputLayout inputLayoutFirstValue, inputLayoutSecondValue;
+    private LinearLayout linearLayoutForValues;
     private MeasureType measureType;
     private AppUser appUser = AppUser.getInstance();
 
@@ -48,8 +50,24 @@ public class AddMeasurement extends AppCompatActivity
         toolbar.setTitle("Dodaj pomiar - " + name);
         setSupportActionBar(toolbar);
 
-        valueInput = (EditText) findViewById(R.id.value_input);
-        inputLayoutValue = (TextInputLayout) findViewById(R.id.input_layout_value);
+        linearLayoutForValues = (LinearLayout) findViewById(R.id.linear_layout_for_values);
+
+        firstValueInput = (EditText) findViewById(R.id.first_value_input);
+        secondValueInput = (EditText) findViewById(R.id.second_value_input);
+        inputLayoutFirstValue = (TextInputLayout) findViewById(R.id.input_layout_first_value);
+        inputLayoutSecondValue = (TextInputLayout) findViewById(R.id.input_layout_second_value);
+        unitTextInput = (EditText) findViewById(R.id.unit_text);
+
+        unitTextInput.setText(measureType.unit);
+
+        if(!measureType.extraField){
+            linearLayoutForValues.removeView(inputLayoutSecondValue);
+            inputLayoutFirstValue.setHint(measureType.name.substring(0,1).toUpperCase()+measureType.name.substring(1).toLowerCase());
+        }
+        else {
+            inputLayoutFirstValue.setHint(measureType.firstLabel.substring(0,1).toUpperCase()+measureType.firstLabel.substring(1).toLowerCase());
+            inputLayoutSecondValue.setHint(measureType.secondLabel.substring(0,1).toUpperCase()+measureType.secondLabel.substring(1).toLowerCase());
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -107,37 +125,48 @@ public class AddMeasurement extends AppCompatActivity
 
     public void addMeasure(View view)
     {
-        if(!validateValue())
+        if(!validateFirstValue())
         {
             return;
+        }
+        if(!validateSecondValue() && measureType.extraField) {
+            return;
         } else {
-            String valueText = valueInput.getText().toString();
-            NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
-            Number number = null;
-            double value = 0;
-            try {
-                number = format.parse(valueText);
-                value = number.doubleValue();
-            } catch (ParseException e) {
-                value = Double.parseDouble(valueText);
-                e.printStackTrace();
+            double firstValue = 0;
+            double secondValue = 0;
+            if(measureType.extraField){
+                secondValue = getValueFromField(secondValueInput);
             }
+            firstValue = getValueFromField(firstValueInput);
             PostMeasurementMobile postMeasurementMobile = new PostMeasurementMobile();
             postMeasurementMobile.setActivity(this);
-            postMeasurementMobile.execute(Double.toString(value), Integer.toString(appUser.getCard().id), Integer.toString(measureType.id), measureType.name);
+            postMeasurementMobile.execute(Double.toString(firstValue), Integer.toString(appUser.getCard().id), Integer.toString(measureType.id), measureType.name, Double.toString(secondValue));
         }
 
     }
 
-    public boolean validateValue(){
-        String valueText = valueInput.getText().toString().trim();
+    public boolean validateFirstValue(){
+        String valueText = firstValueInput.getText().toString().trim();
         if(valueText.equals(""))
         {
-            inputLayoutValue.setError(getString(R.string.err_value_empty));
-            requestFocus(valueInput);
+            inputLayoutFirstValue.setError(getString(R.string.err_value_empty));
+            requestFocus(firstValueInput);
             return false;
         } else {
-            inputLayoutValue.setErrorEnabled(false);
+            inputLayoutFirstValue.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    public boolean validateSecondValue() {
+        String valueText = secondValueInput.getText().toString().trim();
+        if(valueText.equals(""))
+        {
+            inputLayoutSecondValue.setError(getString(R.string.err_value_empty));
+            requestFocus(secondValueInput);
+            return false;
+        } else {
+            inputLayoutSecondValue.setErrorEnabled(false);
         }
         return true;
     }
@@ -146,5 +175,20 @@ public class AddMeasurement extends AppCompatActivity
         if (view.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
+    }
+
+    private double getValueFromField(EditText editText){
+        String valueText = editText.getText().toString();
+        NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
+        Number number = null;
+        double value = 0;
+        try {
+            number = format.parse(valueText);
+            value = number.doubleValue();
+        } catch (ParseException e) {
+            value = Double.parseDouble(valueText);
+            e.printStackTrace();
+        }
+        return value;
     }
 }

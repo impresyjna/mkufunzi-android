@@ -20,21 +20,60 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_value"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/value_input"
-                android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/linear_layout_for_values"
+            android:gravity="center">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_first_value"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="text|numberDecimal"
-                android:hint="Wartość"
-                android:textColorHint="#727272"
-                android:textColor="#727272"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_weight="2">
 
+                <EditText
+                    android:id="@+id/first_value_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|number"
+                    android:textColorHint="#727272"
+                    android:textColor="#727272"
+                    android:textSize="14dp"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_second_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <EditText
+                    android:id="@+id/second_value_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|number"
+                    android:textColorHint="#727272"
+                    android:textColor="#727272"
+                    android:textSize="14dp"/>
+            </android.support.design.widget.TextInputLayout>
+
+           <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="7dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="#727272"
+                    android:editable="false"
+                    android:background="@null"
+                    android:id="@+id/unit_text"/>
+           </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
         <Button android:id="@+id/btn_signup"
             android:layout_width="fill_parent"

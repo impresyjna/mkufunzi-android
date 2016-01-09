@@ -18,7 +18,7 @@
             android:value="Mkufunzi.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="8" />
+            android:value="9" />
 
         <activity
             android:name=".controllers.views_controllers.Login"

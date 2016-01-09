@@ -46,6 +46,7 @@ public class PostMeasurementMobile extends AsyncTask<String, String, JSONObject>
             params.put("value",args[0]);
             params.put("card_id",args[1]);
             params.put("measure_type_id",args[2]);
+            params.put("second_value", args[4]);
 
             measureTypeName = args[3];
 

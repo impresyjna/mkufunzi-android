@@ -20,10 +20,19 @@ public class MeasureType extends Model{
     public String name;
     @Column(name = "unit")
     public String unit;
+    @Column(name = "extra_field")
+    public boolean extraField;
+    @Column(name = "first_label")
+    public String firstLabel;
+    @Column(name = "second_label")
+    public String secondLabel;
 
     private static final String TAG_ID = "id";
     private static final String TAG_NAME = "name";
     private static final String TAG_UNIT = "unit";
+    private static final String TAG_EXTRA_FIELD = "extra_field";
+    private static final String TAG_FIRST_LABEL = "first_label";
+    private static final String TAG_SECOND_LABEL = "second_label";
 
     public MeasureType(){
         super();
@@ -42,7 +51,22 @@ public class MeasureType extends Model{
             e.printStackTrace();
         }
         try {
-            this.unit = json.getString(TAG_UNIT).toLowerCase();
+            this.unit = json.getString(TAG_UNIT);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.extraField = json.getBoolean(TAG_EXTRA_FIELD);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.firstLabel = json.getString(TAG_FIRST_LABEL);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.secondLabel = json.getString(TAG_SECOND_LABEL);
         } catch (JSONException e) {
             e.printStackTrace();
         }
