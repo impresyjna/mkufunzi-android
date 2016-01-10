@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity
     private AppUser appUser = AppUser.getInstance();
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
+    private TextView actualWeightText, actualHeightText, actualBmiText, birthDateText, bloodTypeText, genderText;
+    private TextView eyeColorText, lastTrainingText, medicinesText, messegesText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +63,39 @@ public class MainActivity extends AppCompatActivity
             loginText = (TextView) findViewById(R.id.login_text);
             emailText = (TextView) findViewById(R.id.email_text);
             navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
+
+            initInformationsOnActivity();
         }
     }
 
+    private void initInformationsOnActivity(){
+        actualWeightText = (TextView) findViewById(R.id.actual_weight_text);
+        actualHeightText = (TextView) findViewById(R.id.actual_height_text);
+        actualBmiText = (TextView) findViewById(R.id.actual_bmi_text);
+        birthDateText = (TextView) findViewById(R.id.birth_date_text);
+        bloodTypeText = (TextView) findViewById(R.id.blood_type_text);
+        genderText = (TextView) findViewById(R.id.gender_text);
+        eyeColorText = (TextView) findViewById(R.id.eye_color_text);
+        lastTrainingText = (TextView) findViewById(R.id.last_training_text);
+        medicinesText = (TextView) findViewById(R.id.medicines_text);
+        messegesText = (TextView) findViewById(R.id.new_messages_text);
+
+        actualWeightText.setText("---");
+        actualHeightText.setText("---");
+        actualBmiText.setText("---");
+        birthDateText.setText("---");
+        bloodTypeText.setText("---");
+        genderText.setText("---");
+        eyeColorText.setText("---");
+        lastTrainingText.setText("---");
+        medicinesText.setText("---");
+        messegesText.setText("---");
+
+        if(appUser.getProtege().birthDate!=null)
+        {
+            birthDateText.setText(appUser.getProtege().birthDate);
+        }
+    }
 
     @Override
     public void onBackPressed() {
