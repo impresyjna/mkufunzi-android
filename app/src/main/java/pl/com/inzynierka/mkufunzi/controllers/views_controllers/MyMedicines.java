@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import pl.com.inzynierka.mkufunzi.R;
 
@@ -20,6 +21,7 @@ public class MyMedicines extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    private TextView nameAndSurnameText, loginText, emailText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,11 @@ public class MyMedicines extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
+
+        nameAndSurnameText = (TextView) findViewById(R.id.name_and_surname_text);
+        loginText = (TextView) findViewById(R.id.login_text);
+        emailText = (TextView) findViewById(R.id.email_text);
+        navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
     }
 
 

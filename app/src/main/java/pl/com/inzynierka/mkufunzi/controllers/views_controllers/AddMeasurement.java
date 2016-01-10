@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -36,6 +37,7 @@ public class AddMeasurement extends AppCompatActivity
     private LinearLayout linearLayoutForValues;
     private MeasureType measureType;
     private AppUser appUser = AppUser.getInstance();
+    private TextView nameAndSurnameText, loginText, emailText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,11 @@ public class AddMeasurement extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
+
+        nameAndSurnameText = (TextView) findViewById(R.id.name_and_surname_text);
+        loginText = (TextView) findViewById(R.id.login_text);
+        emailText = (TextView) findViewById(R.id.email_text);
+        navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
     }
 
 

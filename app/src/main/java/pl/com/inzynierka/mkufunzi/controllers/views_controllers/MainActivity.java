@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.activeandroid.query.Select;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     private AppUser appUser = AppUser.getInstance();
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    private TextView nameAndSurnameText, loginText, emailText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,6 @@ public class MainActivity extends AppCompatActivity
             this.startActivity(intent);
             this.finish();
         } else {
-            Log.e("User", user.id + "");
             appUser.setUser(user);
             Protege protege = new Select().from(Protege.class).where("user_id = ?", user.id).executeSingle();
             Card card = new Select().from(Card.class).where("protege_id = ?", protege.id).executeSingle();
@@ -55,6 +56,11 @@ public class MainActivity extends AppCompatActivity
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
             navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
+
+            nameAndSurnameText = (TextView) findViewById(R.id.name_and_surname_text);
+            loginText = (TextView) findViewById(R.id.login_text);
+            emailText = (TextView) findViewById(R.id.email_text);
+            navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
         }
     }
 

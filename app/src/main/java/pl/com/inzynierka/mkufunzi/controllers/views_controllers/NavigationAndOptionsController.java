@@ -6,17 +6,21 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import pl.com.inzynierka.mkufunzi.API.measure_types.MeasureTypesIndexMobile;
 import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController;
+import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 /**
  * Created by impresyjna on 02.01.16.
  */
 public class NavigationAndOptionsController {
 
+
+    private AppUser appUser = AppUser.getInstance();
     /**
      * Method used to init Cart Submenu in Left slide menu
      * @param navigationView is the Drawer navigation where menu is stored
@@ -28,6 +32,12 @@ public class NavigationAndOptionsController {
         measureTypesIndexMobile.menu = menu;
         measureTypesIndexMobile.setActivity(activity);
         measureTypesIndexMobile.execute();
+    }
+
+    public void initNavHeader(TextView nameAndSurnameText, TextView loginText, TextView emailText){
+        nameAndSurnameText.setText(appUser.getUser().name + " " + appUser.getUser().surname);
+        loginText.setText("Użytkownik: " + appUser.getUser().login);
+        emailText.setText(appUser.getUser().email);
     }
 
     public void reactOnNavigationItemSelected(int id, AppCompatActivity activity, String name)
