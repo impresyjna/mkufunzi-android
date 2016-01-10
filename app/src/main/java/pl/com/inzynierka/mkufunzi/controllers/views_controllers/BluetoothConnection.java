@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -70,7 +71,7 @@ public class BluetoothConnection extends AppCompatActivity implements DeviceList
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        navigationAndOptionsController.reactOnOptionItemSelected(id,this);
+        navigationAndOptionsController.reactOnOptionItemSelected(id, this);
 
         return super.onOptionsItemSelected(item);
     }
@@ -78,5 +79,13 @@ public class BluetoothConnection extends AppCompatActivity implements DeviceList
     @Override
     public void onFragmentInteraction(String id) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(this, MainActivity.class);
+        startActivity(setIntent);
+        this.finish();
     }
 }
