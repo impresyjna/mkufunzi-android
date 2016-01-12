@@ -26,6 +26,7 @@ public class User extends Model{
     @Column(name = "surname")
     public String surname;
 
+
     private static final String TAG_ID = "id";
     private static final String TAG_LOGIN = "login";
     private static final String TAG_EMAIL = "email";

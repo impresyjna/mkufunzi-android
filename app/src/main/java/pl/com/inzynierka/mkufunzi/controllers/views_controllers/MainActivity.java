@@ -1,6 +1,7 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,17 +9,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
 
+import pl.com.inzynierka.mkufunzi.API.measurements.GetMainData;
+import pl.com.inzynierka.mkufunzi.API.users.UserExistsMobile;
 import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
-import pl.com.inzynierka.mkufunzi.models.Card;
-import pl.com.inzynierka.mkufunzi.models.Protege;
 import pl.com.inzynierka.mkufunzi.models.User;
 
 public class MainActivity extends AppCompatActivity
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
     private TextView actualWeightText, actualHeightText, actualBmiText, birthDateText, bloodTypeText, genderText;
-    private TextView eyeColorText, lastTrainingText, medicinesText, messegesText;
+    private TextView eyeColorText, lastTrainingText, medicinesText, messagesText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +43,14 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, Login.class);
             this.startActivity(intent);
             this.finish();
+        } else if (appUser.getUser() == null) { /** Check if user exists */
+            GetMainData getMainData = new GetMainData();
+            getMainData.setActivity(this);
+            getMainData.execute(Integer.toString(user.id));
+            UserExistsMobile userExistsMobile = new UserExistsMobile();
+            userExistsMobile.setActivity(this);
+            userExistsMobile.execute(user.email);
         } else {
-            appUser.setUser(user);
-            Protege protege = new Select().from(Protege.class).where("user_id = ?", user.id).executeSingle();
-            Card card = new Select().from(Card.class).where("protege_id = ?", protege.id).executeSingle();
-            appUser.setProtege(protege);
-            appUser.setCard(card);
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -63,12 +65,12 @@ public class MainActivity extends AppCompatActivity
             loginText = (TextView) findViewById(R.id.login_text);
             emailText = (TextView) findViewById(R.id.email_text);
             navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
-
-            initInformationsOnActivity();
+            initInformationOnActivity();
         }
+
     }
 
-    private void initInformationsOnActivity(){
+    private void initInformationOnActivity() {
         actualWeightText = (TextView) findViewById(R.id.actual_weight_text);
         actualHeightText = (TextView) findViewById(R.id.actual_height_text);
         actualBmiText = (TextView) findViewById(R.id.actual_bmi_text);
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity
         eyeColorText = (TextView) findViewById(R.id.eye_color_text);
         lastTrainingText = (TextView) findViewById(R.id.last_training_text);
         medicinesText = (TextView) findViewById(R.id.medicines_text);
-        messegesText = (TextView) findViewById(R.id.new_messages_text);
+        messagesText = (TextView) findViewById(R.id.new_messages_text);
 
         actualWeightText.setText("---");
         actualHeightText.setText("---");
@@ -89,11 +91,29 @@ public class MainActivity extends AppCompatActivity
         eyeColorText.setText("---");
         lastTrainingText.setText("---");
         medicinesText.setText("---");
-        messegesText.setText("---");
+        messagesText.setText("---");
 
-        if(appUser.getProtege().birthDate!=null)
-        {
+        if (appUser.getProtege().birthDate != null && !appUser.getProtege().birthDate.equals("null")) {
             birthDateText.setText(appUser.getProtege().birthDate);
+        }
+        if (appUser.getProtege().bloodType != null && !appUser.getProtege().bloodType.equals("null")) {
+            bloodTypeText.setText(appUser.getProtege().bloodType);
+        }
+        if (appUser.getProtege().gender != null && !appUser.getProtege().gender.equals("null")) {
+            genderText.setText(appUser.getProtege().gender);
+        }
+        if (appUser.getProtege().eyeColor != null && !appUser.getProtege().gender.equals("null")) {
+            eyeColorText.setText(appUser.getProtege().eyeColor.substring(0,1));
+            eyeColorText.setTextColor(Color.parseColor("#795548"));
+        }
+        if (appUser.getWhbmi().weightValue!=0) {
+            actualWeightText.setText(appUser.getWhbmi().weightValue + " " + appUser.getWhbmi().weightUnit);
+        }
+        if (appUser.getWhbmi().heightValue!=0) {
+            actualHeightText.setText(appUser.getWhbmi().heightValue + " " + appUser.getWhbmi().heightUnit);
+        }
+        if (appUser.getWhbmi().BMIValue!=0) {
+            actualBmiText.setText(Double.toString(appUser.getWhbmi().BMIValue));
         }
     }
 
@@ -104,6 +124,7 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            this.finish();
         }
     }
 

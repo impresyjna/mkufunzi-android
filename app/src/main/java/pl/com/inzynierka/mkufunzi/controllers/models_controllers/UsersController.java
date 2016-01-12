@@ -9,18 +9,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.com.inzynierka.mkufunzi.models.AppUser;
 import pl.com.inzynierka.mkufunzi.models.Card;
 import pl.com.inzynierka.mkufunzi.models.Protege;
 import pl.com.inzynierka.mkufunzi.models.User;
+import pl.com.inzynierka.mkufunzi.models.WHBMI;
 
 /**
  * Created by impresyjna on 29.12.15.
  */
 public class UsersController {
 
+    AppUser appUser = AppUser.getInstance();
+
     /**
      * This method is used to get array of User objects from server
      * and deserialize it to ArrayList
+     *
      * @param jsonObject This is the object from server
      * @return ArrayList of User objects
      */
@@ -38,27 +43,42 @@ public class UsersController {
         return users;
     }
 
-    public void clearUsers(){
+    public void clearUsers() {
         ActiveAndroid.execSQL("delete from users");
     }
 
-    public void rememberAndLoginUser(JSONObject json)
-    {
+    public void rememberAndLoginUser(JSONObject json) {
         User user = null;
         Protege protege = null;
         Card card = null;
         try {
             user = new User(json.getJSONObject("user"));
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+        try {
             protege = new Protege(json.getJSONObject("protege"));
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+        try {
             card = new Card(json.getJSONObject("card"));
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } catch (JSONException e1) {
+            e1.printStackTrace();
         }
         clearUsers();
         new CardsController().clearCards();
         new ProtegesController().clearProteges();
         user.save();
         protege.save();
-        card.save(); 
+        card.save();
+        appUser.setUser(user);
+        appUser.setCard(card);
+        appUser.setProtege(protege);
+    }
+
+    public void getMainData(JSONObject json) {
+        WHBMI whbmi = new WHBMI(json);
+        appUser.setWhbmi(whbmi);
     }
 }

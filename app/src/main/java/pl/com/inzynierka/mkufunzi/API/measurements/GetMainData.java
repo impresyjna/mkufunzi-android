@@ -1,26 +1,24 @@
-package pl.com.inzynierka.mkufunzi.API.users;
+package pl.com.inzynierka.mkufunzi.API.measurements;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 
 import pl.com.inzynierka.mkufunzi.API.ServerConnector;
 import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController;
-import pl.com.inzynierka.mkufunzi.controllers.views_controllers.Login;
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
-import pl.com.inzynierka.mkufunzi.models.User;
 
 /**
- * Created by impresyjna on 20.12.15.
+ * Created by impresyjna on 12.01.16.
  */
-public class LoginMobile extends AsyncTask<String, String, JSONObject> {
+public class GetMainData extends AsyncTask<String, String, JSONObject> {
 
     private ServerConnector serverConnector = ServerConnector.getInstance();
 
@@ -35,7 +33,7 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
     @Override
     protected void onPreExecute() {
         pDialog = new ProgressDialog(activity);
-        pDialog.setMessage("Trwa logowanie");
+        pDialog.setMessage("Trwa ładowanie");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(true);
         pDialog.show();
@@ -46,13 +44,12 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
         try {
 
             HashMap<String, String> params = new HashMap<>();
-            params.put("email", args[0]);
-            params.put("password", args[1]);
+            params.put("id", args[0]);
 
             Log.d("request", "starting");
 
             JSONObject json = serverConnector.getJsonParser().makeHttpRequest(
-                    serverConnector.getLOGIN(), "GET", params);
+                    serverConnector.getGET_MAIN_DATA(), "GET", params);
 
             if (json != null) {
                 Log.d("JSON result", json.toString());
@@ -72,24 +69,14 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
             pDialog.dismiss();
         }
         try {
-            if (json.getJSONObject("user").has("email") && !json.getJSONObject("user").isNull("email")) {
-                new UsersController().rememberAndLoginUser(json);
-                Log.i("MainPage", "Opening main page activity ");
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
-                activity.finish();
-            } else if(activity instanceof Login){
-                Toast.makeText(activity, "Niepoprawne dane", Toast.LENGTH_SHORT).show();
+            if (json.getString("status").equals("success")) {
+                new UsersController().getMainData(json);
             } else {
-                Intent intent = new Intent(activity, Login.class);
-                activity.startActivity(intent);
-                activity.finish();
-            }
 
-        } catch (Exception e) {
+            }
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
 }
-

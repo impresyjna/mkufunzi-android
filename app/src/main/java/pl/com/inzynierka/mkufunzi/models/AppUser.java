@@ -5,9 +5,10 @@ package pl.com.inzynierka.mkufunzi.models;
  */
 public class AppUser {
 
-    private User user = new User();
-    private Protege protege = new Protege();
-    private Card card = new Card();
+    private User user;
+    private Protege protege;
+    private Card card;
+    private WHBMI whbmi;
     private static AppUser ourInstance = new AppUser();
 
     public static AppUser getInstance() {
@@ -39,5 +40,13 @@ public class AppUser {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public WHBMI getWhbmi() {
+        return whbmi;
+    }
+
+    public void setWhbmi(WHBMI whbmi) {
+        this.whbmi = whbmi;
     }
 }
