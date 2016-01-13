@@ -7,16 +7,16 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".controllers.views_controllers.MainActivity"
-    android:layout_marginTop="5dp">
+    android:layout_marginTop="10dp">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".controllers.views_controllers.MainActivity"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"

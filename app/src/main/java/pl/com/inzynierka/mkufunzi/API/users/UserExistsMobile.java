@@ -13,9 +13,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import pl.com.inzynierka.mkufunzi.API.ServerConnector;
+import pl.com.inzynierka.mkufunzi.API.measurements.GetMainData;
 import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController;
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.Login;
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
+import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 /**
  * Created by impresyjna on 11.01.16.
@@ -27,6 +29,7 @@ public class UserExistsMobile extends AsyncTask<String, String, JSONObject> {
     private ProgressDialog pDialog;
 
     private AppCompatActivity activity;
+    private AppUser appUser = AppUser.getInstance();
 
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
@@ -74,9 +77,9 @@ public class UserExistsMobile extends AsyncTask<String, String, JSONObject> {
             if (json.getString("status").equals("success")) {
                 new UsersController().rememberAndLoginUser(json);
                 Log.i("MainPage", "Opening main page activity ");
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
-                activity.finish();
+                GetMainData getMainData = new GetMainData();
+                getMainData.setActivity(activity);
+                getMainData.execute(Integer.toString(appUser.getUser().id));
             } else {
                 new UsersController().clearUsers();
                 Intent intent = new Intent(activity, MainActivity.class);

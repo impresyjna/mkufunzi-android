@@ -55,3 +55,7 @@ build/intermediates/dex-cache/cache.xml
 .idea/libraries/recyclerview_v7_22_2_1.xml
 
 .idea/libraries/cardview_v7_23_1_1.xml
+
+.idea/inspectionProfiles/profiles_settings.xml
+
+.idea/inspectionProfiles/Project_Default.xml

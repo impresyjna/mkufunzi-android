@@ -71,6 +71,9 @@ public class GetMainData extends AsyncTask<String, String, JSONObject> {
         try {
             if (json.getString("status").equals("success")) {
                 new UsersController().getMainData(json);
+                Intent intent = new Intent(activity, MainActivity.class);
+                activity.startActivity(intent);
+                activity.finish();
             } else {
 
             }

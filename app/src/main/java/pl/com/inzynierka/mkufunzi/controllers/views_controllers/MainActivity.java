@@ -44,9 +44,6 @@ public class MainActivity extends AppCompatActivity
             this.startActivity(intent);
             this.finish();
         } else if (appUser.getUser() == null) { /** Check if user exists */
-            GetMainData getMainData = new GetMainData();
-            getMainData.setActivity(this);
-            getMainData.execute(Integer.toString(user.id));
             UserExistsMobile userExistsMobile = new UserExistsMobile();
             userExistsMobile.setActivity(this);
             userExistsMobile.execute(user.email);
@@ -113,7 +110,7 @@ public class MainActivity extends AppCompatActivity
             actualHeightText.setText(appUser.getWhbmi().heightValue + " " + appUser.getWhbmi().heightUnit);
         }
         if (appUser.getWhbmi().BMIValue!=0) {
-            actualBmiText.setText(Double.toString(appUser.getWhbmi().BMIValue));
+            actualBmiText.setText(Double.toString((double) Math.round(appUser.getWhbmi().BMIValue * 100) / 100));
         }
     }
 

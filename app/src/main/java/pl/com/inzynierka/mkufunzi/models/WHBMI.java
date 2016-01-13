@@ -14,10 +14,10 @@ public class WHBMI {
     public String heightUnit;
     public double BMIValue;
 
-    private static final String TAG_WEIGHT_VALUE = "id";
-    private static final String TAG_WEIGHT_UNIT = "login";
-    private static final String TAG_HEIGHT_VALUE = "email";
-    private static final String TAG_HEIGHT_UNIT = "name";
+    private static final String TAG_WEIGHT_VALUE = "weight_value";
+    private static final String TAG_WEIGHT_UNIT = "weight_unit";
+    private static final String TAG_HEIGHT_VALUE = "height_value";
+    private static final String TAG_HEIGHT_UNIT = "height_unit";
 
     public WHBMI() {
 
@@ -48,7 +48,7 @@ public class WHBMI {
             e.printStackTrace();
         }
         if (weightValue != 0 && heightValue != 0) {
-            BMIValue = weightValue / (Math.pow(heightValue,2)*Math.pow(10,2));
+            BMIValue = weightValue / (Math.pow(heightValue,2)*Math.pow(0.01,2));
         }
     }
 }

@@ -9,18 +9,12 @@
         android:orientation="vertical"
         android:background="@drawable/border"
         android:layout_margin="5dp"
-        android:padding="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
         android:id="@+id/linearLayout1">
 
-
-        <!-- A CardView that contains a TextView -->
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            card_view:cardCornerRadius="4dp">
 
             <TextView
                 android:id="@+id/blood_type_text"
@@ -28,9 +22,8 @@
                 android:layout_height="match_parent"
                 android:textColor="#8BC34A"
                 android:gravity="center|center_horizontal"
-                android:textSize="@dimen/abc_text_size_headline_material"
+                android:textSize="@dimen/abc_text_size_title_material"
                 android:textStyle="bold" />
-        </android.support.v7.widget.CardView>
 
 
     </LinearLayout>
