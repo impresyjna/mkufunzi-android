@@ -15,6 +15,8 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import pl.com.inzynierka.mkufunzi.API.blood_types.GetBloodTypesMobile;
+import pl.com.inzynierka.mkufunzi.API.eye_colors.GetEyeColorsMobile;
 import pl.com.inzynierka.mkufunzi.API.users.LoginMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
@@ -70,8 +72,14 @@ public class Login extends AppCompatActivity {
         }
         else {
             LoginMobile loginMobile = new LoginMobile();
+            GetBloodTypesMobile getBloodTypesMobile = new GetBloodTypesMobile();
+            GetEyeColorsMobile getEyeColorsMobile = new GetEyeColorsMobile();
             loginMobile.setActivity(this);
+            getBloodTypesMobile.setActivity(this);
+            getEyeColorsMobile.setActivity(this);
             loginMobile.execute(email, password);
+            getBloodTypesMobile.execute();
+            getEyeColorsMobile.execute();
         }
     }
 

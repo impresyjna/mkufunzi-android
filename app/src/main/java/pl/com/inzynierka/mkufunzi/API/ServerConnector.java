@@ -15,6 +15,8 @@ public class ServerConnector {
     private String POST_MEASUREMENT = HOST_IP + "/post_measurement_mobile";
     private String USER_EXISTS = HOST_IP + "/user_exists_mobile";
     private String GET_MAIN_DATA = HOST_IP + "/get_main_data";
+    private String GET_BLOOD_TYPES = HOST_IP + "/get_blood_types_mobile";
+    private String GET_EYE_COLORS = HOST_IP + "/get_eye_colors_mobile";
 
     public ServerConnector(){
 
@@ -57,5 +59,13 @@ public class ServerConnector {
 
     public String getGET_MAIN_DATA() {
         return GET_MAIN_DATA;
+    }
+
+    public String getGET_EYE_COLORS() {
+        return GET_EYE_COLORS;
+    }
+
+    public String getGET_BLOOD_TYPES() {
+        return GET_BLOOD_TYPES;
     }
 }
