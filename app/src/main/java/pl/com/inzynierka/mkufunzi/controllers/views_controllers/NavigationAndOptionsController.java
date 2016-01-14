@@ -21,10 +21,12 @@ public class NavigationAndOptionsController {
 
 
     private AppUser appUser = AppUser.getInstance();
+
     /**
      * Method used to init Cart Submenu in Left slide menu
+     *
      * @param navigationView is the Drawer navigation where menu is stored
-     * @param activity is the activity which user is using
+     * @param activity       is the activity which user is using
      */
     public void initCartSubMenuInDrawer(NavigationView navigationView, AppCompatActivity activity) {
         Menu menu = navigationView.getMenu();
@@ -34,14 +36,13 @@ public class NavigationAndOptionsController {
         measureTypesIndexMobile.execute();
     }
 
-    public void initNavHeader(TextView nameAndSurnameText, TextView loginText, TextView emailText){
+    public void initNavHeader(TextView nameAndSurnameText, TextView loginText, TextView emailText) {
         nameAndSurnameText.setText(appUser.getUser().name + " " + appUser.getUser().surname);
         loginText.setText("Użytkownik: " + appUser.getUser().login);
         emailText.setText(appUser.getUser().email);
     }
 
-    public void reactOnNavigationItemSelected(int id, AppCompatActivity activity, String name)
-    {
+    public void reactOnNavigationItemSelected(int id, AppCompatActivity activity, String name) {
         if (id == R.id.nav_start_training) {
             openIntent(activity, BluetoothConnection.class);
         } else if (id == R.id.nav_trainings_history) {
@@ -49,13 +50,15 @@ public class NavigationAndOptionsController {
         } else if (id == R.id.nav_add_medicine) {
             openIntent(activity, AddMedicine.class);
         } else if (id == R.id.nav_my_medicines) {
-            openIntent(activity,MyMedicines.class);
+            openIntent(activity, MyMedicines.class);
+        } else if (id == R.id.nav_protege_data) {
+            openIntent(activity, ProtegeData.class);
         } else {
             openIntentWithParam(activity, MeasurementPage.class, name);
         }
     }
 
-    public void reactOnOptionItemSelected(int id, AppCompatActivity activity){
+    public void reactOnOptionItemSelected(int id, AppCompatActivity activity) {
         if (id == R.id.action_settings) {
             openIntent(activity, Settings.class);
         } else if (id == R.id.action_send_message) {
@@ -69,22 +72,23 @@ public class NavigationAndOptionsController {
 
     /**
      * Method used for log out user from device
+     *
      * @param activity activity which called logOut method
      */
-    public void logOut(Activity activity){
+    public void logOut(Activity activity) {
         new UsersController().clearUsers();
         Intent intent = new Intent(activity, Login.class);
         activity.startActivity(intent);
         activity.finish();
     }
 
-    public void openIntent(Activity activity, Class windowClass){
+    public void openIntent(Activity activity, Class windowClass) {
         Intent intent = new Intent(activity, windowClass);
         activity.startActivity(intent);
         activity.finish();
     }
 
-    public void openIntentWithParam(Activity activity, Class windowClass, String name){
+    public void openIntentWithParam(Activity activity, Class windowClass, String name) {
         Intent intent = new Intent(activity, windowClass);
         Bundle bundle = new Bundle();
         bundle.putString("measure_name", name);
