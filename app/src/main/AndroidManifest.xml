@@ -76,7 +76,9 @@
             android:name=".controllers.views_controllers.BluetoothConnection"
             android:label="@string/title_activity_bluetooth_connection"
             android:theme="@style/TrainingThemes" />
-        <activity android:name=".controllers.views_controllers.ProtegeData"></activity>
+        <activity
+            android:name=".controllers.views_controllers.ProtegeData"
+            android:theme="@style/ProtegeDataTheme"/>
     </application>
 
 </manifest>
