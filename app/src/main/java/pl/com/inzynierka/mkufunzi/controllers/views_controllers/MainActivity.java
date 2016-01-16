@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity
             birthDateText.setText(appUser.getProtege().birthDate);
         }
         if (appUser.getProtege().bloodType != 0) {
-            bloodTypeText.setText(appUser.getProtege().bloodType);
+            bloodTypeText.setText(appUser.getProtege().bloodType+"");
         }
         if (appUser.getProtege().gender != null && !appUser.getProtege().gender.equals("null")) {
             genderText.setText(appUser.getProtege().gender);

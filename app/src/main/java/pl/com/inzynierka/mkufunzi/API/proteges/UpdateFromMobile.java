@@ -1,4 +1,4 @@
-package pl.com.inzynierka.mkufunzi.API.users;
+package pl.com.inzynierka.mkufunzi.API.proteges;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,9 +17,9 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 
 /**
- * Created by impresyjna on 27.12.15.
+ * Created by impresyjna on 16.01.16.
  */
-public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
+public class UpdateFromMobile extends AsyncTask<String, String, JSONObject> {
 
     private ServerConnector serverConnector = ServerConnector.getInstance();
 
@@ -45,17 +45,16 @@ public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
         try {
 
             HashMap<String, String> params = new HashMap<>();
-            params.put("login",args[0]);
-            params.put("name",args[1]);
-            params.put("surname",args[2]);
-            params.put("password",args[3]);
-            params.put("password_confirmation",args[4]);
-            params.put("email",args[5]);
+            params.put("id",args[0]);
+            params.put("eye_color_id",args[1]);
+            params.put("gender",args[2]);
+            params.put("blood_type_id",args[3]);
+            params.put("birth_date",args[4]);
 
             Log.d("request", "starting");
 
             JSONObject json = serverConnector.getJsonParser().makeHttpRequest(
-                    serverConnector.getREGISTER(), "POST", params);
+                    serverConnector.getPOST_UPDATE_PROTEGE(), "POST", params);
 
             if (json != null) {
                 Log.d("JSON result", json.toString());
@@ -77,14 +76,9 @@ public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
 
         try {
             if (json.getString("status").equals("success")) {
-                new UsersController().rememberAndLoginUser(json);
-                Log.i("MainPage", "Opening main page activity ");
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
-                Toast.makeText(activity, json.getString("message"), Toast.LENGTH_SHORT).show();
-                activity.finish();
+                Toast.makeText(activity, "Pomyślnie zaktualizowano", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(activity, json.getString("message"), Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Nastąpił problem. Proszę spróbować później", Toast.LENGTH_SHORT).show();
 
             }
         } catch (JSONException e) {
@@ -92,3 +86,4 @@ public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
         }
     }
 }
+

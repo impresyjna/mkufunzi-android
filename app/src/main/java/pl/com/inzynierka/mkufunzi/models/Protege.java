@@ -49,11 +49,13 @@ public class Protege extends Model {
         try {
             this.bloodType = json.getInt(TAG_BLOOD_TYPE);
         } catch (JSONException e) {
+            this.bloodType = 0;
             e.printStackTrace();
         }
         try {
             this.eyeColor = json.getInt(TAG_EYE_COLOR);
         } catch (JSONException e) {
+            this.eyeColor = 0;
             e.printStackTrace();
         }
         try {

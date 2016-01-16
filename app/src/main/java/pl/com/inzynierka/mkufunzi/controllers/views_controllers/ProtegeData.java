@@ -1,5 +1,6 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
+import android.app.DatePickerDialog;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -7,12 +8,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,9 +23,12 @@ import android.widget.Toast;
 import com.activeandroid.query.Select;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import pl.com.inzynierka.mkufunzi.API.proteges.UpdateFromMobile;
 import pl.com.inzynierka.mkufunzi.R;
+import pl.com.inzynierka.mkufunzi.models.AppUser;
 import pl.com.inzynierka.mkufunzi.models.BloodType;
 import pl.com.inzynierka.mkufunzi.models.EyeColor;
 
@@ -31,9 +37,11 @@ public class ProtegeData extends AppCompatActivity
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
-    private Spinner eyeColorSpinner, bloodTypeSpinner;
-    private EyeColor choosenEyeColor;
-    private BloodType choosenBloodType;
+    private Spinner eyeColorSpinner, bloodTypeSpinner, genderSpinner;
+    private EyeColor choosenEyeColor = new EyeColor();
+    private BloodType choosenBloodType = new BloodType();
+    private String choosenGender;
+    private AppUser appUser = AppUser.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,25 +68,54 @@ public class ProtegeData extends AppCompatActivity
 
         eyeColorSpinner = (Spinner) findViewById(R.id.eye_color_spinner);
         bloodTypeSpinner = (Spinner) findViewById(R.id.blood_type_spinner);
+        genderSpinner = (Spinner) findViewById(R.id.gender_spinner);
 
         eyeColorSpinner.setOnItemSelectedListener(new EyeColorItemSelectedListener());
         bloodTypeSpinner.setOnItemSelectedListener(new BloodTypeItemSelectedListener());
+        genderSpinner.setOnItemSelectedListener(new GenderItemSelectedListener());
 
         List<EyeColor> eyeColors = new Select().from(EyeColor.class).execute();
         List<BloodType> bloodTypes = new Select().from(BloodType.class).execute();
+        List<String> genders = Arrays.asList("Kobieta", "Mężczyzna", "Płeć");
 
-        ArrayAdapter<EyeColor> eyeColorSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, eyeColors);
+        ArrayAdapter<EyeColor> eyeColorSpinnerAdapter = new ArrayAdapter<EyeColor>(this, R.layout.spinner_item, eyeColors) {
+            @Override
+            public int getCount() {
+                return super.getCount() - 1; // you dont display last item. It is used as hint.
+            }
+        };
+        eyeColors.add(new EyeColor("", 0, "Kolor oczu"));
         eyeColorSpinner.setAdapter(eyeColorSpinnerAdapter);
 
-        ArrayAdapter<BloodType> bloodTypeArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, bloodTypes);
+        ArrayAdapter<BloodType> bloodTypeArrayAdapter = new ArrayAdapter<BloodType>(this, R.layout.spinner_item, bloodTypes) {
+            @Override
+            public int getCount() {
+                return super.getCount() - 1; // you dont display last item. It is used as hint.
+            }
+        };
+        bloodTypes.add(new BloodType(0, "Grupa krwi"));
         bloodTypeSpinner.setAdapter(bloodTypeArrayAdapter);
+
+        ArrayAdapter<String> genderArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, genders) {
+            @Override
+            public int getCount() {
+                return super.getCount() - 1; // you dont display last item. It is used as hint.
+            }
+        };
+        genderSpinner.setAdapter(genderArrayAdapter);
+
+
+        bloodTypeSpinner.setSelection(bloodTypeArrayAdapter.getCount());
+        eyeColorSpinner.setSelection(eyeColorSpinnerAdapter.getCount());
+        genderSpinner.setSelection(genderArrayAdapter.getCount());
     }
 
     public class EyeColorItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            choosenEyeColor = (EyeColor) parent.getItemAtPosition(pos);
-
+            if (pos < parent.getCount() - 1) {
+                choosenEyeColor = (EyeColor) parent.getItemAtPosition(pos);
+            }
         }
 
         @Override
@@ -91,7 +128,24 @@ public class ProtegeData extends AppCompatActivity
     public class BloodTypeItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            choosenBloodType = (BloodType) parent.getItemAtPosition(pos);
+            if (pos < parent.getCount() - 1) {
+                choosenBloodType = (BloodType) parent.getItemAtPosition(pos);
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg) {
+
+        }
+
+    }
+
+    public class GenderItemSelectedListener implements AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            if (pos < parent.getCount() - 1) {
+                choosenGender = parent.getItemAtPosition(pos).toString();
+            }
 
         }
 
@@ -143,5 +197,30 @@ public class ProtegeData extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void updateProtege(View view){
+        String genderFirstLetter = new String();
+        try {
+            appUser.getProtege().gender = choosenGender.substring(0,1);
+            genderFirstLetter = choosenGender.substring(0,1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            appUser.getProtege().eyeColor = choosenEyeColor.id;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            appUser.getProtege().bloodType = choosenBloodType.id;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+
+        UpdateFromMobile updateFromMobile = new UpdateFromMobile();
+        updateFromMobile.setActivity(this);
+        updateFromMobile.execute(Integer.toString(appUser.getProtege().id), Integer.toString(choosenEyeColor.id), genderFirstLetter, Integer.toString(choosenBloodType.id),"");
     }
 }

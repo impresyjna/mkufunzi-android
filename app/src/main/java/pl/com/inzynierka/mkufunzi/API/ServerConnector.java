@@ -17,8 +17,9 @@ public class ServerConnector {
     private String GET_MAIN_DATA = HOST_IP + "/get_main_data";
     private String GET_BLOOD_TYPES = HOST_IP + "/get_blood_types_mobile";
     private String GET_EYE_COLORS = HOST_IP + "/get_eye_colors_mobile";
+    private String POST_UPDATE_PROTEGE = HOST_IP + "/update_from_mobile";
 
-    public ServerConnector(){
+    public ServerConnector() {
 
     }
 
@@ -67,5 +68,9 @@ public class ServerConnector {
 
     public String getGET_BLOOD_TYPES() {
         return GET_BLOOD_TYPES;
+    }
+
+    public String getPOST_UPDATE_PROTEGE() {
+        return POST_UPDATE_PROTEGE;
     }
 }

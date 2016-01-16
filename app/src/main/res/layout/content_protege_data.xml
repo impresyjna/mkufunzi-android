@@ -17,32 +17,70 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/eye_color_spinner"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#d11f08"
-            android:padding="5dp" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Kolor oczu"
+                android:layout_weight="1"
+                android:textColor="?attr/colorPrimary"/>
+            <Spinner
+                android:id="@+id/eye_color_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorPrimary"
+                android:padding="5dp"
+                android:popupBackground="#212121"
+                android:layout_weight="3"/>
+        </LinearLayout>
 
-        <Spinner
-            android:id="@+id/blood_type_spinner"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#d11f08"
-            android:padding="5dp" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Grupa krwi"
+                android:layout_weight="1"
+                android:textColor="?attr/colorPrimary"/>
+            <Spinner
+                android:id="@+id/blood_type_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorPrimary"
+                android:padding="5dp"
+                android:popupBackground="#212121"
+                android:layout_weight="3"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Płeć"
+                android:layout_weight="1"
+                android:textColor="?attr/colorPrimary"/>
+            <Spinner
+                android:id="@+id/gender_spinner"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:backgroundTint="?attr/colorPrimary"
+                android:padding="5dp"
+                android:popupBackground="#212121"
+                android:layout_weight="3"/>
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Uaktualnij"
+            android:onClick="updateProtege"/>
     </LinearLayout>
-
-    <ExpandableListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/expandableListView"
-        android:layout_weight="1" />
-
-    <ExpandableListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/expandableListView2"
-        android:layout_weight="1" />
 
 </RelativeLayout>
