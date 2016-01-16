@@ -93,14 +93,14 @@ public class MainActivity extends AppCompatActivity
         if (appUser.getProtege().birthDate != null && !appUser.getProtege().birthDate.equals("null")) {
             birthDateText.setText(appUser.getProtege().birthDate);
         }
-        if (appUser.getProtege().bloodType != null && !appUser.getProtege().bloodType.equals("null")) {
+        if (appUser.getProtege().bloodType != 0) {
             bloodTypeText.setText(appUser.getProtege().bloodType);
         }
         if (appUser.getProtege().gender != null && !appUser.getProtege().gender.equals("null")) {
             genderText.setText(appUser.getProtege().gender);
         }
-        if (appUser.getProtege().eyeColor != null && !appUser.getProtege().gender.equals("null")) {
-            eyeColorText.setText(appUser.getProtege().eyeColor.substring(0,1));
+        if (appUser.getProtege().eyeColor != 0) {
+            eyeColorText.setText(appUser.getProtege().eyeColor+"");
             eyeColorText.setTextColor(Color.parseColor("#795548"));
         }
         if (appUser.getWhbmi().weightValue!=0) {

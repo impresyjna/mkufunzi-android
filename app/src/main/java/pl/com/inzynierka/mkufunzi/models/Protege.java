@@ -23,21 +23,21 @@ public class Protege extends Model {
     public int userId;
     @Column(name = "trainer_id")
     public int trainerId;
-    @Column(name = "blood_type")
-    public String bloodType;
+    @Column(name = "blood_type_id")
+    public int bloodType;
     @Column(name = "gender")
     public String gender;
-    @Column(name = "eye_color")
-    public String eyeColor;
+    @Column(name = "eye_color_id")
+    public int eyeColor;
     @Column(name = "birth_date")
     public String birthDate;
 
     private static final String TAG_ID = "id";
     private static final String TAG_USER_ID = "user_id";
     private static final String TAG_TRAINER_ID = "trainer_id";
-    private static final String TAG_BLOOD_TYPE = "blood_type";
+    private static final String TAG_BLOOD_TYPE = "blood_type_id";
     private static final String TAG_GENDER = "gender";
-    private static final String TAG_EYE_COLOR = "eye_color";
+    private static final String TAG_EYE_COLOR = "eye_color_id";
     private static final String TAG_BIRTH_DATE = "birth_date";
 
     public Protege() {
@@ -47,12 +47,12 @@ public class Protege extends Model {
     public Protege(JSONObject json) {
         super();
         try {
-            this.bloodType = json.getString(TAG_BLOOD_TYPE);
+            this.bloodType = json.getInt(TAG_BLOOD_TYPE);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         try {
-            this.eyeColor = json.getString(TAG_EYE_COLOR);
+            this.eyeColor = json.getInt(TAG_EYE_COLOR);
         } catch (JSONException e) {
             e.printStackTrace();
         }
