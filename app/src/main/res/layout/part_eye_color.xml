@@ -11,19 +11,17 @@
         android:layout_margin="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
+        android:paddingBottom="19dp"
         android:id="@+id/linearLayout1">
 
 
-            <TextView
-                android:id="@+id/eye_color_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="#8BC34A"
-                android:gravity="center|center_horizontal"
-                android:textSize="@dimen/abc_text_size_title_material"
-                android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/eye_color_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:src="@drawable/ic_eye"
+            android:gravity="center|center_horizontal"/>
 
 
     </LinearLayout>

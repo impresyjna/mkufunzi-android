@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
@@ -19,6 +20,8 @@ import pl.com.inzynierka.mkufunzi.API.measurements.GetMainData;
 import pl.com.inzynierka.mkufunzi.API.users.UserExistsMobile;
 import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
+import pl.com.inzynierka.mkufunzi.models.BloodType;
+import pl.com.inzynierka.mkufunzi.models.EyeColor;
 import pl.com.inzynierka.mkufunzi.models.User;
 
 public class MainActivity extends AppCompatActivity
@@ -28,7 +31,8 @@ public class MainActivity extends AppCompatActivity
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
     private TextView actualWeightText, actualHeightText, actualBmiText, birthDateText, bloodTypeText, genderText;
-    private TextView eyeColorText, lastTrainingText, medicinesText, messagesText;
+    private TextView lastTrainingText, medicinesText, messagesText;
+    private ImageView eyeColorIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +78,10 @@ public class MainActivity extends AppCompatActivity
         birthDateText = (TextView) findViewById(R.id.birth_date_text);
         bloodTypeText = (TextView) findViewById(R.id.blood_type_text);
         genderText = (TextView) findViewById(R.id.gender_text);
-        eyeColorText = (TextView) findViewById(R.id.eye_color_text);
         lastTrainingText = (TextView) findViewById(R.id.last_training_text);
         medicinesText = (TextView) findViewById(R.id.medicines_text);
         messagesText = (TextView) findViewById(R.id.new_messages_text);
+        eyeColorIcon = (ImageView) findViewById(R.id.eye_color_icon);
 
         actualWeightText.setText("---");
         actualHeightText.setText("---");
@@ -85,23 +89,25 @@ public class MainActivity extends AppCompatActivity
         birthDateText.setText("---");
         bloodTypeText.setText("---");
         genderText.setText("---");
-        eyeColorText.setText("---");
         lastTrainingText.setText("---");
         medicinesText.setText("---");
         messagesText.setText("---");
+        eyeColorIcon.setColorFilter(Color.parseColor("#ffffff"));
 
         if (appUser.getProtege().birthDate != null && !appUser.getProtege().birthDate.equals("null")) {
             birthDateText.setText(appUser.getProtege().birthDate);
         }
         if (appUser.getProtege().bloodType != 0) {
-            bloodTypeText.setText(appUser.getProtege().bloodType+"");
+            BloodType protegeBloodType = new Select().from(BloodType.class).where("ref_id = ?", appUser.getProtege().bloodType).executeSingle();
+            bloodTypeText.setText(protegeBloodType.name);
         }
-        if (appUser.getProtege().gender != null && !appUser.getProtege().gender.equals("null")) {
+        if (appUser.getProtege().gender != null && !appUser.getProtege().gender.equals("null") && !appUser.getProtege().gender.equals("")) {
             genderText.setText(appUser.getProtege().gender);
         }
         if (appUser.getProtege().eyeColor != 0) {
-            eyeColorText.setText(appUser.getProtege().eyeColor+"");
-            eyeColorText.setTextColor(Color.parseColor("#795548"));
+            EyeColor protegeEyeColor = new Select().from(EyeColor.class).where("ref_id = ?", appUser.getProtege().eyeColor).executeSingle();
+            eyeColorIcon.setColorFilter(Color.parseColor(protegeEyeColor.color));
+
         }
         if (appUser.getWhbmi().weightValue!=0) {
             actualWeightText.setText(appUser.getWhbmi().weightValue + " " + appUser.getWhbmi().weightUnit);

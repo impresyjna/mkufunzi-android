@@ -217,7 +217,7 @@ public class ProtegeData extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
 
         UpdateFromMobile updateFromMobile = new UpdateFromMobile();
         updateFromMobile.setActivity(this);
