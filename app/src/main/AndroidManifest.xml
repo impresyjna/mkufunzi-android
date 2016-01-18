@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>
+
     <application
         android:name="com.activeandroid.app.Application"
         android:allowBackup="true"
@@ -78,7 +80,11 @@
             android:theme="@style/TrainingThemes" />
         <activity
             android:name=".controllers.views_controllers.ProtegeData"
-            android:theme="@style/ProtegeDataTheme"/>
+            android:theme="@style/ProtegeDataTheme" />
+        <activity
+            android:name=".controllers.views_controllers.ShowChart"
+            android:label="@string/title_activity_show_chart"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

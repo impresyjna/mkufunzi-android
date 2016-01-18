@@ -59,3 +59,5 @@ build/intermediates/dex-cache/cache.xml
 .idea/inspectionProfiles/profiles_settings.xml
 
 .idea/inspectionProfiles/Project_Default.xml
+
+.idea/libraries/MPAndroidChart_v2_1_6.xml
