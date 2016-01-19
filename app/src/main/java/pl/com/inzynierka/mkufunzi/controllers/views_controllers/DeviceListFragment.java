@@ -173,19 +173,10 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         BluetoothDevice btDevice = bTAdapter.getRemoteDevice(deviceItemList.get(position).getAddress());
-        Log.d("DEVICELIST", "onItemClick position: " + position +
-                " id: " + id + " name: " + deviceItemList.get(position).getDeviceName() + "\n");
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-        ParcelUuid list[] = btDevice.getUuids();
         ConnectThread conn = new ConnectThread(btDevice, uuid);
         if (conn.connect()) {
-            while (true) {
-                try {
-                    Log.e("BytesCount", "Message: " + new ManageConnectThread().receiveData(conn.getbTSocket()) + "");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+
         }
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the

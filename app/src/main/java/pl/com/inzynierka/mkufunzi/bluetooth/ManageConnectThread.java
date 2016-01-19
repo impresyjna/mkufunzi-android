@@ -18,41 +18,21 @@ import pl.com.inzynierka.mkufunzi.models.AppUser;
  */
 public class ManageConnectThread extends Thread {
 
-
-    private static String msg = "";
-
     public ManageConnectThread() {
     }
 
-    public void sendData(BluetoothSocket socket, int data) throws IOException {
-        ByteArrayOutputStream output = new ByteArrayOutputStream(4);
-        output.write(data);
-        OutputStream outputStream = socket.getOutputStream();
-        outputStream.write(output.toByteArray());
-    }
-
     public String receiveData(BluetoothSocket socket) throws IOException {
-            InputStream inputStream = socket.getInputStream();
-            msg = "";
-            StringBuffer dupa = new StringBuffer();
-            List<Integer> inputList = new ArrayList<>();
-            List<String> inputList2 = new ArrayList<>();
-            char[] msgTemp = new char[200];
-            int ch;
-            while ((ch = inputStream.read()) == 10 || ch == 13) {
+        InputStream inputStream = socket.getInputStream();
+        StringBuffer receivedMessage = new StringBuffer();
+        int ch;
+        while ((ch = inputStream.read()) == 10 || ch == 13) {
 
-            }
-            dupa.append(Character.toString((char) ch));
-            while ((ch = inputStream.read()) != 10 && (ch  != 13)) {
+        }
+        receivedMessage.append(Character.toString((char) ch));
+        while ((ch = inputStream.read()) != 10 && (ch != 13)) {
+            receivedMessage.append(Character.toString((char) ch));
+        }
 
-                dupa.append(Character.toString((char) ch));
-
-                inputList.add(ch);
-                Log.d("BytesCount", "Result 2  " + dupa + " " + dupa.length());
-
-            }
-            Log.e("BytesCount", dupa.length()+ "" );
-
-            return dupa.toString();
+        return receivedMessage.toString();
     }
 }

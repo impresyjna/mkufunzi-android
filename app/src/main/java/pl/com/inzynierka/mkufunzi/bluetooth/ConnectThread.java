@@ -21,8 +21,6 @@ public class ConnectThread extends Thread{
 
         try {
             tmp = this.bTDevice.createInsecureRfcommSocketToServiceRecord(UUID);
-            Log.d("CONNECTTHREAD", "Created");
-            Log.d("btDeviceName", bTDevice.getName());
         }
         catch (IOException e) {
             Log.d("CONNECTTHREAD", "Could not start listening for RFCOMM");
@@ -36,7 +34,6 @@ public class ConnectThread extends Thread{
         Log.d("btDeviceNameConnect", bTDevice.getName());
         try {
             bTSocket.connect();
-            Log.d("CONNECTTHREAD", "Connected");
         } catch(IOException e) {
             Log.d("CONNECTTHREAD","Could not connect: " + e.toString());
             e.printStackTrace();
@@ -62,4 +59,5 @@ public class ConnectThread extends Thread{
     public BluetoothSocket getbTSocket() {
         return bTSocket;
     }
+
 }
