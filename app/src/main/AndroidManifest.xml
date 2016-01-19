@@ -8,8 +8,7 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
-    <uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
 
     <application
         android:name="com.activeandroid.app.Application"
@@ -84,7 +83,11 @@
         <activity
             android:name=".controllers.views_controllers.ShowChart"
             android:label="@string/title_activity_show_chart"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/MeasureTheme" />
+        <activity
+            android:name=".controllers.views_controllers.TrainingMonitor"
+            android:label="@string/title_activity_training_monitor"
+            android:theme="@style/TrainingThemes"></activity>
     </application>
 
 </manifest>

@@ -54,6 +54,7 @@ public class BluetoothConnection extends AppCompatActivity implements DeviceList
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         mDeviceListFragment = DeviceListFragment.newInstance(BTAdapter);
+        mDeviceListFragment.setActivity(this);
         fragmentManager.beginTransaction().replace(R.id.container, mDeviceListFragment).commit();
 
     }

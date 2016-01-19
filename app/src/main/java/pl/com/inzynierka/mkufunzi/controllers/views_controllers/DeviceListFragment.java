@@ -12,6 +12,7 @@ import android.os.ParcelUuid;
 import android.provider.*;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.adapters.DeviceListAdapter;
 import pl.com.inzynierka.mkufunzi.bluetooth.ConnectThread;
 import pl.com.inzynierka.mkufunzi.bluetooth.ManageConnectThread;
+import pl.com.inzynierka.mkufunzi.models.AppUser;
 import pl.com.inzynierka.mkufunzi.models.DeviceItem;
 
 /**
@@ -50,6 +52,9 @@ import pl.com.inzynierka.mkufunzi.models.DeviceItem;
 public class DeviceListFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     private ArrayList<DeviceItem> deviceItemList;
+    private AppUser appUser = AppUser.getInstance();
+    private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    private AppCompatActivity activity;
 
     private OnFragmentInteractionListener mListener;
     private static BluetoothAdapter bTAdapter;
@@ -176,7 +181,8 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
         ConnectThread conn = new ConnectThread(btDevice, uuid);
         if (conn.connect()) {
-
+            appUser.setConnectThread(conn);
+            navigationAndOptionsController.openIntent(activity, TrainingMonitor.class);
         }
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
@@ -214,4 +220,7 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
         public void onFragmentInteraction(String id);
     }
 
+    public void setActivity(AppCompatActivity activity) {
+        this.activity = activity;
+    }
 }

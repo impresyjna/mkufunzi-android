@@ -29,4 +29,5 @@
     <string name="err_value_empty">Wartość nie może być pusta</string>
     <string name="title_activity_bluetooth_connection">BluetoothConnection</string>
     <string name="title_activity_show_chart">ShowChart</string>
+    <string name="title_activity_training_monitor">TrainingMonitor</string>
 </resources>

@@ -1,5 +1,7 @@
 package pl.com.inzynierka.mkufunzi.models;
 
+import pl.com.inzynierka.mkufunzi.bluetooth.ConnectThread;
+
 /**
  * Created by impresyjna on 04.01.16.
  */
@@ -10,6 +12,7 @@ public class AppUser {
     private Card card;
     private WHBMI whbmi;
     private static AppUser ourInstance = new AppUser();
+    private ConnectThread connectThread;
 
     public static AppUser getInstance() {
         return ourInstance;
@@ -48,5 +51,13 @@ public class AppUser {
 
     public void setWhbmi(WHBMI whbmi) {
         this.whbmi = whbmi;
+    }
+
+    public ConnectThread getConnectThread() {
+        return connectThread;
+    }
+
+    public void setConnectThread(ConnectThread connectThread) {
+        this.connectThread = connectThread;
     }
 }
