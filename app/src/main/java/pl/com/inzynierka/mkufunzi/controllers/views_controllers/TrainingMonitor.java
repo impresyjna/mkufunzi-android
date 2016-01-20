@@ -104,30 +104,18 @@ public class TrainingMonitor extends AppCompatActivity
         return true;
     }
 
-    private void pulseShowText(String value){
-
-        pulseOutput = (TextView) findViewById(R.id.pulse_output);
-        pulseOutput.invalidate();
-        pulseOutput.setText(value);
-        pulseOutput.setBackgroundColor(Color.parseColor("#ffffff"));
-        Log.e("BytesCount", value + " z metody ");
-        return ;
-    }
-
     public void showBT(View view) {
         ManageConnectThread manageConnectThread = new ManageConnectThread();
-        while (true) {
             try {
                 String message = manageConnectThread.receiveData(appUser.getConnectThread().getbTSocket());
                 if (message.contains("Pulse")) {
                     Log.e("BytesCount", message);
                     pulseOutput.setText(message);
-                    pulseShowText(message);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
     }
 }
 
