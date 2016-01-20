@@ -1,5 +1,6 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,15 +14,23 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 import pl.com.inzynierka.mkufunzi.R;
+import pl.com.inzynierka.mkufunzi.bluetooth.ManageConnectThread;
+import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 public class TrainingMonitor extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
+    private AppUser appUser = AppUser.getInstance();
+    private TextView pulseOutput;
+    private RelativeLayout trainingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +54,12 @@ public class TrainingMonitor extends AppCompatActivity
         loginText = (TextView) findViewById(R.id.login_text);
         emailText = (TextView) findViewById(R.id.email_text);
         navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
-    }
 
+        trainingView = (RelativeLayout) findViewById(R.id.training_view);
+
+        pulseOutput = (TextView) findViewById(R.id.pulse_output);
+        pulseOutput.setText("0");
+    }
 
 
     @Override
@@ -73,7 +86,7 @@ public class TrainingMonitor extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        navigationAndOptionsController.reactOnOptionItemSelected(id,this);
+        navigationAndOptionsController.reactOnOptionItemSelected(id, this);
 
         return super.onOptionsItemSelected(item);
     }
@@ -89,6 +102,32 @@ public class TrainingMonitor extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void pulseShowText(String value){
+
+        pulseOutput = (TextView) findViewById(R.id.pulse_output);
+        pulseOutput.invalidate();
+        pulseOutput.setText(value);
+        pulseOutput.setBackgroundColor(Color.parseColor("#ffffff"));
+        Log.e("BytesCount", value + " z metody ");
+        return ;
+    }
+
+    public void showBT(View view) {
+        ManageConnectThread manageConnectThread = new ManageConnectThread();
+        while (true) {
+            try {
+                String message = manageConnectThread.receiveData(appUser.getConnectThread().getbTSocket());
+                if (message.contains("Pulse")) {
+                    Log.e("BytesCount", message);
+                    pulseOutput.setText(message);
+                    pulseShowText(message);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
