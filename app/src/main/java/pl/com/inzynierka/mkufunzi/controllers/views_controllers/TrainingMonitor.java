@@ -2,6 +2,8 @@ package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,6 +34,20 @@ public class TrainingMonitor extends AppCompatActivity
     private AppUser appUser = AppUser.getInstance();
     private TextView pulseOutput;
     private RelativeLayout trainingView;
+
+    private Button startButton;
+    private Button pauseButton;
+
+    private TextView timerValue;
+
+    private long startTime = 0L;
+
+    private Handler timerHandler = new Handler();
+    private Handler pulseHandler = new Handler();
+
+    long timeInMilliseconds = 0L;
+    long timeSwapBuff = 0L;
+    long updatedTime = 0L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +76,11 @@ public class TrainingMonitor extends AppCompatActivity
 
         pulseOutput = (TextView) findViewById(R.id.pulse_output);
         pulseOutput.setText("0");
+
+        timerValue = (TextView) findViewById(R.id.timerValue);
+
+        startButton = (Button) findViewById(R.id.startButton);
+        pauseButton = (Button) findViewById(R.id.pauseButton);
     }
 
 
@@ -104,8 +126,35 @@ public class TrainingMonitor extends AppCompatActivity
         return true;
     }
 
-    public void showBT(View view) {
-        ManageConnectThread manageConnectThread = new ManageConnectThread();
+    public void startTraining(View view) {
+        startTime = SystemClock.uptimeMillis();
+        timerHandler.postDelayed(updateTimerThread, 0);
+        pulseHandler.postDelayed(updatePulseThread, 0);
+    }
+
+    private Runnable updateTimerThread = new Runnable() {
+
+        public void run() {
+
+            timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+
+            updatedTime = timeSwapBuff + timeInMilliseconds;
+
+            int secs = (int) (updatedTime / 1000);
+            int mins = secs / 60;
+            secs = secs % 60;
+            int milliseconds = (int) (updatedTime % 1000);
+            timerValue.setText("" + mins + ":"
+                    + String.format("%02d", secs) + ":"
+                    + String.format("%03d", milliseconds));
+            timerHandler.postDelayed(this, 0);
+        }
+
+    };
+
+    private Runnable updatePulseThread = new Runnable() {
+        final ManageConnectThread manageConnectThread = new ManageConnectThread();
+        public void run() {
             try {
                 String message = manageConnectThread.receiveData(appUser.getConnectThread().getbTSocket());
                 if (message.contains("Pulse")) {
@@ -116,6 +165,11 @@ public class TrainingMonitor extends AppCompatActivity
                 e.printStackTrace();
             }
 
-    }
+            pulseHandler.postDelayed(this, 0); // set time here to refresh textView
+        }
+
+    };
+
+
 }
 
