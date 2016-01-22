@@ -35,21 +35,39 @@ import pl.com.inzynierka.mkufunzi.models.AppUser;
 import pl.com.inzynierka.mkufunzi.models.BloodType;
 import pl.com.inzynierka.mkufunzi.models.EyeColor;
 
+/**
+ * Controller for ProtegeData activity, allowing user to update protege data on server
+ */
 public class ProtegeData extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    /** Class used to control left side menu */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    /** Fields describing user in left side menu */
     private TextView nameAndSurnameText, loginText, emailText;
+    /** Spinners for eyeColor, bloodType and gender*/
     private Spinner eyeColorSpinner, bloodTypeSpinner, genderSpinner;
+    /** input for birthDate */
     private EditText birthDateInput;
+    /** field for dialog with calendar after click on birthDateInput */
     private DatePickerDialog birthDateDatePicker;
+    /** DateFormat for birthDate to make it compatible with server */
     private SimpleDateFormat dateFormatter;
 
+    /** Chosen eyeColor by user */
     private EyeColor chosenEyeColor = new EyeColor();
+    /** Chosen bloodType by user */
     private BloodType chosenBloodType = new BloodType();
+    /** Chosen gender by user */
     private String chosenGender, chosenBirthDate;
+    /** instance of AppUser with information about user, protege, his card etc.*/
     private AppUser appUser = AppUser.getInstance();
 
+    /**
+     * Method called at the beginning of using the activity
+     * First it sets toolbar title, later draw the left side menu
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -197,6 +215,10 @@ public class ProtegeData extends AppCompatActivity
 
     }
 
+    /**
+     * Method called after clicking on birthDateInput
+     * @param v - view that called that method
+     */
     @Override
     public void onClick(View v) {
         birthDateDatePicker.show();
@@ -311,7 +333,8 @@ public class ProtegeData extends AppCompatActivity
 
     /**
      * Method used to get data from view and call method to connect with server with this data
-     *
+     * This method is checking if data is set by using try catch. If user choose something it saves it in protege fields in appUser object
+     * Later it calls the UpdateFromMobile AsyncTask to communicate with server 
      * @params view - This is the view that called this method. Here this method is called by button
      */
     public void updateProtege(View view) {
