@@ -14,13 +14,22 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 /**
- * Created by impresyjna on 06.01.16.
+ * Classed used to receive data from BT device
  */
 public class ManageConnectThread extends Thread {
 
+    /**
+     *  Constructor
+     */
     public ManageConnectThread() {
     }
 
+    /**
+     * Method called to receiveData from BT device.
+     * @param socket - socket to communicate wih device
+     * @return String received from BT device 
+     * @throws IOException
+     */
     public String receiveData(BluetoothSocket socket) throws IOException {
         InputStream inputStream = socket.getInputStream();
         StringBuffer receivedMessage = new StringBuffer();
