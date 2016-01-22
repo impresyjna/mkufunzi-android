@@ -16,7 +16,7 @@ import pl.com.inzynierka.mkufunzi.models.User;
 import pl.com.inzynierka.mkufunzi.models.WHBMI;
 
 /**
- * Created by impresyjna on 29.12.15.
+ * Class used to control User objects in application
  */
 public class UsersController {
 
@@ -43,10 +43,17 @@ public class UsersController {
         return users;
     }
 
+    /**
+     * Method used to clear all User objects from sqlite3 database
+     */
     public void clearUsers() {
         ActiveAndroid.execSQL("delete from users");
     }
 
+    /**
+     * Method used to remember user on device and login him or her on device
+     * @param json
+     */
     public void rememberAndLoginUser(JSONObject json) {
         User user = null;
         Protege protege = null;
@@ -77,6 +84,10 @@ public class UsersController {
         appUser.setProtege(protege);
     }
 
+    /**
+     * Method used to save received data from server to WHBMI instance in AppUser
+     * @param json
+     */
     public void getMainData(JSONObject json) {
         WHBMI whbmi = new WHBMI(json);
         appUser.setWhbmi(whbmi);
