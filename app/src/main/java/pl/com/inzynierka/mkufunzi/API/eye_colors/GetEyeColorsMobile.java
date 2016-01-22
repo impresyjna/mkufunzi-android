@@ -65,8 +65,8 @@ public class GetEyeColorsMobile extends AsyncTask<String, String, JSONObject> {
     }
 
     /**
-     * Saves all read data from server to local sqlite3 database 
-     * @param json
+     * Saves all read data from server to local sqlite3 database
+     * @param json - JSONObject from doInBackground method 
      */
     protected void onPostExecute(JSONObject json) {
 
