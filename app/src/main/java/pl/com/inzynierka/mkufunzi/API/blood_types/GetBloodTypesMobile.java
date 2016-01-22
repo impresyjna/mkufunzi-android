@@ -15,7 +15,7 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.BloodTypesContr
 import pl.com.inzynierka.mkufunzi.models.BloodType;
 
 /**
- * Created by impresyjna on 14.01.16.
+ * Class extends AsyncTask and is used to get BloodTypes from server
  */
 public class GetBloodTypesMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -36,6 +36,14 @@ public class GetBloodTypesMobile extends AsyncTask<String, String, JSONObject> {
         pDialog.show();
     }
 
+    /**
+     * To call this method developer has to call in view controller
+     * GetBloodTypesMobile getBloodTypesMobile = new GetBloodTypesMobile();
+     * getBloodTypesMobile.setActivity(this);
+     * getBloodTypesMobile.execute();
+     * @param args no params needed
+     * @return
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -59,6 +67,10 @@ public class GetBloodTypesMobile extends AsyncTask<String, String, JSONObject> {
         return null;
     }
 
+    /**
+     * This method saves all bloodTypes in sqlite3 database on device 
+     * @param json
+     */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {
