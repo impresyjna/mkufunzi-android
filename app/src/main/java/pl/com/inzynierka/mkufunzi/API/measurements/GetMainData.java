@@ -16,7 +16,7 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 
 /**
- * Created by impresyjna on 12.01.16.
+ * Class used to get actual weight and actual height from server
  */
 public class GetMainData extends AsyncTask<String, String, JSONObject> {
 
@@ -39,6 +39,11 @@ public class GetMainData extends AsyncTask<String, String, JSONObject> {
         pDialog.show();
     }
 
+    /**
+     * Method connect to server to get data about weight and height
+     * @param args args[0] - protege_id to get measurements
+     * @return
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -63,6 +68,10 @@ public class GetMainData extends AsyncTask<String, String, JSONObject> {
         return null;
     }
 
+    /**
+     * If status success method open MainActivity with data, otherwise do nothing 
+      * @param json
+     */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {
