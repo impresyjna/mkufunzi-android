@@ -17,7 +17,7 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.MeasureTypesCon
 import pl.com.inzynierka.mkufunzi.models.MeasureType;
 
 /**
- * Created by impresyjna on 01.01.16.
+ * Class extends AsyncTask that connects to server and get all MeasureTypes that are in database
  */
 public class MeasureTypesIndexMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -41,6 +41,11 @@ public class MeasureTypesIndexMobile extends AsyncTask<String, String, JSONObjec
         pDialog.show();
     }
 
+    /**
+     * Method called to get data from server
+     * @param args No params given here
+     * @return json JSONObject with measureTypes index
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -64,6 +69,10 @@ public class MeasureTypesIndexMobile extends AsyncTask<String, String, JSONObjec
         return null;
     }
 
+    /**
+     * Method displays data in left side menu
+     * @param json - JSONObject from doInBackground method 
+     */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {
