@@ -10,7 +10,7 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.models.Measurement;
 
 /**
- * Created by impresyjna on 05.01.16.
+ * Class used to control Measurements type objects
  */
 public class MeasurementsController {
 
@@ -22,7 +22,7 @@ public class MeasurementsController {
      */
     public List<Measurement> getArrayFromJSON(JSONObject jsonObject) {
         List<Measurement> measurements = new ArrayList<>();
-        JSONArray jsonArray = new JSONArray();
+        JSONArray jsonArray;
         try {
             jsonArray = jsonObject.getJSONArray("measurements");
             for (int i = 0; i < jsonArray.length(); i++) {
