@@ -15,16 +15,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.activeandroid.query.Select;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import pl.com.inzynierka.mkufunzi.API.proteges.UpdateFromMobile;
 import pl.com.inzynierka.mkufunzi.R;
@@ -33,14 +36,18 @@ import pl.com.inzynierka.mkufunzi.models.BloodType;
 import pl.com.inzynierka.mkufunzi.models.EyeColor;
 
 public class ProtegeData extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
     private Spinner eyeColorSpinner, bloodTypeSpinner, genderSpinner;
-    private EyeColor choosenEyeColor = new EyeColor();
-    private BloodType choosenBloodType = new BloodType();
-    private String choosenGender;
+    private EditText birthDateInput;
+    private DatePickerDialog birthDateDatePicker;
+    private SimpleDateFormat dateFormatter;
+
+    private EyeColor chosenEyeColor = new EyeColor();
+    private BloodType chosenBloodType = new BloodType();
+    private String chosenGender, chosenBirthDate;
     private AppUser appUser = AppUser.getInstance();
 
     @Override
@@ -50,6 +57,7 @@ public class ProtegeData extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Podstawowe dane");
         setSupportActionBar(toolbar);
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -61,60 +69,149 @@ public class ProtegeData extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
 
+        initFieldsInView();
+
+        eyeColorFieldInit();
+        bloodTypeFieldInit();
+        genderFieldInit();
+        birthDateFieldInit();
+
+
+        navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
+
+
+    }
+
+    /**
+     * This method is used to init fields from view in controller
+     */
+    private void initFieldsInView() {
         nameAndSurnameText = (TextView) findViewById(R.id.name_and_surname_text);
         loginText = (TextView) findViewById(R.id.login_text);
         emailText = (TextView) findViewById(R.id.email_text);
-        navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
+        birthDateInput = (EditText) findViewById(R.id.birth_date_input);
+        birthDateInput.setInputType(InputType.TYPE_NULL);
 
         eyeColorSpinner = (Spinner) findViewById(R.id.eye_color_spinner);
         bloodTypeSpinner = (Spinner) findViewById(R.id.blood_type_spinner);
         genderSpinner = (Spinner) findViewById(R.id.gender_spinner);
 
+    }
+
+    /**
+     * This method is used to set adapter for eyeColor field and set listener for spinner. Also it is used to set
+     * text on spinner if protege has value from server
+     */
+    private void eyeColorFieldInit() {
         eyeColorSpinner.setOnItemSelectedListener(new EyeColorItemSelectedListener());
-        bloodTypeSpinner.setOnItemSelectedListener(new BloodTypeItemSelectedListener());
-        genderSpinner.setOnItemSelectedListener(new GenderItemSelectedListener());
-
         List<EyeColor> eyeColors = new Select().from(EyeColor.class).execute();
-        List<BloodType> bloodTypes = new Select().from(BloodType.class).execute();
-        List<String> genders = Arrays.asList("Kobieta", "Mężczyzna", "Płeć");
-
         ArrayAdapter<EyeColor> eyeColorSpinnerAdapter = new ArrayAdapter<EyeColor>(this, R.layout.spinner_item, eyeColors) {
             @Override
             public int getCount() {
-                return super.getCount() - 1; // you dont display last item. It is used as hint.
+                return super.getCount() - 1;
             }
         };
-        eyeColors.add(new EyeColor("", 0, "Kolor oczu"));
+        eyeColors.add(new EyeColor("", 0, "Wybierz kolor oczu"));
         eyeColorSpinner.setAdapter(eyeColorSpinnerAdapter);
+        if (appUser.getProtege().eyeColor == 0) {
+            eyeColorSpinner.setSelection(eyeColorSpinnerAdapter.getCount());
+        } else {
+            eyeColorSpinner.setSelection(appUser.getProtege().eyeColor - 1);
+        }
+    }
 
+    /**
+     * This method is used to set adapter for bloodType field and set listener for spinner. Also it is used to set
+     * text on spinner if protege has value from server
+     */
+    private void bloodTypeFieldInit() {
+        bloodTypeSpinner.setOnItemSelectedListener(new BloodTypeItemSelectedListener());
+        List<BloodType> bloodTypes = new Select().from(BloodType.class).execute();
         ArrayAdapter<BloodType> bloodTypeArrayAdapter = new ArrayAdapter<BloodType>(this, R.layout.spinner_item, bloodTypes) {
             @Override
             public int getCount() {
-                return super.getCount() - 1; // you dont display last item. It is used as hint.
+                return super.getCount() - 1;
             }
         };
-        bloodTypes.add(new BloodType(0, "Grupa krwi"));
+        bloodTypes.add(new BloodType(0, "Wybierz grupę krwi"));
         bloodTypeSpinner.setAdapter(bloodTypeArrayAdapter);
+        if (appUser.getProtege().bloodType == 0) {
+            bloodTypeSpinner.setSelection(bloodTypeArrayAdapter.getCount());
+        } else {
+            bloodTypeSpinner.setSelection(appUser.getProtege().bloodType - 1);
+        }
+    }
 
+    /**
+     * This method is used to set adapter for gender field and set listener for spinner. Also it is used to set
+     * text on spinner if protege has value from server
+     */
+    private void genderFieldInit() {
+        genderSpinner.setOnItemSelectedListener(new GenderItemSelectedListener());
+        List<String> genders = Arrays.asList("Kobieta", "Mężczyzna", "Wybierz płeć");
         ArrayAdapter<String> genderArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, genders) {
             @Override
             public int getCount() {
-                return super.getCount() - 1; // you dont display last item. It is used as hint.
+                return super.getCount() - 1;
             }
         };
         genderSpinner.setAdapter(genderArrayAdapter);
-
-
-        bloodTypeSpinner.setSelection(bloodTypeArrayAdapter.getCount());
-        eyeColorSpinner.setSelection(eyeColorSpinnerAdapter.getCount());
-        genderSpinner.setSelection(genderArrayAdapter.getCount());
+        if (appUser.getProtege().gender == null || appUser.getProtege().gender.equals("") || appUser.getProtege().birthDate.equals("null")) {
+            genderSpinner.setSelection(genderArrayAdapter.getCount());
+        } else if (appUser.getProtege().gender.equals("K")) {
+            genderSpinner.setSelection(0);
+        } else {
+            genderSpinner.setSelection(1);
+        }
     }
 
+    /**
+     * This method is used to init datePicker when editText for birthDate is clicked and set text if protege
+     * has data on server
+     */
+    private void birthDateFieldInit() {
+        setDateTimeField();
+        if (appUser.getProtege().birthDate == null || appUser.getProtege().birthDate.equals("") || appUser.getProtege().birthDate.equals("null")) {
+            birthDateInput.setText("Naciśnij aby wprowadzić datę");
+        } else {
+            birthDateInput.setText(appUser.getProtege().birthDate);
+        }
+    }
+
+    /**
+     * This method is used to initialize datePicker on click and to set action when date is picked
+     */
+    private void setDateTimeField() {
+        birthDateInput.setOnClickListener(this);
+
+        Calendar newCalendar = Calendar.getInstance();
+        birthDateDatePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                birthDateInput.setText(dateFormatter.format(newDate.getTime()));
+            }
+
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        birthDateDatePicker.show();
+    }
+
+
+    /**
+     * Method called by Spinner for eyeColor when eyeColor is chosen. It has to find which item is picked and remember it in
+     * local variable
+     */
     public class EyeColorItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            if (pos < parent.getCount() - 1) {
-                choosenEyeColor = (EyeColor) parent.getItemAtPosition(pos);
+            if (pos < parent.getCount()) {
+                chosenEyeColor = (EyeColor) parent.getItemAtPosition(pos);
             }
         }
 
@@ -125,11 +222,15 @@ public class ProtegeData extends AppCompatActivity
 
     }
 
+    /**
+     * Method called by Spinner for bloodType when bloodType is chosen. It has to find which item is picked and remember it in
+     * local variable
+     */
     public class BloodTypeItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            if (pos < parent.getCount() - 1) {
-                choosenBloodType = (BloodType) parent.getItemAtPosition(pos);
+            if (pos < parent.getCount()) {
+                chosenBloodType = (BloodType) parent.getItemAtPosition(pos);
             }
         }
 
@@ -140,11 +241,15 @@ public class ProtegeData extends AppCompatActivity
 
     }
 
+    /**
+     * Method called by Spinner for gender when gender is chosen. It has to find which item is picked and remember it in
+     * local variable
+     */
     public class GenderItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            if (pos < parent.getCount() - 1) {
-                choosenGender = parent.getItemAtPosition(pos).toString();
+            if (pos < parent.getCount()) {
+                chosenGender = parent.getItemAtPosition(pos).toString();
             }
 
         }
@@ -156,7 +261,9 @@ public class ProtegeData extends AppCompatActivity
 
     }
 
-
+    /**
+     * Method called when back button is pressed. It has to close actual activity and open MainActivity
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -186,6 +293,9 @@ public class ProtegeData extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Method called when user uses left side menu and pick the option
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -199,28 +309,38 @@ public class ProtegeData extends AppCompatActivity
         return true;
     }
 
-    public void updateProtege(View view){
-        String genderFirstLetter = new String();
+    /**
+     * Method used to get data from view and call method to connect with server with this data
+     *
+     * @params view - This is the view that called this method. Here this method is called by button
+     */
+    public void updateProtege(View view) {
         try {
-            appUser.getProtege().gender = choosenGender.substring(0,1);
-            genderFirstLetter = choosenGender.substring(0,1);
+            appUser.getProtege().gender = chosenGender.substring(0, 1);
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            appUser.getProtege().eyeColor = choosenEyeColor.id;
+            appUser.getProtege().eyeColor = chosenEyeColor.id;
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            appUser.getProtege().bloodType = choosenBloodType.id;
+            appUser.getProtege().bloodType = chosenBloodType.id;
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        chosenBirthDate = birthDateInput.getText().toString();
+        try {
+            dateFormatter.parse(chosenBirthDate);
+            appUser.getProtege().birthDate = chosenBirthDate;
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
 
         UpdateFromMobile updateFromMobile = new UpdateFromMobile();
         updateFromMobile.setActivity(this);
-        updateFromMobile.execute(Integer.toString(appUser.getProtege().id), Integer.toString(choosenEyeColor.id), genderFirstLetter, Integer.toString(choosenBloodType.id),"");
+        updateFromMobile.execute(Integer.toString(appUser.getProtege().id), Integer.toString(appUser.getProtege().eyeColor), appUser.getProtege().gender, Integer.toString(appUser.getProtege().bloodType), appUser.getProtege().birthDate );
     }
 }
