@@ -17,7 +17,7 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 
 /**
- * Created by impresyjna on 16.01.16.
+ * Class used to update protege data on server. It uses AsyncTask to do connection inBackground
  */
 public class UpdateFromMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -27,10 +27,17 @@ public class UpdateFromMobile extends AsyncTask<String, String, JSONObject> {
 
     private AppCompatActivity activity;
 
+    /**
+     * Setter for activity. Called by view controller which set himself as activity for this task
+     * @param activity
+     */
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
     }
 
+    /**
+     * Show dialog with message to wait
+     */
     @Override
     protected void onPreExecute() {
         pDialog = new ProgressDialog(activity);
@@ -40,6 +47,12 @@ public class UpdateFromMobile extends AsyncTask<String, String, JSONObject> {
         pDialog.show();
     }
 
+    /**
+     * Method which connect with server and save data.
+     * @param args args[0] - protege_id, args[1] - eye_color_id, args[2] - gender first letter,
+     *             args[3] - blood_type_id, args[4] - birth_date
+     * @return JSONObject with message - success if update was fine or failure if not
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -68,6 +81,12 @@ public class UpdateFromMobile extends AsyncTask<String, String, JSONObject> {
         return null;
     }
 
+    /**
+     * Method called after closing the connection with server and receiving the message about status.
+     * @param json - JSONObject from doInBackground method with information about status
+     *             failure - shows ToastMessage with info about problem
+     *             success - shows ToastMessage with info that data was saved 
+     */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {
