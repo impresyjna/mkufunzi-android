@@ -21,7 +21,7 @@ import pl.com.inzynierka.mkufunzi.models.MeasureType;
 import pl.com.inzynierka.mkufunzi.models.Measurement;
 
 /**
- * Created by impresyjna on 05.01.16.
+ * Method called to get measurements from server.
  */
 public class GetMeasurementsMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -35,6 +35,7 @@ public class GetMeasurementsMobile extends AsyncTask<String, String, JSONObject>
         this.activity = activity;
     }
 
+    /** RecyclerView for measurements in activity */
     public void setRvMeasures(RecyclerView rvMeasures) {
         this.rvMeasures = rvMeasures;
     }
@@ -48,6 +49,11 @@ public class GetMeasurementsMobile extends AsyncTask<String, String, JSONObject>
         pDialog.show();
     }
 
+    /**
+     * Method called to get data from server.
+     * @param args args[0] - card_id, args[1] - measure_type_id
+     * @return
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -74,6 +80,10 @@ public class GetMeasurementsMobile extends AsyncTask<String, String, JSONObject>
         return null;
     }
 
+    /**
+     * If there is any measurement this method shows them in view, otherwise does nothing
+     * @param json - JSONObject from doInBackground method 
+     */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {
