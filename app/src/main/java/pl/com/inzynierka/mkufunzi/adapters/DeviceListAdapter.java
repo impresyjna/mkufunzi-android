@@ -15,9 +15,6 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.models.DeviceItem;
 
-/**
- * Created by impresyjna on 06.01.16.
- */
 public class DeviceListAdapter extends ArrayAdapter<DeviceItem> {
 
     private Context context;

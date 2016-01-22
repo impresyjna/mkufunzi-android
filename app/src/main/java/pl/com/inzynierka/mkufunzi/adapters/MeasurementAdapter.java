@@ -18,9 +18,6 @@ import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.models.MeasureType;
 import pl.com.inzynierka.mkufunzi.models.Measurement;
 
-/**
- * Created by impresyjna on 04.01.16.
- */
 public class MeasurementAdapter extends
         RecyclerView.Adapter<MeasurementAdapter.ViewHolder> {
 
