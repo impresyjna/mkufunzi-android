@@ -9,6 +9,9 @@ import java.util.List;
 
 import pl.com.inzynierka.mkufunzi.models.EyeColor;
 
+/**
+ * Class that is controller for EyeColor objects 
+ */
 public class EyeColorsController {
 
     /**
