@@ -17,7 +17,7 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 
 /**
- * Created by impresyjna on 27.12.15.
+ * Class used to register user on server
  */
 public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -40,6 +40,12 @@ public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
         pDialog.show();
     }
 
+    /**
+     * Method called to make connection with server
+     * @param args args[0] - login, args[1] - name, args[2] - surname, args[3] - password
+     *             args[4] - password_confirmation, args[5] - email
+     * @return json with all information if success, failure message otherwise
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -69,6 +75,10 @@ public class RegisterMobile extends AsyncTask<String, String, JSONObject> {
         return null;
     }
 
+    /**
+     * Method opens the MainActivity if success, ToastMessage otherwise 
+     * @param json
+     */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {
