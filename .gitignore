@@ -61,3 +61,11 @@ build/intermediates/dex-cache/cache.xml
 .idea/inspectionProfiles/Project_Default.xml
 
 .idea/libraries/MPAndroidChart_v2_1_6.xml
+
+*.lock
+
+app/app.iml
+
+gradlew
+
+Mkufunzi-android.iml
