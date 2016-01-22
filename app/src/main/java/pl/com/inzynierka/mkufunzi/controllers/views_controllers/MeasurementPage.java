@@ -20,14 +20,36 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.MeasureTypesCon
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 import pl.com.inzynierka.mkufunzi.models.MeasureType;
 
+/**
+ * Controller for view showing user appropriate measureType measurements
+ */
 public class MeasurementPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Class used to control left side menu
+     */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    /**
+     * Object with information about MeasureType in this activity
+     */
     private MeasureType measureType;
+    /**
+     * instance of AppUser with information about user, protege, his card etc.
+     */
     private AppUser appUser = AppUser.getInstance();
+    /**
+     * Fields describing user in left side menu
+     */
     private TextView nameAndSurnameText, loginText, emailText;
 
+    /**
+     * Method called at the beginning of using the activity
+     * First it loads information about measureType name
+     * Later init the toolbar with appropiate title
+     * Later init method showMeasurementsFromServer and initNavUserInformationFields
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +61,7 @@ public class MeasurementPage extends AppCompatActivity
 
         setContentView(R.layout.activity_measurement_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(name.substring(0,1).toUpperCase()+name.substring(1).toLowerCase());
+        toolbar.setTitle(name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase());
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -52,20 +74,38 @@ public class MeasurementPage extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
 
+        showMeasurementsFromServer();
+
+        initNavUserInformationFields();
+
+    }
+
+    /**
+     * Method which is responsible for init the RecyclerView for measurements and call the method to connect with server
+     * to receive measurements
+     */
+    private void showMeasurementsFromServer() {
         // Lookup the recyclerview in activity layout
         RecyclerView rvMeasures = (RecyclerView) findViewById(R.id.rvMeasures);
         GetMeasurementsMobile getMeasurementsMobile = new GetMeasurementsMobile();
         getMeasurementsMobile.setActivity(this);
         getMeasurementsMobile.setRvMeasures(rvMeasures);
         getMeasurementsMobile.execute(Integer.toString(appUser.getCard().id), Integer.toString(measureType.id));
+    }
 
+    /**
+     * Method used to init information on left side menu
+     */
+    private void initNavUserInformationFields() {
         nameAndSurnameText = (TextView) findViewById(R.id.name_and_surname_text);
         loginText = (TextView) findViewById(R.id.login_text);
         emailText = (TextView) findViewById(R.id.email_text);
         navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
-
     }
 
+    /**
+     * Method called when user press the back button. It has to close actual activity and open MainActivity
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -95,6 +135,11 @@ public class MeasurementPage extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Method called when user choose item from left side menu
+     * @param item - which item was picked
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -108,8 +153,11 @@ public class MeasurementPage extends AppCompatActivity
         return true;
     }
 
-    public void showAddMeasurement(View view)
-    {
+    /**
+     * Method called when user pick the AddMeasure button
+     * @param view - which view called it
+     */
+    public void showAddMeasurement(View view) {
         navigationAndOptionsController.openIntentWithParam(this, AddMeasurement.class, measureType.name);
         this.finish();
     }
