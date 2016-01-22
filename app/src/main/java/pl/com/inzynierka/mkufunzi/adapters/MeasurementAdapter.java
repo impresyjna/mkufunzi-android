@@ -18,6 +18,9 @@ import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.models.MeasureType;
 import pl.com.inzynierka.mkufunzi.models.Measurement;
 
+/**
+ * Custom adapter used to show measures in MeasurementPage
+ */
 public class MeasurementAdapter extends
         RecyclerView.Adapter<MeasurementAdapter.ViewHolder> {
 
@@ -27,7 +30,6 @@ public class MeasurementAdapter extends
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView valueTextView;
-        public TextView unitTextView;
         public TextView dateTextView;
 
         // We also create a constructor that accepts the entire item row
