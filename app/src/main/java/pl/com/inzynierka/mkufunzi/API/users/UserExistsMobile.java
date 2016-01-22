@@ -20,7 +20,8 @@ import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 /**
- * Created by impresyjna on 11.01.16.
+ * Class used to check if user from device still exists. It extends AsyncTask.
+ * This class connect with server and return results to UI.
  */
 public class UserExistsMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -35,6 +36,9 @@ public class UserExistsMobile extends AsyncTask<String, String, JSONObject> {
         this.activity = activity;
     }
 
+    /**
+     * Set dialog for user to show him to wait before starting connecting to server
+     */
     @Override
     protected void onPreExecute() {
         pDialog = new ProgressDialog(activity);
@@ -44,6 +48,11 @@ public class UserExistsMobile extends AsyncTask<String, String, JSONObject> {
         pDialog.show();
     }
 
+    /**
+     * This method connect with server to receive data.
+     * @param args agrs[0] - email to check if user exists
+     * @return JSONObject json with status(failure if user doesn't exist or success with data if exists)
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -68,6 +77,12 @@ public class UserExistsMobile extends AsyncTask<String, String, JSONObject> {
         return null;
     }
 
+    /**
+     * Method called after doInBackgroud. It closes the dialog to wait for user.
+     * This method is calling another class to get weight and height from server if succes
+     * If failure this method log out the user.
+     * @param json - JSONObject from doInBackground method
+     */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {
