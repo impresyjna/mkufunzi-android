@@ -15,24 +15,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Kolor oczu"
                 android:layout_weight="1"
-                android:textColor="?attr/colorPrimary"/>
+                android:textColor="?attr/colorPrimary"
+                android:padding="5dp"/>
             <Spinner
                 android:id="@+id/eye_color_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?attr/colorPrimary"
-                android:padding="5dp"
                 android:popupBackground="#212121"
                 android:layout_weight="3"/>
         </LinearLayout>
@@ -40,19 +42,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Grupa krwi"
                 android:layout_weight="1"
-                android:textColor="?attr/colorPrimary"/>
+                android:textColor="?attr/colorPrimary"
+                android:padding="5dp"/>
             <Spinner
                 android:id="@+id/blood_type_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?attr/colorPrimary"
-                android:padding="5dp"
                 android:popupBackground="#212121"
                 android:layout_weight="3"/>
         </LinearLayout>
@@ -60,22 +63,53 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Płeć"
                 android:layout_weight="1"
-                android:textColor="?attr/colorPrimary"/>
+                android:textColor="?attr/colorPrimary"
+                android:padding="5dp"            />
             <Spinner
                 android:id="@+id/gender_spinner"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:backgroundTint="?attr/colorPrimary"
-                android:padding="5dp"
+                android:padding="0dp"
                 android:popupBackground="#212121"
                 android:layout_weight="3"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Data urodzenia"
+                android:layout_weight="1"
+                android:textColor="?attr/colorPrimary"
+                android:padding="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/birth_date_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:focusable="true"
+                    android:textColorHint="#727272"
+                    android:textColor="#727272"
+                    android:textSize="@dimen/abc_text_size_body_2_material"
+                    android:layout_weight="3"
+                    android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
