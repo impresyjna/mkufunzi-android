@@ -97,25 +97,32 @@ public class MainActivity extends AppCompatActivity
         if (appUser.getProtege().birthDate != null && !appUser.getProtege().birthDate.equals("null")) {
             birthDateText.setText(appUser.getProtege().birthDate);
         }
-        if (appUser.getProtege().bloodType != 0) {
-            BloodType protegeBloodType = new Select().from(BloodType.class).where("ref_id = ?", appUser.getProtege().bloodType).executeSingle();
-            bloodTypeText.setText(protegeBloodType.name);
+        try {
+            if (appUser.getProtege().bloodType != 0) {
+                BloodType protegeBloodType = new Select().from(BloodType.class).where("ref_id = ?", appUser.getProtege().bloodType).executeSingle();
+                bloodTypeText.setText(protegeBloodType.name);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         if (appUser.getProtege().gender != null && !appUser.getProtege().gender.equals("null") && !appUser.getProtege().gender.equals("")) {
             genderText.setText(appUser.getProtege().gender);
         }
-        if (appUser.getProtege().eyeColor != 0) {
-            EyeColor protegeEyeColor = new Select().from(EyeColor.class).where("ref_id = ?", appUser.getProtege().eyeColor).executeSingle();
-            eyeColorIcon.setColorFilter(Color.parseColor(protegeEyeColor.color));
-
+        try {
+            if (appUser.getProtege().eyeColor != 0) {
+                EyeColor protegeEyeColor = new Select().from(EyeColor.class).where("ref_id = ?", appUser.getProtege().eyeColor).executeSingle();
+                eyeColorIcon.setColorFilter(Color.parseColor(protegeEyeColor.color));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (appUser.getWhbmi().weightValue!=0) {
+        if (appUser.getWhbmi().weightValue != 0) {
             actualWeightText.setText(appUser.getWhbmi().weightValue + " " + appUser.getWhbmi().weightUnit);
         }
-        if (appUser.getWhbmi().heightValue!=0) {
+        if (appUser.getWhbmi().heightValue != 0) {
             actualHeightText.setText(appUser.getWhbmi().heightValue + " " + appUser.getWhbmi().heightUnit);
         }
-        if (appUser.getWhbmi().BMIValue!=0) {
+        if (appUser.getWhbmi().BMIValue != 0) {
             actualBmiText.setText(Double.toString((double) Math.round(appUser.getWhbmi().BMIValue * 100) / 100));
         }
     }
