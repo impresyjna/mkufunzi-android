@@ -15,7 +15,7 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.EyeColorsContro
 import pl.com.inzynierka.mkufunzi.models.EyeColor;
 
 /**
- * Created by impresyjna on 14.01.16.
+ * Class used to get list of eyeColors from server
  */
 public class GetEyeColorsMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -36,6 +36,11 @@ public class GetEyeColorsMobile extends AsyncTask<String, String, JSONObject> {
         pDialog.show();
     }
 
+    /**
+     * Method used to connect with server and get eyeColorsIndex from it
+     * @param args - no args needed
+     * @return
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -59,6 +64,10 @@ public class GetEyeColorsMobile extends AsyncTask<String, String, JSONObject> {
         return null;
     }
 
+    /**
+     * Saves all read data from server to local sqlite3 database 
+     * @param json
+     */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {
