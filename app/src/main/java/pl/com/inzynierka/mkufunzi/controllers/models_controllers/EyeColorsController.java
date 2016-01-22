@@ -7,12 +7,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.com.inzynierka.mkufunzi.models.BloodType;
 import pl.com.inzynierka.mkufunzi.models.EyeColor;
 
-/**
- * Created by impresyjna on 14.01.16.
- */
 public class EyeColorsController {
 
     /**
