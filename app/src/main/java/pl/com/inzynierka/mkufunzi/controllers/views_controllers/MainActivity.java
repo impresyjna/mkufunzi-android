@@ -24,16 +24,33 @@ import pl.com.inzynierka.mkufunzi.models.BloodType;
 import pl.com.inzynierka.mkufunzi.models.EyeColor;
 import pl.com.inzynierka.mkufunzi.models.User;
 
+/**
+ * Class which controlls action on basic activity for the app
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /** instance of AppUser with information about user, protege, his card etc.*/
     private AppUser appUser = AppUser.getInstance();
+    /** Class used to control left side menu */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    /** Fields describing user in left side menu */
     private TextView nameAndSurnameText, loginText, emailText;
+    /** Field for data on mainActivity to write on  */
     private TextView actualWeightText, actualHeightText, actualBmiText, birthDateText, bloodTypeText, genderText;
+    /** Field for data on mainActivity to write on  */
     private TextView lastTrainingText, medicinesText, messagesText;
+    /** ImageView for eyeColor field*/
     private ImageView eyeColorIcon;
 
+    /**
+     * Method called when user open the application.
+     * It checks if user is logged or exists and make decision
+     * If log out method open the Login activity
+     * If user doesn't exist asyncTask open the Login activity
+     * Otherwise it shows the MainActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +88,9 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Method used to connect view with controller 
+     */
     private void initInformationOnActivity() {
         actualWeightText = (TextView) findViewById(R.id.actual_weight_text);
         actualHeightText = (TextView) findViewById(R.id.actual_height_text);
