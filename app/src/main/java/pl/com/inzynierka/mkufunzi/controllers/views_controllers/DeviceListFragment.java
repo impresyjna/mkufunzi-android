@@ -119,7 +119,7 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
 
         // If there are no devices, add an item that states so. It will be handled in the view.
         if (deviceItemList.size() == 0) {
-            deviceItemList.add(new DeviceItem("No Devices", "", "false"));
+            deviceItemList.add(new DeviceItem("Brak urządzeń", "", "false"));
         }
 
         Log.d("DEVICELIST", "DeviceList populated\n");
