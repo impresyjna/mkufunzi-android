@@ -15,6 +15,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
+/**
+ * Classed used to parse data from server which app receive and JSONObject or JSONArray
+ */
 public class JSONParser {
 
     String charset = "UTF-8";
@@ -26,6 +29,13 @@ public class JSONParser {
     StringBuilder sbParams;
     String paramsString;
 
+    /**
+     * Method called to make httpRequest
+     * @param url - where json can be read
+     * @param method - POST or GET method
+     * @param params - params as HashMap for request
+     * @return
+     */
     public JSONObject makeHttpRequest(String url, String method,
                                       HashMap<String, String> params) {
 
