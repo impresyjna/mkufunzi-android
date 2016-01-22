@@ -11,36 +11,56 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by impresyjna on 03.01.16.
- */
 
+/**
+ * Class describing Measurement object. It uses ActiveAndroid Model and can be saved in sqlite3 database on device
+ */
 @Table(name="measurements")
 public class Measurement extends Model {
+    /** Field saving information about id on server */
     @Column(name = "ref_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     public int id;
+    /** Field saving value of measurement */
     @Column(name = "value")
     public double value;
+    /** Field saving information about measureTypeID */
     @Column(name = "measure_type_id")
     public int measureTypeId;
+    /** Field saving information about belonging to card(cardId) */
     @Column(name = "card_id")
     public int cardId;
+    /** Field saving information about time when measurement was saved */
     @Column(name = "time")
     public Date time;
+    /** Extra field for measurements with two values to be completed for example: blood pressure  */
     @Column(name = "second_value")
     public double secondValue;
 
+    /** Tag on server with id */
     private static final String TAG_ID = "id";
+    /** Tag on server with value */
     private static final String TAG_VALUE = "value";
+    /** Tag on server with measureTypeId */
     private static final String TAG_MEASURE_TYPE_ID = "measure_type_id";
+    /** Tag on server with cardId */
     private static final String TAG_CARD_ID = "card_id";
+    /** Tag on server with time */
     private static final String TAG_TIME = "created_at";
+    /** Tag on server with extra secondValue */
     private static final String TAG_SECOND_VALUE = "second_value";
 
+    /**
+     * No parameters constructor
+     * */
     public Measurement() {
         super();
     }
 
+    /**
+     * Constructor used when object is created from json
+     * @param json - JSONObject with fields to save in new Measurement object
+     *             It uses the tags to find values and try to save it in object fields 
+     */
     public Measurement(JSONObject json){
         super();
         try {
