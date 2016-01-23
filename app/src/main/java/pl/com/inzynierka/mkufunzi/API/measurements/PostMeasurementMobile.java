@@ -16,7 +16,8 @@ import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MeasurementPage;
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.NavigationAndOptionsController;
 
 /**
- * Created by impresyjna on 05.01.16.
+ * Class which extends AsyncTask.
+ * It is called to save measurement on server
  */
 public class PostMeasurementMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -38,6 +39,13 @@ public class PostMeasurementMobile extends AsyncTask<String, String, JSONObject>
         pDialog.show();
     }
 
+    /**
+     * Method called to connect with server
+     * @param args args[0] - value, args[1] - cardId, args[2] - measure_type_id
+     *             args[3] - measureType name(not used when application connect with server, necessary later)
+     *             args[4] - second_value
+     * @return
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
