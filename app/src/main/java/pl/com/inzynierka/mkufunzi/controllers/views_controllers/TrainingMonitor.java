@@ -1,12 +1,9 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -26,6 +23,9 @@ import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.bluetooth.ManageConnectThread;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 
+/**
+ * Class used to control view for traning
+ */
 public class TrainingMonitor extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
