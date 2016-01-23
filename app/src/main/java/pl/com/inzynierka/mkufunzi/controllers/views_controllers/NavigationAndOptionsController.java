@@ -15,7 +15,7 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.UsersController
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 /**
- * Created by impresyjna on 02.01.16.
+ * Class used to controll left side menu and implement methods to open new Intents
  */
 public class NavigationAndOptionsController {
 
@@ -36,12 +36,24 @@ public class NavigationAndOptionsController {
         measureTypesIndexMobile.execute();
     }
 
+    /**
+     * Method used to set text in nav Header
+     * @param nameAndSurnameText
+     * @param loginText
+     * @param emailText
+     */
     public void initNavHeader(TextView nameAndSurnameText, TextView loginText, TextView emailText) {
         nameAndSurnameText.setText(appUser.getUser().name + " " + appUser.getUser().surname);
         loginText.setText("Użytkownik: " + appUser.getUser().login);
         emailText.setText(appUser.getUser().email);
     }
 
+    /**
+     * Universal react on item in left menu choosing
+     * @param id which item was picked
+     * @param activity in which activity
+     * @param name extra parameter to open MeasurementPage activity(name of measurement chosen)
+     */
     public void reactOnNavigationItemSelected(int id, AppCompatActivity activity, String name) {
         if (id == R.id.nav_start_training) {
             openIntent(activity, BluetoothConnection.class);
@@ -58,6 +70,11 @@ public class NavigationAndOptionsController {
         }
     }
 
+    /**
+     * Universal reaction for right side menu
+     * @param id which option was picked
+     * @param activity in which activity
+     */
     public void reactOnOptionItemSelected(int id, AppCompatActivity activity) {
         if (id == R.id.action_settings) {
             openIntent(activity, Settings.class);
@@ -82,12 +99,23 @@ public class NavigationAndOptionsController {
         activity.finish();
     }
 
+    /**
+     * Activity used to open new Intent
+     * @param activity which activity
+     * @param windowClass class of new Intent
+     */
     public void openIntent(Activity activity, Class windowClass) {
         Intent intent = new Intent(activity, windowClass);
         activity.startActivity(intent);
         activity.finish();
     }
 
+    /**
+     * Activity used to open new Intent
+     * @param activity which activity
+     * @param windowClass class of new Intent
+     * @param name extrra field used to open intent with parameter, in this case with name of measure
+     */
     public void openIntentWithParam(Activity activity, Class windowClass, String name) {
         Intent intent = new Intent(activity, windowClass);
         Bundle bundle = new Bundle();
