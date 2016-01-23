@@ -20,7 +20,7 @@ import android.widget.TextView;
 import pl.com.inzynierka.mkufunzi.R;
 
 /**
- * Created by impresyjna on 06.01.16.
+ * Class which is controller for BluetoothConnection activity
  */
 public class BluetoothConnection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,DeviceListFragment.OnFragmentInteractionListener  {
 
