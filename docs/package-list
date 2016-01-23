@@ -1,0 +1,13 @@
+pl.com.inzynierka.mkufunzi
+pl.com.inzynierka.mkufunzi.API
+pl.com.inzynierka.mkufunzi.API.blood_types
+pl.com.inzynierka.mkufunzi.API.eye_colors
+pl.com.inzynierka.mkufunzi.API.measure_types
+pl.com.inzynierka.mkufunzi.API.measurements
+pl.com.inzynierka.mkufunzi.API.proteges
+pl.com.inzynierka.mkufunzi.API.users
+pl.com.inzynierka.mkufunzi.adapters
+pl.com.inzynierka.mkufunzi.bluetooth
+pl.com.inzynierka.mkufunzi.controllers.models_controllers
+pl.com.inzynierka.mkufunzi.controllers.views_controllers
+pl.com.inzynierka.mkufunzi.models
