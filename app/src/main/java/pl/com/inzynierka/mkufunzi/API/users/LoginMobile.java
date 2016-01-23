@@ -18,7 +18,7 @@ import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 import pl.com.inzynierka.mkufunzi.models.User;
 
 /**
- * Created by impresyjna on 20.12.15.
+ * Class extends AsyncTask. Used to connect with server to login user
  */
 public class LoginMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -41,6 +41,11 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
         pDialog.show();
     }
 
+    /**
+     *
+     * @param args args[0] - email, args[1] - password
+     * @return
+     */
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -66,6 +71,10 @@ public class LoginMobile extends AsyncTask<String, String, JSONObject> {
         return null;
     }
 
+    /**
+     * When login was correct open MainActivity, otherwise ToastMessage with failure text 
+     * @param json
+     */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {
