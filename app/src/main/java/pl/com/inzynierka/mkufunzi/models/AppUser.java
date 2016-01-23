@@ -3,7 +3,7 @@ package pl.com.inzynierka.mkufunzi.models;
 import pl.com.inzynierka.mkufunzi.bluetooth.ConnectThread;
 
 /**
- * Created by impresyjna on 04.01.16.
+ * Singleton class used to hold whole data about present user
  */
 public class AppUser {
 
