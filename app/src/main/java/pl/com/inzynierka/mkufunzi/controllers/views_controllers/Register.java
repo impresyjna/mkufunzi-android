@@ -18,6 +18,9 @@ import java.util.regex.Pattern;
 import pl.com.inzynierka.mkufunzi.API.users.RegisterMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
+/**
+ * Class used to control register activity
+ */
 public class Register extends AppCompatActivity {
 
     private EditText loginInput, nameInput, surnameInput, passwordInput, passwordConfirmationInput, emailInput;
@@ -118,6 +121,10 @@ public class Register extends AppCompatActivity {
         }
     }
 
+    /**
+     * Checks if login is not empty
+     * @return
+     */
     public boolean validateLogin(){
         String login = loginInput.getText().toString().trim();
         if(login.equals(""))
@@ -131,6 +138,10 @@ public class Register extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Checks if name is not empty
+     * @return
+     */
     public boolean validateName(){
         String name = nameInput.getText().toString().trim();
         if(name.equals(""))
@@ -144,6 +155,10 @@ public class Register extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Checks if surname is not empty
+     * @return
+     */
     public boolean validateSurname(){
         String surname = surnameInput.getText().toString().trim();
         if(surname.equals(""))
@@ -157,6 +172,7 @@ public class Register extends AppCompatActivity {
         return true;
     }
 
+    /** Checks if password is not empty and has at least 6 signs  */
     public boolean validatePassword(){
         String password = passwordInput.getText().toString();
         if(password.equals(""))
@@ -174,6 +190,10 @@ public class Register extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Checks if password confirmation is not empty
+     * @return
+     */
     public boolean validatePasswordConfirmation(){
         String passwordConfirmation = passwordConfirmationInput.getText().toString();
         if(passwordConfirmation.equals(""))
@@ -187,6 +207,10 @@ public class Register extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Checks if passwords fits
+     * @return
+     */
     public boolean validatePasswords(){
         String password = passwordInput.getText().toString();
         String passwordConfirmation = passwordConfirmationInput.getText().toString();
@@ -201,6 +225,10 @@ public class Register extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Checks if email is not empty and is valid
+     * @return
+     */
     public boolean validateEmail(){
         String email = emailInput.getText().toString().trim();
         if (email.isEmpty() || !isEmailValid(email)) {
