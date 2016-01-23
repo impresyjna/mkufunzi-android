@@ -1,7 +1,7 @@
 package pl.com.inzynierka.mkufunzi.models;
 
 /**
- * Created by impresyjna on 06.01.16.
+ * Class describing model of find by Bluetooth devices 
  */
 public class DeviceItem {
     private String deviceName;
