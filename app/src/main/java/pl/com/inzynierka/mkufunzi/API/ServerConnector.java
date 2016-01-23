@@ -1,7 +1,7 @@
 package pl.com.inzynierka.mkufunzi.API;
 
 /**
- * Created by impresyjna on 16.12.15.
+ * Singleton class that holds whole addresses to server
  */
 public class ServerConnector {
 
