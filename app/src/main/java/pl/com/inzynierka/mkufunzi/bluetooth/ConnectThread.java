@@ -8,13 +8,18 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Created by impresyjna on 06.01.16.
+ * Class used to get socket to connect with BT device and check if connection exists
  */
 public class ConnectThread extends Thread{
 
     private final BluetoothDevice bTDevice;
     private final BluetoothSocket bTSocket;
 
+    /**
+     * Method used to get socket with device
+     * @param bTDevice BluetoothDevice to connect with
+     * @param UUID UUID number for connection(it is like port in network connection)
+     */
     public ConnectThread(BluetoothDevice bTDevice, UUID UUID) {
         BluetoothSocket tmp = null;
         this.bTDevice = bTDevice;
@@ -29,6 +34,10 @@ public class ConnectThread extends Thread{
 
     }
 
+    /**
+     * Method checks if connection exists
+     * @return
+     */
     public boolean connect() {
 
         Log.d("btDeviceNameConnect", bTDevice.getName());
@@ -47,6 +56,10 @@ public class ConnectThread extends Thread{
         return true;
     }
 
+    /**
+     * Method used to cancel the connection with BT
+     * @return
+     */
     public boolean cancel() {
         try {
             bTSocket.close();
@@ -56,6 +69,10 @@ public class ConnectThread extends Thread{
         return true;
     }
 
+    /**
+     * Getter for btSocket
+     * @return BluetoothSocket object 
+     */
     public BluetoothSocket getbTSocket() {
         return bTSocket;
     }
