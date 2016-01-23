@@ -12,7 +12,7 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.models.MeasureType;
 
 /**
- * Created by impresyjna on 01.01.16.
+ * Class which is controller for MeasureType objects
  */
 public class MeasureTypesController {
 
@@ -36,6 +36,11 @@ public class MeasureTypesController {
         return measure_types;
     }
 
+    /**
+     * Method used to get single MeasureType object from device database
+     * @param name name of MeasureType
+     * @return MeasureType object or null if object doesn't exist in database
+     */
     public MeasureType getMeasureType(String name) {
         return new Select()
                 .from(MeasureType.class)
