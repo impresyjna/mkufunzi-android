@@ -20,6 +20,9 @@ import pl.com.inzynierka.mkufunzi.API.eye_colors.GetEyeColorsMobile;
 import pl.com.inzynierka.mkufunzi.API.users.LoginMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
+/**
+ * Class which control actions in Login activity
+ */
 public class Login extends AppCompatActivity {
 
     private EditText emailInput;
@@ -59,6 +62,10 @@ public class Login extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Method validates field and call the LoginMobile AsyncTask to connect with server
+     * @param view
+     */
     public void login(View view) {
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
@@ -83,6 +90,10 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    /**
+     * Open About activity
+     * @param view
+     */
     public void showAbout(View view)
     {
         Log.i("About", "Opening about page activity ");
@@ -90,6 +101,7 @@ public class Login extends AppCompatActivity {
         this.startActivity(intent);
     }
 
+    /** Open Register activity */
     public void showRegister(View view)
     {
         Log.i("Register", "Opening register page activity");
@@ -98,6 +110,10 @@ public class Login extends AppCompatActivity {
         this.finish();
     }
 
+    /**
+     * Validates if password is not empty and length is appropriate
+     * @return
+     */
     public boolean validatePassword(){
         String password = passwordInput.getText().toString().trim();
         if (password.isEmpty()) {
@@ -114,6 +130,10 @@ public class Login extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Validates if email is not empty and is valid
+     * @return
+     */
     public boolean validateEmail(){
         String email = emailInput.getText().toString().trim();
         if (email.isEmpty() || !isEmailValid(email)) {
