@@ -15,6 +15,9 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.models.DeviceItem;
 
+/**
+ * Class which adapts DeviceItem object into DeviceListFragment view
+ */
 public class DeviceListAdapter extends ArrayAdapter<DeviceItem> {
 
     private Context context;
