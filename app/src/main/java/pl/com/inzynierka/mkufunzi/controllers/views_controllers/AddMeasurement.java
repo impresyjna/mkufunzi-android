@@ -1,6 +1,5 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
@@ -28,6 +27,9 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.MeasureTypesCon
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 import pl.com.inzynierka.mkufunzi.models.MeasureType;
 
+/**
+ * Class used to control add measurement activity
+ */
 public class AddMeasurement extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -132,6 +134,11 @@ public class AddMeasurement extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Method checks if first value is not empty, if second is available, checks if this value is also avaible
+     * Later it is calling the PostMeasurementMobile AsyncTask to connect with server
+     * @param view
+     */
     public void addMeasure(View view)
     {
         if(!validateFirstValue())
@@ -154,6 +161,10 @@ public class AddMeasurement extends AppCompatActivity
 
     }
 
+    /**
+     * Checks if first value is not empty
+     * @return
+     */
     public boolean validateFirstValue(){
         String valueText = firstValueInput.getText().toString().trim();
         if(valueText.equals(""))
@@ -167,6 +178,7 @@ public class AddMeasurement extends AppCompatActivity
         return true;
     }
 
+    /** Checks if second value is not empty */
     public boolean validateSecondValue() {
         String valueText = secondValueInput.getText().toString().trim();
         if(valueText.equals(""))
@@ -186,6 +198,7 @@ public class AddMeasurement extends AppCompatActivity
         }
     }
 
+    /** Gets values from fields in view and convert them to double objects */
     private double getValueFromField(EditText editText){
         String valueText = editText.getText().toString();
         NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
