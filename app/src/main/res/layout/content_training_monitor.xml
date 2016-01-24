@@ -36,24 +36,24 @@
             android:textColor="#ffffff"
             android:text="@string/timerVal" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:id="@+id/exercise_output"/>
+
         <Button
             android:id="@+id/startButton"
-            android:layout_width="90dp"
-            android:layout_height="45dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="38dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/startButtonLabel"
             android:onClick="startTraining"/>
 
         <Button
             android:id="@+id/pauseButton"
-            android:layout_width="90dp"
-            android:layout_height="45dp"
-            android:layout_alignBaseline="@+id/startButton"
-            android:layout_alignBottom="@+id/startButton"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="38dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/pauseButtonLabel" />
 
     </LinearLayout>

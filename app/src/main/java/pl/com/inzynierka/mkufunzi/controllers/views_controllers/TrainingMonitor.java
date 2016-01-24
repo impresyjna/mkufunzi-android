@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -32,8 +31,10 @@ public class TrainingMonitor extends AppCompatActivity
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
     private AppUser appUser = AppUser.getInstance();
-    private TextView pulseOutput;
-    private RelativeLayout trainingView;
+    private TextView pulseOutput, exerciseOutput;
+
+    private int repeatNumber = 0;
+    private boolean mutex = false;
 
     private Button startButton;
     private Button pauseButton;
@@ -72,10 +73,11 @@ public class TrainingMonitor extends AppCompatActivity
         emailText = (TextView) findViewById(R.id.email_text);
         navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
 
-        trainingView = (RelativeLayout) findViewById(R.id.training_view);
-
         pulseOutput = (TextView) findViewById(R.id.pulse_output);
         pulseOutput.setText("0");
+
+        exerciseOutput = (TextView) findViewById(R.id.exercise_output);
+        exerciseOutput.setText("0");
 
         timerValue = (TextView) findViewById(R.id.timerValue);
 
@@ -154,12 +156,36 @@ public class TrainingMonitor extends AppCompatActivity
 
     private Runnable updatePulseThread = new Runnable() {
         final ManageConnectThread manageConnectThread = new ManageConnectThread();
+
         public void run() {
             try {
                 String message = manageConnectThread.receiveData(appUser.getConnectThread().getbTSocket());
+                Log.e("Bytes", message);
                 if (message.contains("Pulse")) {
-                    Log.e("BytesCount", message);
                     pulseOutput.setText(message);
+                } else {
+                    try {
+                        String[] acAndGyParts = message.split("\\|");
+                        String accPartBeforeSecondSplit = acAndGyParts[0];
+                        String gyPartBeforeSecondSplit = acAndGyParts[1];
+                        String[] accPartsAfterSplit = accPartBeforeSecondSplit.split(";");
+                        String[] gyPartsAfterSplit = gyPartBeforeSecondSplit.split(";");
+                        double resultOfAcc = Math.sqrt(Math.pow(Double.parseDouble(accPartsAfterSplit[1]),2) +
+                                             Math.pow(Double.parseDouble(accPartsAfterSplit[2]),2) +
+                                             Math.pow(Double.parseDouble(accPartsAfterSplit[3]), 2)) - 10;
+                        if(mutex && resultOfAcc<15000){
+                            mutex = false;
+                        }
+                        else if(!mutex && resultOfAcc>20000 && Double.parseDouble(gyPartsAfterSplit[1])<100){
+                            mutex = true;
+                            repeatNumber++;
+                            Log.e("BytesCount", repeatNumber+"");
+                            exerciseOutput.setText(Integer.toString(repeatNumber));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
