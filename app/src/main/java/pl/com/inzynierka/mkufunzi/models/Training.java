@@ -39,10 +39,17 @@ public class Training {
     /** Tag with user surname on server */
     private static final String TAG_COMMENT = "comment";
 
+    /**
+     * No parameters constructor
+     */
     public Training(){
         super();
     }
 
+    /**
+     * Constructor called when it is necessary to create object using data from server
+     * @param json - data in json from server
+     */
     public Training(JSONObject json){
         try {
             this.id = json.getInt(TAG_ID);
