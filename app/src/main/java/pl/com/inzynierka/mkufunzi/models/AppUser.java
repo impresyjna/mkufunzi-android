@@ -14,6 +14,7 @@ public class AppUser {
     private static AppUser ourInstance = new AppUser();
     private ConnectThread connectThread;
     private Training training;
+    private ActiveExcercise activeExcercise;
 
     public static AppUser getInstance() {
         return ourInstance;
@@ -68,5 +69,13 @@ public class AppUser {
 
     public void setTraining(Training training) {
         this.training = training;
+    }
+
+    public ActiveExcercise getActiveExcercise() {
+        return activeExcercise;
+    }
+
+    public void setActiveExcercise(ActiveExcercise activeExcercise) {
+        this.activeExcercise = activeExcercise;
     }
 }
