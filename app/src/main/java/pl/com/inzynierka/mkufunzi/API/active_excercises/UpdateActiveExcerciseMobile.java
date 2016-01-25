@@ -44,6 +44,7 @@ public class UpdateActiveExcerciseMobile extends AsyncTask<String, String, JSONO
             params.put("puls", Integer.toString(appUser.getActiveExcercise().pulse));
             params.put("excercise_type_id", Integer.toString(appUser.getActiveExcercise().excerciseTypeId));
             params.put("training_id", Integer.toString(appUser.getActiveExcercise().trainingId));
+            params.put("time", appUser.getActiveExcercise().time);
 
             Log.e("request", "starting");
 
