@@ -42,7 +42,7 @@ public class CreateActiveExcerciseMobile extends AsyncTask<String, String, JSONO
 
     /**
      * Method called to make connection with server
-     * @param args args[0] - protege_id, args[1] - training_id
+     * @param args args[0] - protege_id, args[1] - training_id, args[2] - excercise_type_id
      * @return json with all information about new active excercise if success, failure message otherwise
      */
     @Override
@@ -52,6 +52,7 @@ public class CreateActiveExcerciseMobile extends AsyncTask<String, String, JSONO
             HashMap<String, String> params = new HashMap<>();
             params.put("protege_id",args[0]);
             params.put("training_id", args[1]);
+            params.put("excercise_type_id", args[2]);
 
             Log.d("request", "starting");
 
@@ -78,7 +79,10 @@ public class CreateActiveExcerciseMobile extends AsyncTask<String, String, JSONO
 
         try {
             if (json.getString("status").equals("success")) {
-                appUser.setActiveExcercise(new ActiveExcercise(json.getJSONObject("active_excercise")));
+                ActiveExcercise tempActiveExcercise = new ActiveExcercise(json.getJSONObject("active_excercise"));
+                appUser.getActiveExcercise().trainingId = tempActiveExcercise.trainingId;
+                appUser.getActiveExcercise().id = tempActiveExcercise.id;
+                appUser.getActiveExcercise().protegeId = tempActiveExcercise.protegeId;
             } else {
                 Toast.makeText(activity, "Trening odbędzie się bez zapisu w bazie", Toast.LENGTH_SHORT).show();
 
