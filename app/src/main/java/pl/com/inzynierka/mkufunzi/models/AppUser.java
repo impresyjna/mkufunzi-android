@@ -14,7 +14,7 @@ public class AppUser {
     private static AppUser ourInstance = new AppUser();
     private ConnectThread connectThread;
     private Training training;
-    private ActiveExcercise activeExcercise;
+    private ActiveExcercise activeExcercise = new ActiveExcercise();
 
     public static AppUser getInstance() {
         return ourInstance;
