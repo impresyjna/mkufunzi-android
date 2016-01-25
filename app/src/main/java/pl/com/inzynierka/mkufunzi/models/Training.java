@@ -51,6 +51,7 @@ public class Training {
      * @param json - data in json from server
      */
     public Training(JSONObject json){
+        super();
         try {
             this.id = json.getInt(TAG_ID);
         } catch (JSONException e) {
