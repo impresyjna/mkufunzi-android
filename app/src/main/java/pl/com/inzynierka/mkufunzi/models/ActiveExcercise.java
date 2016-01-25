@@ -29,6 +29,9 @@ public class ActiveExcercise {
     /** Field with protegeId */
     @Column(name = "protege_id")
     public int protegeId;
+    /** Field with pulse */
+    @Column(name = "pulse")
+    public int pulse;
 
     /** Tag with active excercise id on server */
     private static final String TAG_ID = "id";
@@ -42,6 +45,8 @@ public class ActiveExcercise {
     private static final String TAG_TIME = "time";
     /** Tag with protege id on server */
     private static final String TAG_PROTEGE_ID = "protege_id";
+    /** Tag with pulse on server */
+    private static final String TAG_PULSE = "puls";
 
     /**
      * No parameters constructor
@@ -83,6 +88,11 @@ public class ActiveExcercise {
         }
         try {
             this.protegeId = json.getInt(TAG_PROTEGE_ID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.pulse = json.getInt(TAG_PULSE);
         } catch (JSONException e) {
             e.printStackTrace();
         }
