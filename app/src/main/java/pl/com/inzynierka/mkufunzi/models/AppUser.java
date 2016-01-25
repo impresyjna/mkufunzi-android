@@ -13,6 +13,7 @@ public class AppUser {
     private WHBMI whbmi;
     private static AppUser ourInstance = new AppUser();
     private ConnectThread connectThread;
+    private Training training;
 
     public static AppUser getInstance() {
         return ourInstance;
@@ -59,5 +60,13 @@ public class AppUser {
 
     public void setConnectThread(ConnectThread connectThread) {
         this.connectThread = connectThread;
+    }
+
+    public Training getTraining() {
+        return training;
+    }
+
+    public void setTraining(Training training) {
+        this.training = training;
     }
 }

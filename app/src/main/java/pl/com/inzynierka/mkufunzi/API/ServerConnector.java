@@ -18,6 +18,10 @@ public class ServerConnector {
     private String GET_BLOOD_TYPES = HOST_IP + "/get_blood_types_mobile";
     private String GET_EYE_COLORS = HOST_IP + "/get_eye_colors_mobile";
     private String POST_UPDATE_PROTEGE = HOST_IP + "/update_from_mobile";
+    private String CREATE_TRAINING_MOBILE = HOST_IP + "/create_training_mobile";
+    private String UPDATE_TRAINING_MOBILE = HOST_IP + "/update_training_mobile";
+    private String CREATE_ACTIVE_EXCERCISE_MOBILE = HOST_IP + "/create_active_excercise_mobile";
+    private String UPDATE_ACTIVE_EXCERCISE_MOBILE = HOST_IP + "/update_active_excercise_mobile";
 
     public ServerConnector() {
 
@@ -72,5 +76,21 @@ public class ServerConnector {
 
     public String getPOST_UPDATE_PROTEGE() {
         return POST_UPDATE_PROTEGE;
+    }
+
+    public String getCREATE_TRAINING_MOBILE() {
+        return CREATE_TRAINING_MOBILE;
+    }
+
+    public String getUPDATE_TRAINING_MOBILE() {
+        return UPDATE_TRAINING_MOBILE;
+    }
+
+    public String getCREATE_ACTIVE_EXCERCISE_MOBILE() {
+        return CREATE_ACTIVE_EXCERCISE_MOBILE;
+    }
+
+    public String getUPDATE_ACTIVE_EXCERCISE_MOBILE() {
+        return UPDATE_ACTIVE_EXCERCISE_MOBILE;
     }
 }
