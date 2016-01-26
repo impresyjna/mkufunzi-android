@@ -1,5 +1,6 @@
 package pl.com.inzynierka.mkufunzi.models;
 
+import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
@@ -10,7 +11,7 @@ import org.json.JSONObject;
  * Class describing Training model compatible with model on server
  */
 @Table(name = "Trainings")
-public class Training {
+public class Training extends Model{
     /** Field with user id from server */
     @Column(name = "ref_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     public int id;
