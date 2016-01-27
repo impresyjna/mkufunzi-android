@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -15,13 +16,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import pl.com.inzynierka.mkufunzi.API.measurements.GetMeasurementsMobile;
+import pl.com.inzynierka.mkufunzi.API.messages.MyMessagesIndexMobile;
 import pl.com.inzynierka.mkufunzi.R;
+import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 public class MyMessages extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
+    private AppUser appUser = AppUser.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,27 @@ public class MyMessages extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationAndOptionsController.initCartSubMenuInDrawer(navigationView, this);
 
+        showMessagesFromServer();
+        initNavUserInformationFields();
+    }
+
+    /**
+     * Method which is responsible for init the RecyclerView for measurements and call the method to connect with server
+     * to receive measurements
+     */
+    private void showMessagesFromServer() {
+        // Lookup the recyclerview in activity layout
+        RecyclerView rvMeasures = (RecyclerView) findViewById(R.id.rvMessages);
+        MyMessagesIndexMobile myMessagesIndexMobile = new MyMessagesIndexMobile();
+        myMessagesIndexMobile.setActivity(this);
+        myMessagesIndexMobile.setRvMeasures(rvMeasures);
+        myMessagesIndexMobile.execute();
+    }
+
+    /**
+     * Method used to init information on left side menu
+     */
+    private void initNavUserInformationFields() {
         nameAndSurnameText = (TextView) findViewById(R.id.name_and_surname_text);
         loginText = (TextView) findViewById(R.id.login_text);
         emailText = (TextView) findViewById(R.id.email_text);
@@ -73,7 +99,7 @@ public class MyMessages extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        navigationAndOptionsController.reactOnOptionItemSelected(id,this);
+        navigationAndOptionsController.reactOnOptionItemSelected(id, this);
 
         return super.onOptionsItemSelected(item);
     }
@@ -89,5 +115,9 @@ public class MyMessages extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void sendMessageViewOpen(View view){
+        navigationAndOptionsController.openIntent(this,SendMessage.class);
     }
 }
