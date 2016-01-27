@@ -22,6 +22,9 @@ public class ServerConnector {
     private String UPDATE_TRAINING_MOBILE = HOST_IP + "/update_training_mobile";
     private String CREATE_ACTIVE_EXCERCISE_MOBILE = HOST_IP + "/create_active_excercise_mobile";
     private String UPDATE_ACTIVE_EXCERCISE_MOBILE = HOST_IP + "/update_active_excercise_mobile";
+    private String END_ACTIVE_EXCERCISE_MOBILE = HOST_IP + "/end_active_excercise_mobile";
+    private String MY_MESSAGES_INDEX_MOBILE = HOST_IP + "/my_messages_index_mobile";
+    private String CREATE_MESSAGE_MOBILE = HOST_IP + "/create_message_mobile";
 
     public ServerConnector() {
 
@@ -92,5 +95,17 @@ public class ServerConnector {
 
     public String getUPDATE_ACTIVE_EXCERCISE_MOBILE() {
         return UPDATE_ACTIVE_EXCERCISE_MOBILE;
+    }
+
+    public String getEND_ACTIVE_EXCERCISE_MOBILE() {
+        return END_ACTIVE_EXCERCISE_MOBILE;
+    }
+
+    public String getCREATE_MESSAGE_MOBILE() {
+        return CREATE_MESSAGE_MOBILE;
+    }
+
+    public String getMY_MESSAGES_INDEX_MOBILE() {
+        return MY_MESSAGES_INDEX_MOBILE;
     }
 }
