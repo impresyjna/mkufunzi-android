@@ -32,9 +32,9 @@
     </style>
 
     <style name="MessagesThemes" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#00BCD4</item>
-        <item name="colorPrimaryDark">#0097A7</item>
-        <item name="colorAccent">#00BCD4</item>
+        <item name="colorPrimary">#03A9F4</item>
+        <item name="colorPrimaryDark">#0288D1</item>
+        <item name="colorAccent">#03A9F4</item>
     </style>
 
     <style name="SettingsThemes" parent="Theme.AppCompat.Light.NoActionBar">
