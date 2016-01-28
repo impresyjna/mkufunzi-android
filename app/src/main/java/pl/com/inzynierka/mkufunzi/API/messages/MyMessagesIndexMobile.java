@@ -17,6 +17,7 @@ import pl.com.inzynierka.mkufunzi.adapters.MessageAdapter;
 import pl.com.inzynierka.mkufunzi.controllers.models_controllers.MessagesController;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 import pl.com.inzynierka.mkufunzi.models.Message;
+import pl.com.inzynierka.mkufunzi.models.Trainer;
 
 /**
  * Created by impresyjna on 27.01.16.
@@ -80,8 +81,9 @@ public class MyMessagesIndexMobile extends AsyncTask<String, String, JSONObject>
         try {
             if (json.getString("status").equals("success")) {
                 List<Message> messages = new MessagesController().getArrayFromJSON(json);
+                Trainer trainer = new Trainer(json.getJSONObject("trainer"));
                 // Create adapter passing in the sample user data
-                MessageAdapter adapter = new MessageAdapter(messages);
+                MessageAdapter adapter = new MessageAdapter(messages,trainer);
                 // Attach the adapter to the recyclerview to populate items
                 rvMessages.setAdapter(adapter);
                 // Set layout manager to position the items
