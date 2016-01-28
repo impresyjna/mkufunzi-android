@@ -1,9 +1,7 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,8 +11,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import pl.com.inzynierka.mkufunzi.API.messages.CreateMessageMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
 public class SendMessage extends AppCompatActivity
@@ -22,13 +22,14 @@ public class SendMessage extends AppCompatActivity
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
+    private EditText messageContentInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_message);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Wyślij wiadomość");
+        toolbar.setTitle("Wyślij wiadomość do trenera");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -45,6 +46,8 @@ public class SendMessage extends AppCompatActivity
         loginText = (TextView) findViewById(R.id.login_text);
         emailText = (TextView) findViewById(R.id.email_text);
         navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
+
+        messageContentInput = (EditText) findViewById(R.id.message_content_input);
     }
 
 
@@ -73,7 +76,7 @@ public class SendMessage extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        navigationAndOptionsController.reactOnOptionItemSelected(id,this);
+        navigationAndOptionsController.reactOnOptionItemSelected(id, this);
 
         return super.onOptionsItemSelected(item);
     }
@@ -89,5 +92,12 @@ public class SendMessage extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void sendMessage(View view){
+        String content = messageContentInput.getText().toString();
+        CreateMessageMobile createMessageMobile = new CreateMessageMobile();
+        createMessageMobile.setActivity(this);
+        createMessageMobile.execute(content); 
     }
 }
