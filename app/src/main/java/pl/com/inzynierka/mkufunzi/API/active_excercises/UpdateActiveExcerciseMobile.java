@@ -2,17 +2,13 @@ package pl.com.inzynierka.mkufunzi.API.active_excercises;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.HashMap;
 
 import pl.com.inzynierka.mkufunzi.API.ServerConnector;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
-import pl.com.inzynierka.mkufunzi.models.Training;
 
 /**
  * Created by impresyjna on 25.01.16.
