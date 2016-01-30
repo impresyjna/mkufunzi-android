@@ -1,15 +1,23 @@
 package pl.com.inzynierka.mkufunzi.models;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * Created by impresyjna on 29.01.16.
  */
-public class ExcerciseType {
+@Table(name="excercise_types")
+public class ExcerciseType extends Model{
 
+    @Column(name = "ref_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     public int id;
+    @Column(name = "name")
     public String name;
+    @Column(name = "formula")
     public String formula;
 
     private static final String TAG_ID = "id";
@@ -17,10 +25,11 @@ public class ExcerciseType {
     private static final String TAG_FORMULA = "formula";
 
     public ExcerciseType(){
-
+        super();
     }
 
     public ExcerciseType(JSONObject json){
+        super(); 
         try {
             this.id = json.getInt(TAG_ID);
         } catch (JSONException e) {
