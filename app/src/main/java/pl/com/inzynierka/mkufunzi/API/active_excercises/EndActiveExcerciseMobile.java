@@ -1,8 +1,10 @@
 package pl.com.inzynierka.mkufunzi.API.active_excercises;
 
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -16,19 +18,18 @@ import pl.com.inzynierka.mkufunzi.models.AppUser;
 public class EndActiveExcerciseMobile extends AsyncTask<String, String, JSONObject> {
 
     private ServerConnector serverConnector = ServerConnector.getInstance();
-
+    private AppCompatActivity activity;
     private AppUser appUser = AppUser.getInstance();
 
+    public void setActivity(AppCompatActivity activity) {
+        this.activity = activity;
+    }
 
     @Override
     protected void onPreExecute() {
     }
 
-    /**
-     * Method called to make connection with server to update active excercise
-     * @param args - all params from appUser.getActiveExcercise
-     * @return json
-     */
+
     @Override
     protected JSONObject doInBackground(String... args) {
         try {
@@ -54,8 +55,16 @@ public class EndActiveExcerciseMobile extends AsyncTask<String, String, JSONObje
     }
 
     protected void onPostExecute(JSONObject json) {
-        //TODO: Write here implementation of new excercise
-
+        try {
+            if (json.getString("status").equals("success")) {
+                CreateActiveExcerciseMobile createActiveExcerciseMobile = new CreateActiveExcerciseMobile();
+                createActiveExcerciseMobile.setActivity(activity);
+                createActiveExcerciseMobile.execute(Integer.toString(appUser.getProtege().id), Integer.toString(appUser.getTraining().id), Integer.toString(appUser.getActiveExcercise().excerciseTypeId));
+            } else {
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
 

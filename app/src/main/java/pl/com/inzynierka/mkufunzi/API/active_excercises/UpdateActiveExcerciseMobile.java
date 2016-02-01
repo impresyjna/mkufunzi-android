@@ -35,7 +35,7 @@ public class UpdateActiveExcerciseMobile extends AsyncTask<String, String, JSONO
 
             HashMap<String, String> params = new HashMap<>();
             params.put("id", Integer.toString(appUser.getActiveExcercise().id));
-            params.put("protege_id",Integer.toString(appUser.getActiveExcercise().excerciseTypeId));
+            params.put("protege_id",Integer.toString(appUser.getActiveExcercise().protegeId));
             params.put("how_many", Integer.toString(appUser.getActiveExcercise().howMany));
             params.put("puls", Integer.toString(appUser.getActiveExcercise().pulse));
             params.put("excercise_type_id", Integer.toString(appUser.getActiveExcercise().excerciseTypeId));

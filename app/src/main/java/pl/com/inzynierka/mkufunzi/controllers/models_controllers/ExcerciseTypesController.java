@@ -1,5 +1,7 @@
 package pl.com.inzynierka.mkufunzi.controllers.models_controllers;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +22,9 @@ public class ExcerciseTypesController {
         try {
             jsonArray = jsonObject.getJSONArray("excercise_types");
             for (int i = 0; i < jsonArray.length(); i++) {
-                excerciseTypes.add(new ExcerciseType(jsonArray.getJSONObject(i)));
+                ExcerciseType excerciseType = new ExcerciseType(jsonArray.getJSONObject(i));
+                excerciseTypes.add(excerciseType);
+                excerciseType.save();
             }
         } catch (JSONException e) {
             e.printStackTrace();

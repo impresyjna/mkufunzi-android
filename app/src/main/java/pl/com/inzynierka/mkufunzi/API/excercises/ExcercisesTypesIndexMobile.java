@@ -7,6 +7,7 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,14 +23,10 @@ public class ExcercisesTypesIndexMobile extends AsyncTask<String, String, JSONOb
     private ServerConnector serverConnector = ServerConnector.getInstance();
     private ProgressDialog pDialog;
     private AppCompatActivity activity;
-    private List<ExcerciseType> excerciseTypes;
+    private List<ExcerciseType> excerciseTypes = new ArrayList<>();
 
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
-    }
-
-    public void setExcerciseTypes(List<ExcerciseType> excerciseTypes) {
-        this.excerciseTypes = excerciseTypes;
     }
 
     @Override
@@ -73,7 +70,6 @@ public class ExcercisesTypesIndexMobile extends AsyncTask<String, String, JSONOb
         try {
             if (json.has("excercise_types")) {
                 excerciseTypes = new ExcerciseTypesController().getArrayFromJSON(json);
-                Log.e("ExcerciseTypes", excerciseTypes.get(0).name);
             } else {
 
             }
