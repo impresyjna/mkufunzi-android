@@ -82,10 +82,12 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                // Create a new device item
-                DeviceItem newDevice = new DeviceItem(device.getName(), device.getAddress(), "false");
-                // Add it to our adapter
-                mAdapter.add(newDevice);
+                if (device.getName().contains("Mkufunzi")) {
+                    // Create a new device item
+                    DeviceItem newDevice = new DeviceItem(device.getName(), device.getAddress(), "false");
+                    // Add it to our adapter
+                    mAdapter.add(newDevice);
+                }
             }
         }
     };
@@ -105,15 +107,14 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
         Log.d("DEVICELIST", "Super called for DeviceListFragment onCreate\n");
         deviceItemList = new ArrayList<DeviceItem>();
 
-        Log.d("DEVICELIST", "Super called for DeviceListFragment onCreate\n");
-        deviceItemList = new ArrayList<DeviceItem>();
-
         Set<BluetoothDevice> pairedDevices = bTAdapter.getBondedDevices();
 
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
-                DeviceItem newDevice = new DeviceItem(device.getName(), device.getAddress(), "false");
-                deviceItemList.add(newDevice);
+                if (device.getName().contains("Mkufunzi")) {
+                    DeviceItem newDevice = new DeviceItem(device.getName(), device.getAddress(), "false");
+                    deviceItemList.add(newDevice);
+                }
             }
         }
 
@@ -122,11 +123,7 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
             deviceItemList.add(new DeviceItem("Brak urządzeń", "", "false"));
         }
 
-        Log.d("DEVICELIST", "DeviceList populated\n");
-
         mAdapter = new DeviceListAdapter(getActivity(), deviceItemList, bTAdapter);
-
-        Log.d("DEVICELIST", "Adapter created\n");
     }
 
     @Override
