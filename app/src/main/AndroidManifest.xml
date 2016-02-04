@@ -91,6 +91,10 @@
         <activity
             android:name=".controllers.views_controllers.SingleTrainingSummary"
             android:label="@string/title_activity_single_training_summary"
+            android:theme="@style/TrainingThemes" />
+        <activity
+            android:name=".controllers.views_controllers.TrainingHistory"
+            android:label="@string/title_activity_training_history"
             android:theme="@style/TrainingThemes"></activity>
     </application>
 

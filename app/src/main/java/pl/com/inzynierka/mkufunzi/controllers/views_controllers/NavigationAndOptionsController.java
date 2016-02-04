@@ -58,7 +58,7 @@ public class NavigationAndOptionsController {
         if (id == R.id.nav_start_training) {
             openIntent(activity, BluetoothConnection.class);
         } else if (id == R.id.nav_trainings_history) {
-            Toast.makeText(activity, "Historia treningów", Toast.LENGTH_SHORT).show();
+            openIntent(activity, TrainingHistory.class);
         } else if (id == R.id.nav_add_medicine) {
             openIntent(activity, AddMedicine.class);
         } else if (id == R.id.nav_my_medicines) {
