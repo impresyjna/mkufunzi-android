@@ -87,6 +87,10 @@
         <activity
             android:name=".controllers.views_controllers.TrainingMonitor"
             android:label="@string/title_activity_training_monitor"
+            android:theme="@style/TrainingThemes" />
+        <activity
+            android:name=".controllers.views_controllers.SingleTrainingSummary"
+            android:label="@string/title_activity_single_training_summary"
             android:theme="@style/TrainingThemes"></activity>
     </application>
 
