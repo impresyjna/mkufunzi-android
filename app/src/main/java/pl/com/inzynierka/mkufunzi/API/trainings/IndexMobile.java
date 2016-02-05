@@ -19,6 +19,8 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.API.ServerConnector;
 import pl.com.inzynierka.mkufunzi.adapters.TrainingHistoryListAdapter;
 import pl.com.inzynierka.mkufunzi.controllers.models_controllers.TrainingsController;
+import pl.com.inzynierka.mkufunzi.controllers.views_controllers.NavigationAndOptionsController;
+import pl.com.inzynierka.mkufunzi.controllers.views_controllers.SingleTrainingSummary;
 import pl.com.inzynierka.mkufunzi.models.Training;
 
 /**
@@ -33,6 +35,7 @@ public class IndexMobile extends AsyncTask<String, String, JSONObject> {
     private List<String> listDataHeader;
     private HashMap<String, List<Training>> listDataChild;
     private TrainingHistoryListAdapter listAdapter;
+    private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
 
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
@@ -99,12 +102,8 @@ public class IndexMobile extends AsyncTask<String, String, JSONObject> {
                     @Override
                     public boolean onChildClick(ExpandableListView parent, View v,
                                                 int groupPosition, int childPosition, long id) {
-                        Toast.makeText(
-                                activity,
-                                Integer.toString(listDataChild.get(
-                                        listDataHeader.get(groupPosition)).get(
-                                        childPosition).id), Toast.LENGTH_SHORT)
-                                .show();
+                        Training training = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+                        navigationAndOptionsController.openIntentWithTrainingParam(activity, SingleTrainingSummary.class, Integer.toString(training.id));
                         return false;
                     }
                 });

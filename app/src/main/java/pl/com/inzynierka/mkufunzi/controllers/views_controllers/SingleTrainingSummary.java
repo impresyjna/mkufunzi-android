@@ -31,6 +31,9 @@ public class SingleTrainingSummary extends AppCompatActivity
         toolbar.setTitle("Podsumowanie treningu");
         setSupportActionBar(toolbar);
 
+        Bundle bundle = getIntent().getExtras();
+        int id = Integer.parseInt(bundle.getString("id").toLowerCase());
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

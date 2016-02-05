@@ -124,4 +124,13 @@ public class NavigationAndOptionsController {
         activity.startActivity(intent);
         activity.finish();
     }
+
+    public void openIntentWithTrainingParam(Activity activity, Class windowClass, String id) {
+        Intent intent = new Intent(activity, windowClass);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", id);
+        intent.putExtras(bundle);
+        activity.startActivity(intent);
+        activity.finish();
+    }
 }
