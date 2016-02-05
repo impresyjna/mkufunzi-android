@@ -28,6 +28,7 @@ public class ServerConnector {
     private String EXERCISES_TYPES_INDEX_MOBILE = HOST_IP + "/excercise_types_index_mobile";
     private String END_TRAINING_MOBILE = HOST_IP + "/end_training_mobile";
     private String TRAININGS_INDEX_MOBILE = HOST_IP + "/trainings_index_mobile";
+    private String TRAINING_SHOW_MOBILE = HOST_IP + "/training_show_mobile";
 
     public ServerConnector() {
 
@@ -122,5 +123,9 @@ public class ServerConnector {
 
     public String getTRAININGS_INDEX_MOBILE() {
         return TRAININGS_INDEX_MOBILE;
+    }
+
+    public String getTRAINING_SHOW_MOBILE() {
+        return TRAINING_SHOW_MOBILE;
     }
 }
