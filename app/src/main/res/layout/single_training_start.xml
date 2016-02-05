@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent" android:layout_width="match_parent"
+    android:layout_margin="10dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:layout_margin="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:id="@+id/linearLayout1">
+
+        <TextView
+            android:id="@+id/single_training_start"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#727272"
+            android:gravity="center|center_horizontal"
+            android:textSize="@dimen/abc_text_size_title_material"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignTop="@+id/linearLayout1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="-10dp"
+        android:background="#212121"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="Początek treningu"
+        android:textColor="@android:color/white" />
+</RelativeLayout>
