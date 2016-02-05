@@ -1,9 +1,7 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,15 +11,33 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.activeandroid.query.Select;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import pl.com.inzynierka.mkufunzi.API.trainings.IndexMobile;
 import pl.com.inzynierka.mkufunzi.R;
+import pl.com.inzynierka.mkufunzi.adapters.TrainingHistoryListAdapter;
+import pl.com.inzynierka.mkufunzi.models.AppUser;
+import pl.com.inzynierka.mkufunzi.models.Training;
 
 public class TrainingHistory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
+    private AppUser appUser = AppUser.getInstance();
+
+    private ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +61,16 @@ public class TrainingHistory extends AppCompatActivity
         loginText = (TextView) findViewById(R.id.login_text);
         emailText = (TextView) findViewById(R.id.email_text);
         navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
-    }
 
+        // get the listview
+        expListView = (ExpandableListView) findViewById(R.id.lvExp);
+
+        IndexMobile indexMobile = new IndexMobile();
+        indexMobile.setActivity(this);
+        indexMobile.setExpListView(expListView);
+        indexMobile.execute(Integer.toString(appUser.getProtege().id));
+        
+    }
 
 
     @Override
