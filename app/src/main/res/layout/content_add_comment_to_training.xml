@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="pl.com.inzynierka.mkufunzi.controllers.views_controllers.AddCommentToTraining"
+    tools:showIn="@layout/activity_add_comment_to_training">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="200dp"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:layout_margin="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:id="@+id/linearLayout1">
+
+
+        <EditText
+            android:id="@+id/comment_input"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:textColor="#727272"
+            android:textSize="@dimen/abc_text_size_title_material"
+            android:inputType="textCapSentences|textMultiLine"
+            android:gravity="top"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignTop="@+id/linearLayout1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="-10dp"
+        android:background="#212121"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="Komentarz"
+        android:textSize="16dp"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:text="Zapisz"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/linearLayout1"
+        android:layout_marginTop="10dp"
+        android:onClick="saveCommentOnServer"/>
+
+</RelativeLayout>

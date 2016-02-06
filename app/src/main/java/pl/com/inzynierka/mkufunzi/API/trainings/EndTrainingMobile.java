@@ -12,6 +12,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import pl.com.inzynierka.mkufunzi.API.ServerConnector;
+import pl.com.inzynierka.mkufunzi.controllers.views_controllers.AddCommentToTraining;
+import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.NavigationAndOptionsController;
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.SingleTrainingSummary;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
@@ -80,8 +82,7 @@ public class EndTrainingMobile extends AsyncTask<String, String, JSONObject> {
         try {
             if (json.getString("status").equals("success")) {
                 Training training = new Training(json.getJSONObject("training"));
-                training.save();
-                navigationAndOptionsController.openIntent(activity, SingleTrainingSummary.class);
+                navigationAndOptionsController.openIntentWithTrainingParam(activity, AddCommentToTraining.class, Integer.toString(training.id));
             } else {
 
             }

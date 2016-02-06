@@ -36,4 +36,5 @@
     <string name="startButtonLabel">Start</string>
     <string name="title_activity_single_training_summary">SingleTrainingSummary</string>
     <string name="title_activity_training_history">TrainingHistory</string>
+    <string name="title_activity_add_comment_to_training">AddCommentToTraining</string>
 </resources>
