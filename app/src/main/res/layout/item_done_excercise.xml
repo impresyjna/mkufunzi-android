@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent" android:layout_width="match_parent"
+    android:layout_margin="10dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:layout_margin="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:id="@+id/linearLayout1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#727272"
+                android:gravity="left"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="Nazwa ćwiczenia: "/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/done_excercise_name"
+                android:textSize="14dp"
+                android:gravity="right"
+                android:textColor="#727272"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#727272"
+                android:gravity="left"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="Ilość powtórzeń: "/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/done_excercise_how_many"
+                android:textSize="14dp"
+                android:gravity="right"
+                android:textColor="#727272"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#727272"
+                android:gravity="left"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="Puls: "/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/done_excercise_pulse"
+                android:textSize="14dp"
+                android:gravity="right"
+                android:textColor="#727272"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#727272"
+                android:gravity="left"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="Czas: "/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/done_excercise_time"
+                android:textSize="14dp"
+                android:gravity="right"
+                android:textColor="#727272"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/done_excercise_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignTop="@+id/linearLayout1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="-10dp"
+        android:background="#212121"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textColor="@android:color/white" />
+</RelativeLayout>

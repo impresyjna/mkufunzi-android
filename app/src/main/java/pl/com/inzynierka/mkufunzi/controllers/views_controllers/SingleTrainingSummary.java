@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import pl.com.inzynierka.mkufunzi.API.trainings.TrainingShowMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
 public class SingleTrainingSummary extends AppCompatActivity
@@ -22,6 +24,8 @@ public class SingleTrainingSummary extends AppCompatActivity
 
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
     private TextView nameAndSurnameText, loginText, emailText;
+
+    private TextView singleTrainingId, singleTrainingStart, singleTrainingStop, singleTrainingComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class SingleTrainingSummary extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         Bundle bundle = getIntent().getExtras();
-        int id = Integer.parseInt(bundle.getString("id").toLowerCase());
+        String id = bundle.getString("id").toLowerCase();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -48,6 +52,15 @@ public class SingleTrainingSummary extends AppCompatActivity
         loginText = (TextView) findViewById(R.id.login_text);
         emailText = (TextView) findViewById(R.id.email_text);
         navigationAndOptionsController.initNavHeader(nameAndSurnameText, loginText, emailText);
+
+        singleTrainingId = (TextView) findViewById(R.id.single_training_id);
+        singleTrainingStart = (TextView) findViewById(R.id.single_training_start);
+        singleTrainingStop = (TextView) findViewById(R.id.single_training_stop);
+        singleTrainingComment = (TextView) findViewById(R.id.single_training_comment);
+        RecyclerView rvDoneExcercises = (RecyclerView) findViewById(R.id.rv_done_excercises);
+
+        TrainingShowMobile trainingShowMobile = new TrainingShowMobile(this, singleTrainingId, singleTrainingStart, singleTrainingStop, singleTrainingComment, rvDoneExcercises);
+        trainingShowMobile.execute(id);
     }
 
 
