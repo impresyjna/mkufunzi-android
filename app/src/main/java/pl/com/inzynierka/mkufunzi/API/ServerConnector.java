@@ -19,7 +19,6 @@ public class ServerConnector {
     private String GET_EYE_COLORS = HOST_IP + "/get_eye_colors_mobile";
     private String POST_UPDATE_PROTEGE = HOST_IP + "/update_from_mobile";
     private String CREATE_TRAINING_MOBILE = HOST_IP + "/create_training_mobile";
-    private String UPDATE_TRAINING_MOBILE = HOST_IP + "/update_training_mobile";
     private String CREATE_ACTIVE_EXCERCISE_MOBILE = HOST_IP + "/create_active_excercise_mobile";
     private String UPDATE_ACTIVE_EXCERCISE_MOBILE = HOST_IP + "/update_active_excercise_mobile";
     private String END_ACTIVE_EXCERCISE_MOBILE = HOST_IP + "/end_active_excercise_mobile";
@@ -29,6 +28,7 @@ public class ServerConnector {
     private String END_TRAINING_MOBILE = HOST_IP + "/end_training_mobile";
     private String TRAININGS_INDEX_MOBILE = HOST_IP + "/trainings_index_mobile";
     private String TRAINING_SHOW_MOBILE = HOST_IP + "/training_show_mobile";
+    private String ADD_COMMENT_TO_TRAINING_MOBILE = HOST_IP + "/add_comment_to_training_mobile";
 
     public ServerConnector() {
 
@@ -89,10 +89,6 @@ public class ServerConnector {
         return CREATE_TRAINING_MOBILE;
     }
 
-    public String getUPDATE_TRAINING_MOBILE() {
-        return UPDATE_TRAINING_MOBILE;
-    }
-
     public String getCREATE_ACTIVE_EXCERCISE_MOBILE() {
         return CREATE_ACTIVE_EXCERCISE_MOBILE;
     }
@@ -127,5 +123,9 @@ public class ServerConnector {
 
     public String getTRAINING_SHOW_MOBILE() {
         return TRAINING_SHOW_MOBILE;
+    }
+
+    public String getADD_COMMENT_TO_TRAINING_MOBILE() {
+        return ADD_COMMENT_TO_TRAINING_MOBILE;
     }
 }
