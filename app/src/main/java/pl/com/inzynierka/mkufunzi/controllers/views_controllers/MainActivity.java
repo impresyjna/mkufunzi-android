@@ -104,7 +104,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Method used to connect view with controller
+     * Method used to connect view with controller. It has to fill:
+     * weight
+     * height
+     * BMI
+     * protege blood type
+     * protege eye color
+     * protege gender
+     * last training date
+     * last message from trainer
      */
     private void initInformationOnActivity() {
         actualWeightText = (TextView) findViewById(R.id.actual_weight_text);

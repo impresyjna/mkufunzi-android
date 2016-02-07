@@ -10,36 +10,36 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.activeandroid.query.Select;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import pl.com.inzynierka.mkufunzi.API.trainings.IndexMobile;
 import pl.com.inzynierka.mkufunzi.R;
-import pl.com.inzynierka.mkufunzi.adapters.TrainingHistoryListAdapter;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
-import pl.com.inzynierka.mkufunzi.models.Training;
 
+/** Activity with history of trainings for the user */
 public class TrainingHistory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Class used to control left side menu
+     */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    /**
+     * Fields describing user in left side menu
+     */
     private TextView nameAndSurnameText, loginText, emailText;
+    /**
+     * instance of AppUser with information about user, protege, his card etc.
+     */
     private AppUser appUser = AppUser.getInstance();
-
+    /**
+     * ExpandableListView with data about days with trainings as head of list and trainings in one day as child
+     */
     private ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
 
     @Override
+    /** Here are called the method to fill the ExpandableListView with data from server */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_history);

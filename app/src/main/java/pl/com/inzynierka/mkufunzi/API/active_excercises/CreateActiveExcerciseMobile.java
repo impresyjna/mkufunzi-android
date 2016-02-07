@@ -17,6 +17,7 @@ import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 /**
  * Class used to connect with server and create new ActiveExcercise at the beginning. Extends AsyncTask.
+ * It has to send data to server to create new activeExcercise and after this has to save receive data from server to appUser object
  */
 public class CreateActiveExcerciseMobile extends AsyncTask<String, String, JSONObject> {
 

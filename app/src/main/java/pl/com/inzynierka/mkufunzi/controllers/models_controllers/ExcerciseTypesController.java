@@ -1,7 +1,5 @@
 package pl.com.inzynierka.mkufunzi.controllers.models_controllers;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,10 +10,15 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.models.ExcerciseType;
 
 /**
- * Created by impresyjna on 29.01.16.
+ * Class with methods used to controll ExcerciseType objects in android app
  */
 public class ExcerciseTypesController {
 
+    /**
+     * Method called to generate list of ExcerciseType objects using data from server
+     * @param jsonObject json with data from server
+     * @return ArrayList of ExcerciseType objects
+     */
     public List<ExcerciseType> getArrayFromJSON(JSONObject jsonObject) {
         List<ExcerciseType> excerciseTypes = new ArrayList<>();
         JSONArray jsonArray = new JSONArray();

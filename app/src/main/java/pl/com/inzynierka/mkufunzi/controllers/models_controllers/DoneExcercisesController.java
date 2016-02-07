@@ -11,9 +11,14 @@ import pl.com.inzynierka.mkufunzi.models.DoneExcercise;
 import pl.com.inzynierka.mkufunzi.models.EyeColor;
 
 /**
- * Created by impresyjna on 06.02.16.
+ * Class using to control DoneExcercise objects in android app
  */
 public class DoneExcercisesController {
+    /**
+     * Method called to generate list of DoneExcercise objects using data from server
+     * @param jsonObject json with data from server
+     * @return ArrayList of DoneExcercise objects
+     */
     public List<DoneExcercise> getArrayFromJSON(JSONObject jsonObject) {
         List<DoneExcercise> doneExcercises = new ArrayList<>();
         JSONArray jsonArray = new JSONArray();

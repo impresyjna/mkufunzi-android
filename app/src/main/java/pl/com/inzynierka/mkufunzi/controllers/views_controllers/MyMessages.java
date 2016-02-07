@@ -1,9 +1,7 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,17 +14,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import pl.com.inzynierka.mkufunzi.API.measurements.GetMeasurementsMobile;
 import pl.com.inzynierka.mkufunzi.API.messages.MyMessagesIndexMobile;
 import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 
+/** Activity with messages from server. Messages are from trainer to user and from user to trainer. Looks like sms in android */
 public class MyMessages extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Class used to control left side menu
+     */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    /**
+     * Fields describing user in left side menu
+     */
     private TextView nameAndSurnameText, loginText, emailText;
-    private AppUser appUser = AppUser.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +54,8 @@ public class MyMessages extends AppCompatActivity
     }
 
     /**
-     * Method which is responsible for init the RecyclerView for measurements and call the method to connect with server
-     * to receive measurements
+     * Method which is responsible for init the RecyclerView for messages and call the method to connect with server
+     * to receive messages for user
      */
     private void showMessagesFromServer() {
         // Lookup the recyclerview in activity layout
@@ -117,6 +120,7 @@ public class MyMessages extends AppCompatActivity
         return true;
     }
 
+    /** Method called when user clicks the button to send new message */
     public void sendMessageViewOpen(View view){
         navigationAndOptionsController.openIntent(this,SendMessage.class);
     }

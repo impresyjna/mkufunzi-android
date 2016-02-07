@@ -1,10 +1,14 @@
 pl.com.inzynierka.mkufunzi
 pl.com.inzynierka.mkufunzi.API
+pl.com.inzynierka.mkufunzi.API.active_excercises
 pl.com.inzynierka.mkufunzi.API.blood_types
+pl.com.inzynierka.mkufunzi.API.excercises
 pl.com.inzynierka.mkufunzi.API.eye_colors
 pl.com.inzynierka.mkufunzi.API.measure_types
 pl.com.inzynierka.mkufunzi.API.measurements
+pl.com.inzynierka.mkufunzi.API.messages
 pl.com.inzynierka.mkufunzi.API.proteges
+pl.com.inzynierka.mkufunzi.API.trainings
 pl.com.inzynierka.mkufunzi.API.users
 pl.com.inzynierka.mkufunzi.adapters
 pl.com.inzynierka.mkufunzi.bluetooth

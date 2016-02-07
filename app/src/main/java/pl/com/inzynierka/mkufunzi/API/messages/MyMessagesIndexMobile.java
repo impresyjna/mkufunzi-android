@@ -20,7 +20,8 @@ import pl.com.inzynierka.mkufunzi.models.Message;
 import pl.com.inzynierka.mkufunzi.models.Trainer;
 
 /**
- * Created by impresyjna on 27.01.16.
+ * Class extends AsyncTask to make possible to communicate with server in background task
+ * It has to get all messages from actual user to trainer and from trainer to this user and show them in the activity
  */
 public class MyMessagesIndexMobile extends AsyncTask<String, String, JSONObject> {
 

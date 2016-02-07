@@ -17,11 +17,23 @@ import android.widget.TextView;
 import pl.com.inzynierka.mkufunzi.API.messages.CreateMessageMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
+/**
+ * Activity allowing user to send message to trainer
+ */
 public class SendMessage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Class used to control left side menu
+     */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    /**
+     * Fields describing user in left side menu
+     */
     private TextView nameAndSurnameText, loginText, emailText;
+    /**
+     * Field from view to write the message
+     */
     private EditText messageContentInput;
 
     @Override
@@ -94,6 +106,11 @@ public class SendMessage extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Method called when user clicks send button in activity
+     * It has to call the create message activity to communicate with sever
+     * @param view
+     */
     public void sendMessage(View view){
         String content = messageContentInput.getText().toString();
         CreateMessageMobile createMessageMobile = new CreateMessageMobile();

@@ -17,7 +17,8 @@ import pl.com.inzynierka.mkufunzi.controllers.views_controllers.NavigationAndOpt
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 /**
- * Created by impresyjna on 27.01.16.
+ * Class extends AsyncTask to make possible to communicate with server in background task
+ * It has to send data to server and call the method to save this in database on server
  */
 public class CreateMessageMobile extends AsyncTask<String, String, JSONObject> {
 
@@ -68,6 +69,7 @@ public class CreateMessageMobile extends AsyncTask<String, String, JSONObject> {
         return null;
     }
 
+    /** After correct save open the Activity with messages from server */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {

@@ -10,7 +10,7 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.models.BloodType;
 
 /**
- * Created by impresyjna on 14.01.16.
+ * Class with methods to control BloodType objects in android app
  */
 public class BloodTypesController {
 

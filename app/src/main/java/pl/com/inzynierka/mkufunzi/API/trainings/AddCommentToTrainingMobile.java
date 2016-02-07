@@ -15,9 +15,7 @@ import pl.com.inzynierka.mkufunzi.API.ServerConnector;
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.NavigationAndOptionsController;
 import pl.com.inzynierka.mkufunzi.controllers.views_controllers.SingleTrainingSummary;
 
-/**
- * Created by impresyjna on 07.02.16.
- */
+/** Class extends AsyncTask. It has to communicate with server and send data to save this comment in database */
 public class AddCommentToTrainingMobile extends AsyncTask<String, String, JSONObject> {
 
     private ServerConnector serverConnector = ServerConnector.getInstance();
@@ -40,6 +38,9 @@ public class AddCommentToTrainingMobile extends AsyncTask<String, String, JSONOb
     }
 
     @Override
+    /**
+     * Method communicates with server. args[0] - trainingId, args[1] - comment
+     */
     protected JSONObject doInBackground(String... args) {
         try {
 
@@ -66,6 +67,7 @@ public class AddCommentToTrainingMobile extends AsyncTask<String, String, JSONOb
         return null;
     }
 
+    /** After receive message from server method has to decise. If success it opens new Intent with SingleTraininSummary, if failure shows the Toast message */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {

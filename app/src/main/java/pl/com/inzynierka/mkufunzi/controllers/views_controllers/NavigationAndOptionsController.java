@@ -107,10 +107,10 @@ public class NavigationAndOptionsController {
     }
 
     /**
-     * Activity used to open new Intent
+     * Method used to open new Intent
      * @param activity which activity
      * @param windowClass class of new Intent
-     * @param name extrra field used to open intent with parameter, in this case with name of measure
+     * @param name extra field used to open intent with parameter, in this case with name of measure
      */
     public void openIntentWithParam(Activity activity, Class windowClass, String name) {
         Intent intent = new Intent(activity, windowClass);
@@ -121,6 +121,12 @@ public class NavigationAndOptionsController {
         activity.finish();
     }
 
+    /**
+     * Method used to open new Intent with param(in this case with id of training but can be used with other activities using only id param)
+     * @param activity which activity
+     * @param windowClass class of new Intent
+     * @param id string with id
+     */
     public void openIntentWithTrainingParam(Activity activity, Class windowClass, String id) {
         Intent intent = new Intent(activity, windowClass);
         Bundle bundle = new Bundle();

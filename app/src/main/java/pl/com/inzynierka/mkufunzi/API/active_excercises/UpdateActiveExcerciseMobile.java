@@ -11,7 +11,8 @@ import pl.com.inzynierka.mkufunzi.API.ServerConnector;
 import pl.com.inzynierka.mkufunzi.models.AppUser;
 
 /**
- * Created by impresyjna on 25.01.16.
+ * Class extends AsyncTask to make possible to communicate with server in background task
+ * It has to update activeExcercise record in database while protege is training
  */
 public class UpdateActiveExcerciseMobile extends AsyncTask<String, String, JSONObject> {
 

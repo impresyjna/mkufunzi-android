@@ -17,6 +17,7 @@ import pl.com.inzynierka.mkufunzi.controllers.views_controllers.MainActivity;
 
 /**
  * Class used to get actual weight and actual height from server
+ * Also it has to get last training date and last message from trainer to user
  */
 public class GetMainData extends AsyncTask<String, String, JSONObject> {
 

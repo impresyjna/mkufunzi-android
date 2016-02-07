@@ -12,10 +12,15 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.models.Training;
 
 /**
- * Created by impresyjna on 04.02.16.
+ * Class used to control Training objects in application
  */
 public class TrainingsController {
 
+    /**
+     * Method called to get list of training object using data from server to create this objects
+     * @param jsonObject  json with informations from server
+     * @return ArrayList of training objects
+     */
     public List<Training> getArrayFromJSON(JSONObject jsonObject) {
         List<Training> trainings = new ArrayList<>();
         JSONArray jsonArray = new JSONArray();
@@ -30,7 +35,9 @@ public class TrainingsController {
         return trainings;
     }
 
-
+    /**
+     * Method used to clear all informations from sqlite3 database on device
+     */
     public void clearTrainings() {
         ActiveAndroid.execSQL("delete from trainings");
     }

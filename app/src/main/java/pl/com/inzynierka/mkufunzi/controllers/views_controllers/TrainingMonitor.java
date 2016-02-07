@@ -1,7 +1,5 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
-import android.bluetooth.BluetoothDevice;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -15,12 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -48,23 +41,45 @@ import pl.com.inzynierka.mkufunzi.models.ExcerciseType;
 public class TrainingMonitor extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Class used to control left side menu
+     */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    /**
+     * Fields describing user in left side menu
+     */
     private TextView nameAndSurnameText, loginText, emailText;
+    /**
+     * instance of AppUser with information about user, protege, his card etc.
+     */
     private AppUser appUser = AppUser.getInstance();
+    /**
+     * Field for data on TrainingMonitor to write on
+     */
     private TextView pulseOutput, exerciseOutput, excerciseTitleOutput, excerciseInstruction;
+    /** LinearLayout with all TextViews with params about training. Necessary to hide everything before user starts training */
     private LinearLayout trainingParameters;
+    /** List with ExcerciseTypes from slite3 database */
     private List<ExcerciseType> excerciseTypes = new ArrayList<>();
 
+    /** How many repeats value */
     private int howManyReapets = 0;
+    /** Actual pulse */
     private int pulse = 0;
+    /** Mutex used to block the chance to count more than one repeat */
     private boolean mutex = false;
 
+    /** Field for stoper */
     private TextView timerValue;
+
 
     private long startTime = 0L;
 
+    /** Handler to update stoper field and count how much time is now */
     private Handler timerHandler = new Handler();
+    /** Handler used to update pulse and howManyRepeats and to communicate with BT device */
     private Handler pulseHandler = new Handler();
+    /** Handler used to communicate with server */
     private Handler updateOnServerHandler = new Handler();
 
     long timeInMilliseconds = 0L;
@@ -101,6 +116,7 @@ public class TrainingMonitor extends AppCompatActivity
 
     }
 
+    /** Method with all inits in this activity */
     public void initFieldsInView(){
         nameAndSurnameText = (TextView) findViewById(R.id.name_and_surname_text);
         loginText = (TextView) findViewById(R.id.login_text);
@@ -118,6 +134,7 @@ public class TrainingMonitor extends AppCompatActivity
     }
 
     @Override
+    /** What should be done when user presses the back button */
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -159,6 +176,7 @@ public class TrainingMonitor extends AppCompatActivity
         return true;
     }
 
+    /** Method called when user press the start button in activity. It starts the training or stop it if it is already running */
     public void startTraining(View view) {
         boolean on = ((ToggleButton) view).isChecked();
 
@@ -170,6 +188,8 @@ public class TrainingMonitor extends AppCompatActivity
 
     }
 
+    /** Method called when user presses nextExcerciseButton in activity. It has to change the excercise, stop handler connecting with server for the moment
+     * clear all fields and call the method to connect with server to end activeExcercise and begin new one */
     public void nextExcercise(View view) {
         appUser.getActiveExcercise().excerciseTypeId = excerciseTypes.get(1).id;
 
@@ -183,6 +203,9 @@ public class TrainingMonitor extends AppCompatActivity
         updateOnServerHandler.postDelayed(updateActiveExcerciseOnServerThread, 5000);
     }
 
+    /** At the beginning of training this method is called when user starts the training
+     * It has to create new ActiveExcercise in database and run all handlers to refresh data in activity
+     */
     private void trainingPreparation() {
         trainingParameters.setVisibility(View.VISIBLE);
         appUser.setActiveExcercise(new ActiveExcercise());
@@ -199,6 +222,7 @@ public class TrainingMonitor extends AppCompatActivity
         updateOnServerHandler.postDelayed(updateActiveExcerciseOnServerThread, 5000);
     }
 
+    /** method called to clear all variables and clear all data displayed in activity */
     private void clearAllAndDisplay(String excerciseTitle, String excerciseInstrunction){
         startTime = 0L;
         timeInMilliseconds = 0L;
@@ -213,6 +237,7 @@ public class TrainingMonitor extends AppCompatActivity
         exerciseOutput.setText(Integer.toString(howManyReapets));
     }
 
+    /** Method called to stop the training. It has to call the method to communicate with server and end training. It also has to stop handler */
     private void trainingStop() {
         timeSwapBuff += timeInMilliseconds;
         timerHandler.removeCallbacks(updateTimerThread);
@@ -225,7 +250,7 @@ public class TrainingMonitor extends AppCompatActivity
     }
 
 
-
+    /** Thread used to be a stoper */
     private Runnable updateTimerThread = new Runnable() {
 
         public void run() {
@@ -249,6 +274,7 @@ public class TrainingMonitor extends AppCompatActivity
 
     };
 
+    /** Thread used to communicate with server and update ActiveExcercise in database */
     private Runnable updateActiveExcerciseOnServerThread = new Runnable() {
 
         public void run() {
@@ -260,7 +286,7 @@ public class TrainingMonitor extends AppCompatActivity
 
     };
 
-
+    /** Thread used to communicate with BT device and calculate howManyRepeats and receive pulse value */
     private Runnable updatePulseThread = new Runnable() {
         final ManageConnectThread manageConnectThread = new ManageConnectThread();
 
@@ -305,6 +331,7 @@ public class TrainingMonitor extends AppCompatActivity
 
     };
 
+    /** Method used to count howManyCrouch */
     private void crouchCount(double resultOfAcc, String gyY){
         if (mutex && resultOfAcc < 15000) {
             mutex = false;
@@ -316,6 +343,7 @@ public class TrainingMonitor extends AppCompatActivity
         }
     }
 
+    /** Method uset to count howManySitUp */
     private void sitUpCount(double resultOfAcc, String gyY){
         if (mutex && resultOfAcc < 16000) {
             mutex = false;

@@ -18,7 +18,7 @@ import pl.com.inzynierka.mkufunzi.models.Message;
 import pl.com.inzynierka.mkufunzi.models.Trainer;
 
 /**
- * Created by impresyjna on 27.01.16.
+ * Class with adapter for Message objects to allow to show them in activity
  */
 public class MessageAdapter extends
         RecyclerView.Adapter<MessageAdapter.ViewHolder> {

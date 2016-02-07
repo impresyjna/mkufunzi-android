@@ -24,7 +24,8 @@ import pl.com.inzynierka.mkufunzi.controllers.views_controllers.SingleTrainingSu
 import pl.com.inzynierka.mkufunzi.models.Training;
 
 /**
- * Created by impresyjna on 04.02.16.
+ * Class extends AsyncTask to make possible to communicate with server in background task
+ * It has to receive data from server about all training belongs to actual user and show them in the activity 
  */
 public class IndexMobile extends AsyncTask<String, String, JSONObject> {
 

@@ -1,9 +1,7 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import pl.com.inzynierka.mkufunzi.API.trainings.TrainingShowMobile;
@@ -22,9 +19,17 @@ import pl.com.inzynierka.mkufunzi.R;
 public class SingleTrainingSummary extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Class used to control left side menu
+     */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    /**
+     * Fields describing user in left side menu
+     */
     private TextView nameAndSurnameText, loginText, emailText;
-
+    /**
+     * Field for data on SingleTrainingSummary to write on
+     */
     private TextView singleTrainingId, singleTrainingStart, singleTrainingStop, singleTrainingComment;
 
     @Override

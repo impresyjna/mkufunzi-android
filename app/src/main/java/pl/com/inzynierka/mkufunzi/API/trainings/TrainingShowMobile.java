@@ -25,7 +25,8 @@ import pl.com.inzynierka.mkufunzi.models.DoneExcercise;
 import pl.com.inzynierka.mkufunzi.models.Training;
 
 /**
- * Created by impresyjna on 05.02.16.
+ * Class extends AsyncTask to make possible to communicate with server in background task
+ * It has to receive data from server about single training and display this in activity
  */
 public class TrainingShowMobile extends AsyncTask<String, String, JSONObject> {
 

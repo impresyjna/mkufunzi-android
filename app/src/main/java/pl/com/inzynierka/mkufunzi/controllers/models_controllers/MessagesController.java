@@ -10,10 +10,15 @@ import java.util.List;
 import pl.com.inzynierka.mkufunzi.models.Message;
 
 /**
- * Created by impresyjna on 27.01.16.
+ * Class used to control Message objects in android app
  */
 public class MessagesController {
 
+    /**
+     * Method used to generate list of message objects using data from server
+     * @param jsonObject json with data from server to create message objects
+     * @return ArrayList of message objects
+     */
     public List<Message> getArrayFromJSON(JSONObject jsonObject) {
         List<Message> messages = new ArrayList<>();
         JSONArray jsonArray = new JSONArray();

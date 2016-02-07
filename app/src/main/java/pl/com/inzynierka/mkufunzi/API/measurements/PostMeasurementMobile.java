@@ -75,6 +75,7 @@ public class PostMeasurementMobile extends AsyncTask<String, String, JSONObject>
         return null;
     }
 
+    /** If save was correct method opens the intent with measurement */
     protected void onPostExecute(JSONObject json) {
 
         if (pDialog != null && pDialog.isShowing()) {

@@ -20,7 +20,8 @@ import pl.com.inzynierka.mkufunzi.models.AppUser;
 import pl.com.inzynierka.mkufunzi.models.Training;
 
 /**
- * Created by impresyjna on 25.01.16.
+ * Class extends AsyncTask to make possible to communicate with server in background task
+ * It has to send data to server and call the method to end the training on server
  */
 public class EndTrainingMobile extends AsyncTask<String, String, JSONObject> {
 

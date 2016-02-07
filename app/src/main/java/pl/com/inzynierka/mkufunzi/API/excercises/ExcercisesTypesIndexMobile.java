@@ -16,7 +16,8 @@ import pl.com.inzynierka.mkufunzi.controllers.models_controllers.ExcerciseTypesC
 import pl.com.inzynierka.mkufunzi.models.ExcerciseType;
 
 /**
- * Created by impresyjna on 29.01.16.
+ * Class extends AsyncTask to make possible to communicate with server in background task
+ * It has to get data from server about existing ExcerciseType records in database
  */
 public class ExcercisesTypesIndexMobile extends AsyncTask<String, String, JSONObject> {
 

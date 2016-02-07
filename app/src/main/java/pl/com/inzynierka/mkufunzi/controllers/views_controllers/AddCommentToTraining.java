@@ -1,9 +1,7 @@
 package pl.com.inzynierka.mkufunzi.controllers.views_controllers;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,13 +16,22 @@ import android.widget.TextView;
 import pl.com.inzynierka.mkufunzi.API.trainings.AddCommentToTrainingMobile;
 import pl.com.inzynierka.mkufunzi.R;
 
+/** Activity allowing user to save comment about training */
 public class AddCommentToTraining extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Class used to control left side menu
+     */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
+    /**
+     * Fields describing user in left side menu
+     */
     private TextView nameAndSurnameText, loginText, emailText;
 
+    /** Field with comment Input */
     private TextView commentInput;
+    /** Field with trainingId to allow to open later Intent with data about this training */
     private String trainingId;
 
     @Override
@@ -100,6 +107,10 @@ public class AddCommentToTraining extends AppCompatActivity
         return true;
     }
 
+    /** Method called when user click button Save in activity
+     * It has to call AsyncTask to communicate with server in order to save comment in database
+     * @param view
+     */
     public void saveCommentOnServer(View view){
         String comment = commentInput.getText().toString();
         AddCommentToTrainingMobile addCommentToTrainingMobile = new AddCommentToTrainingMobile();

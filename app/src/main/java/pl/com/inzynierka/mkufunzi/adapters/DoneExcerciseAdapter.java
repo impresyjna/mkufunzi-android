@@ -13,7 +13,7 @@ import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.models.DoneExcercise;
 
 /**
- * Created by impresyjna on 06.02.16.
+ * Class with adapter to show doneExcercise object in activity
  */
 public class DoneExcerciseAdapter extends
         RecyclerView.Adapter<DoneExcerciseAdapter.ViewHolder> {

@@ -18,7 +18,7 @@ import pl.com.inzynierka.mkufunzi.R;
 import pl.com.inzynierka.mkufunzi.models.Training;
 
 /**
- * Created by impresyjna on 04.02.16.
+ * Class with adapter for Training. It allows to show training objects in activity
  */
 public class TrainingHistoryListAdapter extends BaseExpandableListAdapter {
 
