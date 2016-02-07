@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,8 +59,19 @@ public class TrainingHistoryListAdapter extends BaseExpandableListAdapter {
 
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.lblListItem);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        Date startDate;
+        String startFormattedDate = null;
+        try {
+            startDate = format.parse(childText.start);
+            startFormattedDate = df.format(startDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        txtListChild.setText(childText.start + " " + childText.end);
+
+        txtListChild.setText("Trening o: " + startFormattedDate);
         return convertView;
     }
 
