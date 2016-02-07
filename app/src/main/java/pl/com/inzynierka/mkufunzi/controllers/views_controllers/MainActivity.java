@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.activeandroid.query.Select;
 
+import java.text.SimpleDateFormat;
+
 import pl.com.inzynierka.mkufunzi.API.measurements.GetMainData;
 import pl.com.inzynierka.mkufunzi.API.users.UserExistsMobile;
 import pl.com.inzynierka.mkufunzi.R;
@@ -30,17 +32,29 @@ import pl.com.inzynierka.mkufunzi.models.User;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    /** instance of AppUser with information about user, protege, his card etc.*/
+    /**
+     * instance of AppUser with information about user, protege, his card etc.
+     */
     private AppUser appUser = AppUser.getInstance();
-    /** Class used to control left side menu */
+    /**
+     * Class used to control left side menu
+     */
     private NavigationAndOptionsController navigationAndOptionsController = new NavigationAndOptionsController();
-    /** Fields describing user in left side menu */
+    /**
+     * Fields describing user in left side menu
+     */
     private TextView nameAndSurnameText, loginText, emailText;
-    /** Field for data on mainActivity to write on  */
+    /**
+     * Field for data on mainActivity to write on
+     */
     private TextView actualWeightText, actualHeightText, actualBmiText, birthDateText, bloodTypeText, genderText;
-    /** Field for data on mainActivity to write on  */
+    /**
+     * Field for data on mainActivity to write on
+     */
     private TextView lastTrainingText, medicinesText, messagesText;
-    /** ImageView for eyeColor field*/
+    /**
+     * ImageView for eyeColor field
+     */
     private ImageView eyeColorIcon;
 
     /**
@@ -49,6 +63,7 @@ public class MainActivity extends AppCompatActivity
      * If log out method open the Login activity
      * If user doesn't exist asyncTask open the Login activity
      * Otherwise it shows the MainActivity
+     *
      * @param savedInstanceState
      */
     @Override
@@ -89,7 +104,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Method used to connect view with controller 
+     * Method used to connect view with controller
      */
     private void initInformationOnActivity() {
         actualWeightText = (TextView) findViewById(R.id.actual_weight_text);
@@ -144,6 +159,13 @@ public class MainActivity extends AppCompatActivity
         }
         if (appUser.getWhbmi().BMIValue != 0) {
             actualBmiText.setText(Double.toString((double) Math.round(appUser.getWhbmi().BMIValue * 100) / 100));
+        }
+        if (!appUser.getWhbmi().lastMessage.equals("null")) {
+            messagesText.setText(appUser.getWhbmi().lastMessage);
+        }
+        if (appUser.getWhbmi().lastTraining != null) {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            lastTrainingText.setText(df.format(appUser.getWhbmi().lastTraining));
         }
     }
 

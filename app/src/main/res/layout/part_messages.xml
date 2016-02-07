@@ -37,6 +37,6 @@
         android:background="#212121"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:text="Wiadomości"
+        android:text="Ostatnia wiadomość od trenera"
         android:textColor="@android:color/white" />
 </RelativeLayout>
