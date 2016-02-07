@@ -20,16 +20,5 @@
         </menu>
     </item>
 
-    <item android:title="Strefa leków">
-        <menu>
-            <item
-                android:id="@+id/nav_add_medicine"
-                android:title="Dodaj lek"/>
-            <item
-                android:id="@+id/nav_my_medicines"
-                android:title="Moje leki" />
-        </menu>
-    </item>
-
 
 </menu>

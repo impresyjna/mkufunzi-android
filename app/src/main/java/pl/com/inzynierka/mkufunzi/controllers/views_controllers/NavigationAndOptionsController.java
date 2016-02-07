@@ -59,10 +59,6 @@ public class NavigationAndOptionsController {
             openIntent(activity, BluetoothConnection.class);
         } else if (id == R.id.nav_trainings_history) {
             openIntent(activity, TrainingHistory.class);
-        } else if (id == R.id.nav_add_medicine) {
-            openIntent(activity, AddMedicine.class);
-        } else if (id == R.id.nav_my_medicines) {
-            openIntent(activity, MyMedicines.class);
         } else if (id == R.id.nav_protege_data) {
             openIntent(activity, ProtegeData.class);
         } else {
