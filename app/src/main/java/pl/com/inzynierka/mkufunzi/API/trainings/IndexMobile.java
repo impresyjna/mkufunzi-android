@@ -112,9 +112,7 @@ public class IndexMobile extends AsyncTask<String, String, JSONObject> {
 
                     @Override
                     public void onGroupExpand(int groupPosition) {
-                        Toast.makeText(activity,
-                                listDataHeader.get(groupPosition) + " Expanded",
-                                Toast.LENGTH_SHORT).show();
+
                     }
                 });
 
@@ -123,9 +121,6 @@ public class IndexMobile extends AsyncTask<String, String, JSONObject> {
 
                     @Override
                     public void onGroupCollapse(int groupPosition) {
-                        Toast.makeText(activity,
-                                listDataHeader.get(groupPosition) + " Collapsed",
-                                Toast.LENGTH_SHORT).show();
 
                     }
                 });
